@@ -4,6 +4,9 @@
  */
 package com.alg3.minhaconsulta.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author André Micael Sampaio Pinto <andre at alg3.org>
@@ -14,8 +17,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
+        
+      
        
         initComponents();
+        
+         addActionListeners(); // Chama o método que adiciona os ActionListeners
+    }
+
+    private void addActionListeners() {
+        // Adiciona ActionListener ao item "Novo Paciente"
+        
+      
+       CadastroPaciente.addActionListener((java.awt.event.ActionEvent evt) -> {
+           // Código para abrir a tela de cadastro do paciente
+           TelaCadastroCliente telaCadastro = new TelaCadastroCliente();
+            telaCadastro.setVisible(true);
+            telaCadastro.toFront();
+        });
+    
     }
 
     /**
@@ -35,7 +55,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         VerConvenios = new javax.swing.JMenuItem();
         VerEspecialidades = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        NovoPaciente = new javax.swing.JMenuItem();
+        CadastroPaciente = new javax.swing.JMenuItem();
         NovoMedico = new javax.swing.JMenuItem();
         MenuConsultas = new javax.swing.JMenu();
         NovaConsulta = new javax.swing.JMenuItem();
@@ -53,7 +73,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Minha Consulta");
-        setResizable(false);
 
         ImgPrincipal.setBackground(new java.awt.Color(153, 153, 153));
         ImgPrincipal.setForeground(new java.awt.Color(255, 153, 153));
@@ -85,8 +104,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuCadastros.add(VerEspecialidades);
         MenuCadastros.add(jSeparator1);
 
-        NovoPaciente.setText("Novo Paciente");
-        MenuCadastros.add(NovoPaciente);
+        CadastroPaciente.setText("Novo Paciente");
+        MenuCadastros.add(CadastroPaciente);
 
         NovoMedico.setText("Novo Médico");
         MenuCadastros.add(NovoMedico);
@@ -188,6 +207,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu BuscarConsultas;
+    private javax.swing.JMenuItem CadastroPaciente;
     private javax.swing.JMenuItem ConsultasHoje;
     private javax.swing.JMenu Fechar;
     private javax.swing.JLabel ImgPaginaInicial;
@@ -198,7 +218,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar MenuPrincipal;
     private javax.swing.JMenuItem NovaConsulta;
     private javax.swing.JMenuItem NovoMedico;
-    private javax.swing.JMenuItem NovoPaciente;
     private javax.swing.JMenuItem PorCRM;
     private javax.swing.JMenuItem PorDataConsulta;
     private javax.swing.JMenuItem PorEspecialidade;
