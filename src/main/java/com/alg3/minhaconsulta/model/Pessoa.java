@@ -1,4 +1,4 @@
-package minhaConsulta.model;
+package com.alg3.minhaconsulta.model;
 
 import java.util.Date;
 

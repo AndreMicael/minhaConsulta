@@ -5,8 +5,15 @@
 package com.alg3.minhaconsulta;
 
 import javax.swing.SwingUtilities;
+
+ 
 import com.alg3.minhaconsulta.view.TelaPrincipal; // Importa a classe TelaPrincipal
+
+ 
+
 import javax.swing.JFrame; // Importa JFrame
+
+ 
 
 /**
  *
@@ -15,8 +22,9 @@ import javax.swing.JFrame; // Importa JFrame
 public class MinhaConsulta {
 
     public static void main(String[] args) {
-        // Imprime uma mensagem no console
-        System.out.println("Hello World!");
+    
+        
+
 
         // Usa SwingUtilities para garantir que a interface gráfica seja criada na thread de eventos do Swing
         SwingUtilities.invokeLater(new Runnable() {
@@ -29,4 +37,8 @@ public class MinhaConsulta {
             }
         });
     }
+
+
+    
+
 }

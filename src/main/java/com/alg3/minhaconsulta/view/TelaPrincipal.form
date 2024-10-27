@@ -102,7 +102,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="Fechar">
+        <Menu class="javax.swing.JMenu" name="FecharMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fechar"/>
           </Properties>

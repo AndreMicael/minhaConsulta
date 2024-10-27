@@ -1,5 +1,4 @@
-package minhaConsulta.model;
-
+package com.alg3.minhaconsulta.model;
 /**
  *
  * @author André Micael Sampaio Pinto
