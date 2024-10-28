@@ -12,7 +12,7 @@ public class Medico extends Pessoa {
 
     private int medicoId;
     private String crm;
-    private int especialidadeId;
+    private String especialidade;
     
     public int getMedicoId() {
         return medicoId;
@@ -26,11 +26,11 @@ public class Medico extends Pessoa {
     public void setCrm(String crm) {
         this.crm = crm;
     }
-    public int getEspecialidadeId() {
-        return especialidadeId;
+    public String getEspecialidade() {
+        return especialidade;
     }
-    public void setEspecialidadeId(int especialidadeId) {
-        this.especialidadeId = especialidadeId;
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
     }
 
     

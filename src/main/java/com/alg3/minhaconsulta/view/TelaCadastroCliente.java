@@ -146,17 +146,24 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Cliente");
         setBackground(new java.awt.Color(204, 255, 255));
+        setMaximumSize(new java.awt.Dimension(512, 269));
+        setMinimumSize(new java.awt.Dimension(512, 269));
+        setPreferredSize(new java.awt.Dimension(512, 269));
         setResizable(false);
 
-        TitleCadastrarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        TitleCadastrarPaciente.setFont(new java.awt.Font("Inter SemiBold", 0, 12)); // NOI18N
+        TitleCadastrarPaciente.setForeground(new java.awt.Color(0, 51, 153));
+        TitleCadastrarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon-paciente.png"))); // NOI18N
         TitleCadastrarPaciente.setText("Cadastrar Paciente");
+        TitleCadastrarPaciente.setMaximumSize(new java.awt.Dimension(178, 64));
+        TitleCadastrarPaciente.setMinimumSize(new java.awt.Dimension(178, 64));
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(211, 253, 211));
 
-        LabelNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LabelNome.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         LabelNome.setText("Nome:");
 
-        LabelEndereco.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LabelEndereco.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         LabelEndereco.setText("Endereço:");
 
         InputNomePaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +172,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
         });
 
-        LabelNascimento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LabelNascimento.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         LabelNascimento.setText("Data Nasc.:");
 
         InputNascimento.setToolTipText("");
@@ -175,7 +182,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
         });
 
-        LabelCPF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LabelCPF.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         LabelCPF.setText("CPF:");
 
         InputCPF.setToolTipText("");
@@ -185,7 +192,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
         });
 
-        LabelConvenio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LabelConvenio.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         LabelConvenio.setText("Convênio:");
 
         InputEnderecoPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +201,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
         });
 
-        submitCadastrarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        submitCadastrarPaciente.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitCadastrarPaciente.setForeground(new java.awt.Color(0, 51, 153));
         submitCadastrarPaciente.setText("OK");
         submitCadastrarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,7 +210,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
         });
 
-        submitCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        submitCancelar.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitCancelar.setForeground(new java.awt.Color(0, 51, 153));
         submitCancelar.setText("Cancelar");
         submitCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,10 +219,10 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
         });
 
-        LabelTel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LabelTel.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         LabelTel.setText("Tel.:");
 
-        LabelGenero.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LabelGenero.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         LabelGenero.setText("Gênero:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -221,54 +230,52 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(LabelCPF)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(InputCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(LabelGenero)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(InputSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(LabelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(InputNomePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(LabelNascimento)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(InputNascimento))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(LabelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(InputEnderecoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LabelConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InputConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(LabelTel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InputTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(submitCancelar)
+                        .addComponent(LabelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(submitCadastrarPaciente)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addComponent(InputNomePaciente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LabelNascimento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(LabelConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputConvenio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LabelTel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(LabelCPF)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputCPF)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LabelGenero)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(LabelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputEnderecoPaciente)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(submitCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(submitCadastrarPaciente)
+                .addGap(164, 164, 164))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(LabelNascimento)
-                        .addComponent(InputNascimento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(InputNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(LabelNome)
@@ -284,16 +291,17 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                     .addComponent(LabelEndereco)
                     .addComponent(InputEnderecoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelConvenio)
-                    .addComponent(InputConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(InputTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelTel))
-                .addGap(28, 28, 28)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(LabelConvenio)
+                        .addComponent(InputConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LabelTel)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitCadastrarPaciente)
                     .addComponent(submitCancelar))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -301,13 +309,10 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(TitleCadastrarPaciente))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
