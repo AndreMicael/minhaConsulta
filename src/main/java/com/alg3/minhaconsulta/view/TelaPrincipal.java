@@ -80,23 +80,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Minha Consulta");
+        setResizable(false);
 
         ImgPrincipal.setBackground(new java.awt.Color(153, 153, 153));
         ImgPrincipal.setForeground(new java.awt.Color(255, 153, 153));
         ImgPrincipal.setToolTipText("");
 
         ImgPaginaInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/ImgPrincipal.png"))); // NOI18N
-        ImgPaginaInicial.setText("jLabel1");
 
         javax.swing.GroupLayout ImgPrincipalLayout = new javax.swing.GroupLayout(ImgPrincipal);
         ImgPrincipal.setLayout(ImgPrincipalLayout);
         ImgPrincipalLayout.setHorizontalGroup(
             ImgPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ImgPaginaInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(ImgPaginaInicial, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         ImgPrincipalLayout.setVerticalGroup(
             ImgPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ImgPaginaInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ImgPaginaInicial, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         MenuCadastros.setText("Cadastros");

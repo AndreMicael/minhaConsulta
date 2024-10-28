@@ -14,6 +14,7 @@ import javax.swing.text.MaskFormatter;
  *
  * @author André Micael Sampaio Pinto <andre at alg3.org>
  */
+
 public class TelaCadastroMedico extends javax.swing.JFrame {
 
     /**
@@ -23,7 +24,9 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     MaskFormatter mfdata;
     MaskFormatter mfcpf;
     
-    public List<String> convenios = new ArrayList<>();
+    
+    public List<String> especialidade  = new ArrayList<>();
+    public List<String> generos  = new ArrayList<>();
     public TelaCadastroMedico() {
          try {
             mfdata = new MaskFormatter("##/##/####");
@@ -40,6 +43,31 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         
      
         initComponents();
+        
+        
+           submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
+            // Código para fechar a tela de cadastro
+            dispose();
+              
+        });
+           
+        InputEspecialidade.removeAll();
+        especialidade.add("Unimed");
+        especialidade.add("Sulamerica");
+        especialidade.add("Bradesco");
+        
+        InputSexo.removeAll();
+        generos.add("Masculino");
+        generos.add("Feminino");
+        generos.add("Outro");
+        
+        for (String genero: generos) {
+            InputSexo.addItem(genero);
+        }
+        
+         for (String especialidade: especialidade) {
+            InputEspecialidade.addItem(especialidade);
+        }
         
         
     }
@@ -62,19 +90,24 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         InputNascimento =  new javax.swing.JFormattedTextField(mfdata);
         LabelCPF = new javax.swing.JLabel();
         InputNome1 = new javax.swing.JTextField();
-        submitCadastrarPaciente = new javax.swing.JButton();
         LabelEspecialidade = new javax.swing.JLabel();
         InputEspecialidade = new javax.swing.JComboBox<>();
         InputCRM = new javax.swing.JTextField();
+        InputSexo = new javax.swing.JComboBox<>();
+        LabelSexo = new javax.swing.JLabel();
+        submitCadastrarPaciente = new javax.swing.JButton();
+        submitCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Cliente");
         setBackground(new java.awt.Color(204, 255, 255));
+        setResizable(false);
 
         TitleCadastrarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         TitleCadastrarPaciente.setText("Cadastrar Médico");
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setPreferredSize(new java.awt.Dimension(446, 233));
 
         LabelNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LabelNome.setText("Nome:");
@@ -107,52 +140,66 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
             }
         });
 
+        LabelEspecialidade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LabelEspecialidade.setText("Especialidade: ");
+
+        LabelSexo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LabelSexo.setText("Gênero:");
+
         submitCadastrarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        submitCadastrarPaciente.setText("Cadastrar");
+        submitCadastrarPaciente.setText("OK");
         submitCadastrarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitCadastrarPacienteActionPerformed(evt);
             }
         });
 
-        LabelEspecialidade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        LabelEspecialidade.setText("Especialidade: ");
-
-        InputEspecialidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        submitCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        submitCancelar.setText("Cancelar");
+        submitCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(195, 195, 195)
-                        .addComponent(submitCadastrarPaciente))
+                        .addComponent(LabelEspecialidade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LabelSexo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LabelEspecialidade)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InputEspecialidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LabelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InputEndereco))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LabelNascimento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InputNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(LabelCPF)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InputCRM))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LabelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InputNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addComponent(LabelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputNome1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(LabelNascimento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LabelCPF)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputCRM))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(LabelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addComponent(submitCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(submitCadastrarPaciente)
+                .addGap(140, 140, 140))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,10 +223,14 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelEspecialidade)
-                    .addComponent(InputEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(submitCadastrarPaciente)
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(InputEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelSexo)
+                    .addComponent(InputSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitCadastrarPaciente)
+                    .addComponent(submitCancelar))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,14 +238,13 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(TitleCadastrarPaciente)
-                        .addGap(162, 162, 162))))
+                .addContainerGap(178, Short.MAX_VALUE)
+                .addComponent(TitleCadastrarPaciente)
+                .addGap(162, 162, 162))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,21 +260,25 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void InputEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputEnderecoActionPerformed
+    private void InputNome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNome1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InputEnderecoActionPerformed
+    }//GEN-LAST:event_InputNome1ActionPerformed
 
     private void InputNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNascimentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_InputNascimentoActionPerformed
 
-    private void InputNome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNome1ActionPerformed
+    private void InputEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputEnderecoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InputNome1ActionPerformed
+    }//GEN-LAST:event_InputEnderecoActionPerformed
 
     private void submitCadastrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCadastrarPacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_submitCadastrarPacienteActionPerformed
+
+    private void submitCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_submitCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,13 +322,16 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> InputEspecialidade;
     private javax.swing.JFormattedTextField InputNascimento;
     private javax.swing.JTextField InputNome1;
+    private javax.swing.JComboBox<String> InputSexo;
     private javax.swing.JLabel LabelCPF;
     private javax.swing.JLabel LabelEndereco;
     private javax.swing.JLabel LabelEspecialidade;
     private javax.swing.JLabel LabelNascimento;
     private javax.swing.JLabel LabelNome;
+    private javax.swing.JLabel LabelSexo;
     private javax.swing.JLabel TitleCadastrarPaciente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton submitCadastrarPaciente;
+    private javax.swing.JButton submitCancelar;
     // End of variables declaration//GEN-END:variables
 }

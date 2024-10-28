@@ -1,14 +1,15 @@
 package com.alg3.minhaconsulta.model;
 
-import java.util.Date;
+
 
 public class Pessoa {
 
     private String nome;
-    private Date data_nascimento;
+    private String data_nascimento;
     private String endereco;
     private String telefone;
-    private String cpf;
+    private String cpf;   
+    private String genero;
 
     public String getNome() {
         return nome;
@@ -16,10 +17,10 @@ public class Pessoa {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public Date getData_nascimento() {
+    public String getData_nascimento() {
         return data_nascimento;
     }
-    public void setData_nascimento(Date data_nascimento) {
+    public void setData_nascimento(String data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
     public String getEndereco() {
@@ -39,6 +40,12 @@ public class Pessoa {
     }
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+    public String getGenero() {
+        return genero;
+    }
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
     
 }

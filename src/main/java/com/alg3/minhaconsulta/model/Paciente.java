@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.alg3.minhaconsulta.model;
+import com.alg3.minhaconsulta.dao.ExceptionDAO;
+import com.alg3.minhaconsulta.dao.PacienteDAO;
 
 
 
@@ -28,11 +30,17 @@ public class Paciente extends Pessoa{
     public void setConvenio(String convenio) {
         this.convenio = convenio;
     }
+    @Override
     public String getCpf() {
         return cpf;
     }
+    @Override
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+    
+    public void cadastrarPaciente(Paciente paciente) throws ExceptionDAO {
+        new PacienteDAO().cadastrarPaciente(paciente);
     }
 
     

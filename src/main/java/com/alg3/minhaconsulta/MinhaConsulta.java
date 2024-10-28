@@ -28,7 +28,7 @@ public class MinhaConsulta {
 
         // Usa SwingUtilities para garantir que a interface gráfica seja criada na thread de eventos do Swing
         SwingUtilities.invokeLater(new Runnable() {
-            @Override
+            @Override 
             public void run() {
                 // Cria uma instância da tela principal
                 TelaPrincipal telaPrincipal = new TelaPrincipal();
