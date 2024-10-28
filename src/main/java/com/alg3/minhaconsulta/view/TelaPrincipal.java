@@ -5,6 +5,8 @@
 package com.alg3.minhaconsulta.view;
 
 
+
+
 /**
  *
  * @author André Micael Sampaio Pinto <andre at alg3.org>
@@ -16,7 +18,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         
-      
+     
+        
+        
+    
        
         initComponents();
         
@@ -40,6 +45,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             telaCadastro.setVisible(true);
             telaCadastro.toFront();
         });
+        
+        
+        
 
       
     
@@ -54,8 +62,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImgPrincipal = new javax.swing.JPanel();
-        ImgPaginaInicial = new javax.swing.JLabel();
+        BackgroundPanel = new javax.swing.JPanel();
+        Tela1Jpanel = new javax.swing.JPanel();
+        VerConsultasButton = new javax.swing.JToggleButton();
+        TelaConsultasPanel = new javax.swing.JPanel();
+        VoltarBtn = new javax.swing.JButton();
         MenuPrincipal = new javax.swing.JMenuBar();
         MenuCadastros = new javax.swing.JMenu();
         VerPacientes = new javax.swing.JMenuItem();
@@ -80,24 +91,79 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Minha Consulta");
+        setMaximumSize(new java.awt.Dimension(712, 423));
+        setMinimumSize(new java.awt.Dimension(712, 423));
+        setPreferredSize(new java.awt.Dimension(712, 423));
         setResizable(false);
 
-        ImgPrincipal.setBackground(new java.awt.Color(153, 153, 153));
-        ImgPrincipal.setForeground(new java.awt.Color(255, 153, 153));
-        ImgPrincipal.setToolTipText("");
+        BackgroundPanel.setBackground(new java.awt.Color(153, 153, 153));
+        BackgroundPanel.setForeground(new java.awt.Color(255, 153, 153));
+        BackgroundPanel.setToolTipText("");
+        BackgroundPanel.setMaximumSize(new java.awt.Dimension(712, 423));
+        BackgroundPanel.setMinimumSize(new java.awt.Dimension(712, 423));
+        BackgroundPanel.setPreferredSize(new java.awt.Dimension(600, 400));
+        BackgroundPanel.setRequestFocusEnabled(false);
+        BackgroundPanel.setLayout(new java.awt.CardLayout());
 
-        ImgPaginaInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/ImgPrincipal.png"))); // NOI18N
+        Tela1Jpanel.setBackground(new java.awt.Color(153, 255, 153));
+        Tela1Jpanel.setMaximumSize(new java.awt.Dimension(712, 423));
+        Tela1Jpanel.setMinimumSize(new java.awt.Dimension(712, 423));
 
-        javax.swing.GroupLayout ImgPrincipalLayout = new javax.swing.GroupLayout(ImgPrincipal);
-        ImgPrincipal.setLayout(ImgPrincipalLayout);
-        ImgPrincipalLayout.setHorizontalGroup(
-            ImgPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ImgPaginaInicial, javax.swing.GroupLayout.Alignment.TRAILING)
+        VerConsultasButton.setText("Consultas");
+        VerConsultasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerConsultasButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Tela1JpanelLayout = new javax.swing.GroupLayout(Tela1Jpanel);
+        Tela1Jpanel.setLayout(Tela1JpanelLayout);
+        Tela1JpanelLayout.setHorizontalGroup(
+            Tela1JpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Tela1JpanelLayout.createSequentialGroup()
+                .addContainerGap(302, Short.MAX_VALUE)
+                .addComponent(VerConsultasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(299, 299, 299))
         );
-        ImgPrincipalLayout.setVerticalGroup(
-            ImgPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ImgPaginaInicial, javax.swing.GroupLayout.Alignment.TRAILING)
+        Tela1JpanelLayout.setVerticalGroup(
+            Tela1JpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Tela1JpanelLayout.createSequentialGroup()
+                .addContainerGap(202, Short.MAX_VALUE)
+                .addComponent(VerConsultasButton)
+                .addGap(198, 198, 198))
         );
+
+        BackgroundPanel.add(Tela1Jpanel, "card2");
+
+        TelaConsultasPanel.setBackground(new java.awt.Color(255, 153, 153));
+        TelaConsultasPanel.setMaximumSize(new java.awt.Dimension(712, 423));
+        TelaConsultasPanel.setMinimumSize(new java.awt.Dimension(712, 423));
+
+        VoltarBtn.setText("Voltar");
+        VoltarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VoltarBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout TelaConsultasPanelLayout = new javax.swing.GroupLayout(TelaConsultasPanel);
+        TelaConsultasPanel.setLayout(TelaConsultasPanelLayout);
+        TelaConsultasPanelLayout.setHorizontalGroup(
+            TelaConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TelaConsultasPanelLayout.createSequentialGroup()
+                .addGap(305, 305, 305)
+                .addComponent(VoltarBtn)
+                .addContainerGap(335, Short.MAX_VALUE))
+        );
+        TelaConsultasPanelLayout.setVerticalGroup(
+            TelaConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaConsultasPanelLayout.createSequentialGroup()
+                .addContainerGap(213, Short.MAX_VALUE)
+                .addComponent(VoltarBtn)
+                .addGap(187, 187, 187))
+        );
+
+        BackgroundPanel.add(TelaConsultasPanel, "card3");
 
         MenuCadastros.setText("Cadastros");
 
@@ -166,16 +232,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ImgPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BackgroundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ImgPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BackgroundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void VerConsultasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerConsultasButtonActionPerformed
+        Tela1Jpanel.setVisible(false);
+        TelaConsultasPanel.setVisible(true);
+    }//GEN-LAST:event_VerConsultasButtonActionPerformed
+
+    private void VoltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarBtnActionPerformed
+         Tela1Jpanel.setVisible(true);
+        TelaConsultasPanel.setVisible(false);
+    }//GEN-LAST:event_VoltarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,12 +289,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BackgroundPanel;
     private javax.swing.JMenu BuscarConsultas;
     private javax.swing.JMenuItem CadastroPaciente;
     private javax.swing.JMenuItem ConsultasHoje;
     private javax.swing.JMenu FecharMenu;
-    private javax.swing.JLabel ImgPaginaInicial;
-    private javax.swing.JPanel ImgPrincipal;
     private javax.swing.JMenu MenuBuscarMedico;
     private javax.swing.JMenu MenuCadastros;
     private javax.swing.JMenu MenuConsultas;
@@ -230,10 +305,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem PorEspecialidade;
     private javax.swing.JMenuItem PorNome;
     private javax.swing.JMenuItem PorStatusConsulta;
+    private javax.swing.JPanel Tela1Jpanel;
+    private javax.swing.JPanel TelaConsultasPanel;
+    private javax.swing.JToggleButton VerConsultasButton;
     private javax.swing.JMenuItem VerConvenios;
     private javax.swing.JMenuItem VerEspecialidades;
     private javax.swing.JMenuItem VerPacientes;
     private javax.swing.JMenuItem VerTodasConsultas;
+    private javax.swing.JButton VoltarBtn;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     // End of variables declaration//GEN-END:variables
