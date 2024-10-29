@@ -40,7 +40,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel1" alignment="0" pref="512" max="32767" attributes="0"/>
+                  <Component id="jPanel1" alignment="0" pref="521" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="TitleCadastrarPaciente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -94,24 +94,26 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="LabelCPF" pref="40" max="32767" attributes="0"/>
+                              <Component id="LabelNome" max="32767" attributes="0"/>
+                          </Group>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="LabelNome" min="-2" pref="47" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                  <Component id="InputEndereco" min="-2" pref="168" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="LabelNascimento" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="InputNascimento" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="LabelCPF" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="InputCRM" min="-2" pref="231" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                  <Component id="InputCrm" min="-2" pref="231" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="LabelSexo" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="InputSexo" max="32767" attributes="0"/>
+                                  <Component id="InputGenero" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="InputNomeMedico" min="-2" pref="201" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="LabelNascimento" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="InputNascimento" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
@@ -122,8 +124,8 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="LabelEspecialidade" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="43" max="32767" attributes="0"/>
-                                          <Component id="InputEspecialidade" min="-2" pref="209" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="InputEspecialidade" min="-2" pref="255" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -140,7 +142,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="LabelEndereco" min="-2" pref="58" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="InputNome1" max="32767" attributes="0"/>
+                                  <Component id="InputEnderecoMedico" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -160,21 +162,21 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="InputEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="InputNomeMedico" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="LabelNome" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="LabelCPF" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="InputCRM" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="InputCrm" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="LabelSexo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="InputSexo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="InputGenero" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="7" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="InputNome1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="InputEnderecoMedico" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="LabelEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -211,9 +213,9 @@
             <Property name="text" type="java.lang.String" value="Endere&#xe7;o:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="InputEndereco">
+        <Component class="javax.swing.JTextField" name="InputNomeMedico">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InputEnderecoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InputNomeMedicoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LabelNascimento">
@@ -244,9 +246,9 @@
             <Property name="text" type="java.lang.String" value="CRM:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="InputNome1">
+        <Component class="javax.swing.JTextField" name="InputEnderecoMedico">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InputNome1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InputEnderecoMedicoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LabelEspecialidade">
@@ -267,9 +269,9 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="InputCRM">
+        <Component class="javax.swing.JTextField" name="InputCrm">
         </Component>
-        <Component class="javax.swing.JComboBox" name="InputSexo">
+        <Component class="javax.swing.JComboBox" name="InputGenero">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
