@@ -50,6 +50,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         
         
+          NovaConsulta.addActionListener((java.awt.event.ActionEvent evt) -> {
+            // Código para abrir a tela de cadastro do médico
+            TelaCadastroConsulta telaCadastroConsulta = new TelaCadastroConsulta();
+            telaCadastroConsulta.setVisible(true);
+            telaCadastroConsulta.toFront();
+        });
+        
         
 
       
@@ -65,8 +72,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Canvas = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         BackgroundPanel = new javax.swing.JPanel();
         Tela1Jpanel = new javax.swing.JPanel();
         jPanelImage = new javax.swing.JPanel();
@@ -100,26 +105,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setTitle("Minha Consulta");
         setMinimumSize(new java.awt.Dimension(712, 423));
         setResizable(false);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/ImgPrincipal.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-
-        javax.swing.GroupLayout CanvasLayout = new javax.swing.GroupLayout(Canvas);
-        Canvas.setLayout(CanvasLayout);
-        CanvasLayout.setHorizontalGroup(
-            CanvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CanvasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, Short.MAX_VALUE)
-                .addGap(27, 27, 27))
-        );
-        CanvasLayout.setVerticalGroup(
-            CanvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CanvasLayout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-        );
 
         BackgroundPanel.setBackground(new java.awt.Color(153, 153, 153));
         BackgroundPanel.setForeground(new java.awt.Color(255, 153, 153));
@@ -217,7 +202,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BackgroundPanel.add(TelaConsultasPanel, "card3");
 
         MenuCadastros.setBackground(new java.awt.Color(204, 204, 255));
-        MenuCadastros.setForeground(new java.awt.Color(0, 102, 204));
+        MenuCadastros.setForeground(new java.awt.Color(51, 51, 51));
         MenuCadastros.setText("Cadastros");
         MenuCadastros.setFocusable(false);
         MenuCadastros.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
@@ -246,7 +231,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuPrincipal.add(MenuCadastros);
 
         MenuConsultas.setBackground(new java.awt.Color(204, 204, 255));
-        MenuConsultas.setForeground(new java.awt.Color(0, 102, 204));
+        MenuConsultas.setForeground(new java.awt.Color(51, 51, 51));
         MenuConsultas.setText("Consultas");
         MenuConsultas.setFocusable(false);
         MenuConsultas.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
@@ -275,7 +260,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuPrincipal.add(MenuConsultas);
 
         MenuBuscarMedico.setBackground(new java.awt.Color(204, 204, 255));
-        MenuBuscarMedico.setForeground(new java.awt.Color(0, 102, 204));
+        MenuBuscarMedico.setForeground(new java.awt.Color(51, 51, 51));
         MenuBuscarMedico.setText("Buscar Medico");
         MenuBuscarMedico.setFocusable(false);
         MenuBuscarMedico.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
@@ -292,7 +277,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuPrincipal.add(MenuBuscarMedico);
 
         FecharMenu.setBackground(new java.awt.Color(204, 204, 255));
-        FecharMenu.setForeground(new java.awt.Color(0, 102, 204));
+        FecharMenu.setForeground(new java.awt.Color(51, 51, 51));
         FecharMenu.setText("Fechar");
         FecharMenu.setFocusable(false);
         FecharMenu.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
@@ -305,20 +290,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(BackgroundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Canvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(BackgroundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Canvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -369,7 +344,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel BackgroundPanel;
     private javax.swing.JMenu BuscarConsultas;
     private javax.swing.JMenuItem CadastroPaciente;
-    private javax.swing.JPanel Canvas;
     private javax.swing.JMenuItem ConsultasHoje;
     private javax.swing.JMenu FecharMenu;
     private javax.swing.JMenu MenuBuscarMedico;
@@ -391,7 +365,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem VerPacientes;
     private javax.swing.JMenuItem VerTodasConsultas;
     private javax.swing.JButton VoltarBtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelImage;
     private javax.swing.JPopupMenu.Separator jSeparator1;

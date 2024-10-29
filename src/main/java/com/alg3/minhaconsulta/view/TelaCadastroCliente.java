@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 import com.alg3.minhaconsulta.controller.PacienteController;
+import com.formdev.flatlaf.FlatLightLaf;
 
 /**
  *
@@ -26,6 +27,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
      * Creates new form TelaCadastroCliente
      */
     
+    
      
     MaskFormatter mfdata;
     MaskFormatter mfcpf;
@@ -34,8 +36,13 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     public List<String> generos = new ArrayList<>();
     public TelaCadastroCliente() {  
         
-        initComponents();
-          
+         try {
+            FlatLightLaf.setup();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
+   
          try {
             mfdata = new MaskFormatter("##/##/####");
         } catch (ParseException ex) {
@@ -49,7 +56,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         }
            
         
-     
+          initComponents();
+          
        
 
         InputConvenio.removeAll();
@@ -235,7 +243,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(LabelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LabelNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(InputNomePaciente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -303,7 +311,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitCadastrarPaciente)
                     .addComponent(submitCancelar))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -322,11 +330,11 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
