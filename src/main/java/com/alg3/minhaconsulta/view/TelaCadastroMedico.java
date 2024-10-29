@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.alg3.minhaconsulta.view;
+import com.formdev.flatlaf.FlatLightLaf;
 
 import com.alg3.minhaconsulta.controller.MedicoController;
 
@@ -35,6 +36,12 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     public List<String> generos  = new ArrayList<>();
     
     public TelaCadastroMedico() {
+
+        try {
+            FlatLightLaf.setup();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         
           initComponents();
 
@@ -364,11 +371,12 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("FlatLightLaf".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
+            
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
