@@ -137,7 +137,6 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         InputTelefone = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastrar Cliente");
         setBackground(new java.awt.Color(204, 255, 255));
         setBounds(new java.awt.Rectangle(10, 10, 10, 10));
         setMaximumSize(new java.awt.Dimension(512, 269));
@@ -311,6 +310,8 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
+
+        getAccessibleContext().setAccessibleName("Cadastrar Médico");
 
         pack();
         setLocationRelativeTo(null);

@@ -136,7 +136,6 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
         submitCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastrar Cliente");
         setBackground(new java.awt.Color(204, 255, 255));
         setMinimumSize(new java.awt.Dimension(512, 300));
         setResizable(false);
@@ -211,6 +210,8 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleName("Nova Consulta");
 
         pack();
         setLocationRelativeTo(null);

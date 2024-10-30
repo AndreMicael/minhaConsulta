@@ -145,7 +145,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         LabelGenero = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastrar Cliente");
         setBackground(new java.awt.Color(204, 255, 255));
         setMaximumSize(new java.awt.Dimension(512, 300));
         setMinimumSize(new java.awt.Dimension(512, 300));
@@ -327,6 +326,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        getAccessibleContext().setAccessibleDescription("Cadastrar Paciente");
 
         pack();
         setLocationRelativeTo(null);

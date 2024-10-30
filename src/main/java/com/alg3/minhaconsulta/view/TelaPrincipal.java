@@ -7,6 +7,8 @@ package com.alg3.minhaconsulta.view;
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroConsulta;
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroMedico;
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroCliente;
+import com.alg3.minhaconsulta.view.Exibicoes.TelaExibirEntradas;
+import com.alg3.minhaconsulta.view.Exibicoes.TelaExibirSaidas;
 import com.formdev.flatlaf.FlatLightLaf;
 
 /**
@@ -57,6 +59,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
             TelaCadastroConsulta telaCadastroConsulta = new TelaCadastroConsulta();
             telaCadastroConsulta.setVisible(true);
             telaCadastroConsulta.toFront();
+        });
+
+        EntradasFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> {
+            // Código para abrir a tela de cadastro do médico
+            TelaExibirEntradas telaExibirEntradas = new TelaExibirEntradas();
+            telaExibirEntradas.setVisible(true);
+            telaExibirEntradas.toFront();
+        });
+
+        SaidasFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> {
+            // Código para abrir a tela de cadastro do médico
+            TelaExibirSaidas telaExibirSaidas = new TelaExibirSaidas();
+            telaExibirSaidas.setVisible(true);
+            telaExibirSaidas.toFront();
         });
 
         //Alternar entre os panels
