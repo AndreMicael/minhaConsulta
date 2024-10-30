@@ -7,6 +7,7 @@ package com.alg3.minhaconsulta.view;
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroConsulta;
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroMedico;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroCliente;
@@ -40,6 +41,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         addActionListeners(); // Chama o método que adiciona os ActionListeners
     }
 
+    //Função para alternar entre os painéis da tela principal
     private void exibirPainel(JPanel painelParaExibir) {
         TelaConsultasPanel.setVisible(false);
         Tela1Jpanel.setVisible(false);
@@ -53,46 +55,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelParaExibir.setVisible(true);
     }
 
-    private void addActionListeners() {
-        // Adiciona ActionListener ao item "Novo Paciente"
+    // Função para abrir as janelas
+    private void exibirTelas(JFrame janelaParaExibir){
+        janelaParaExibir.setVisible(true);
+        janelaParaExibir.toFront();
+    }
 
-        CadastroPaciente.addActionListener((java.awt.event.ActionEvent evt) -> {
-            // Código para abrir a tela de cadastro do paciente
-            TelaCadastroCliente telaCadastro = new TelaCadastroCliente();
-            telaCadastro.setVisible(true);
-            telaCadastro.toFront();
-        });
+    private void addActionListeners() {     
+        
 
-        NovoMedico.addActionListener((java.awt.event.ActionEvent evt) -> {
-            // Código para abrir a tela de cadastro do médico
-            TelaCadastroMedico telaCadastro = new TelaCadastroMedico();
-            telaCadastro.setVisible(true);
-            telaCadastro.toFront();
-        });
+        TelaCadastroCliente telaCadastro = new TelaCadastroCliente();
+        TelaCadastroMedico telaCadastroMedico = new TelaCadastroMedico();
+        TelaCadastroConsulta telaCadastroConsulta = new TelaCadastroConsulta();
+        TelaExibirEntradas telaExibirEntradas = new TelaExibirEntradas();
+        TelaExibirSaidas telaExibirSaidas = new TelaExibirSaidas();
 
-        NovaConsulta.addActionListener((java.awt.event.ActionEvent evt) -> {
-            // Código para abrir a tela de cadastro do médico
-            TelaCadastroConsulta telaCadastroConsulta = new TelaCadastroConsulta();
-            telaCadastroConsulta.setVisible(true);
-            telaCadastroConsulta.toFront();
-        });
+        // Abre as janelas
+        CadastroPaciente.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastro));
+        NovoMedico.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroMedico));
+        NovaConsulta.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroConsulta));
+        EntradasFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaExibirEntradas));
+        SaidasFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaExibirSaidas));   
 
-        EntradasFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> {
-            // Código para abrir a tela de cadastro do médico
-            TelaExibirEntradas telaExibirEntradas = new TelaExibirEntradas();
-            telaExibirEntradas.setVisible(true);
-            telaExibirEntradas.toFront();
-        });
-
-        SaidasFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> {
-            // Código para abrir a tela de cadastro do médico
-            TelaExibirSaidas telaExibirSaidas = new TelaExibirSaidas();
-            telaExibirSaidas.setVisible(true);
-            telaExibirSaidas.toFront();
-        });
-
-      
-
+        // Alterna entre os paineis
         VerTodasConsultas.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaConsultasPanel));
         VerPacientes.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaPacientesPanel));
         VerConvenios.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaConveniosPanel));
@@ -836,3 +821,106 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+// Código antigo para exibir os paineis
+//
+//
+// VerTodasConsultas.addActionListener((java.awt.event.ActionEvent evt) -> {
+//     TelaConsultasPanel.setVisible(true);
+//     Tela1Jpanel.setVisible(false);
+//     TelaPacientesPanel.setVisible(false);
+//     TelaConveniosPanel.setVisible(false);
+//     TelaBuscaMedicoPanel.setVisible(false);
+//     TelaBalancos.setVisible(false);
+// });
+
+// VerPacientes.addActionListener((java.awt.event.ActionEvent evt) -> {
+//     TelaPacientesPanel.setVisible(true);
+//     TelaConsultasPanel.setVisible(false);
+//     Tela1Jpanel.setVisible(false);
+//     TelaConveniosPanel.setVisible(false);
+//     TelaBuscaMedicoPanel.setVisible(false);
+//     TelaBalancos.setVisible(false);
+// });
+
+// VerConvenios.addActionListener((java.awt.event.ActionEvent evt) -> {
+//     TelaConveniosPanel.setVisible(true);
+//     TelaConsultasPanel.setVisible(false);
+//     Tela1Jpanel.setVisible(false);
+//     TelaPacientesPanel.setVisible(false);
+//     TelaBuscaMedicoPanel.setVisible(false);
+//     TelaBalancos.setVisible(false);
+// });
+
+// VerEspecialidades.addActionListener((java.awt.event.ActionEvent evt) -> {
+//     TelaEspecialidadesPanel.setVisible(true);
+//     TelaConveniosPanel.setVisible(false);
+//     TelaConsultasPanel.setVisible(false);
+//     Tela1Jpanel.setVisible(false);
+//     TelaPacientesPanel.setVisible(false);
+//     TelaBuscaMedicoPanel.setVisible(false);
+//     TelaBalancos.setVisible(false);
+// });
+
+// VerMedicos.addActionListener((java.awt.event.ActionEvent evt) -> {
+//     TelaBuscaMedicoPanel.setVisible(true);
+//     TelaEspecialidadesPanel.setVisible(false);
+//     TelaConveniosPanel.setVisible(false);
+//     TelaConsultasPanel.setVisible(false);
+//     Tela1Jpanel.setVisible(false);
+//     TelaPacientesPanel.setVisible(false);
+//     TelaBalancos.setVisible(false);
+
+// });
+
+// BalancoFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> {
+//     TelaBalancos.setVisible(true);
+//     TelaBuscaMedicoPanel.setVisible(false);
+//     TelaEspecialidadesPanel.setVisible(false);
+//     TelaConveniosPanel.setVisible(false);
+//     TelaConsultasPanel.setVisible(false);
+//     Tela1Jpanel.setVisible(false);
+//     TelaPacientesPanel.setVisible(false);
+
+// });
+
+
+
+
+  //  Código antigo para abrir as telas
+
+        // CadastroPaciente.addActionListener((java.awt.event.ActionEvent evt) -> {
+        //     
+        //     TelaCadastroCliente telaCadastroCliente = new TelaCadastroCliente();
+        //     telaCadastro.setVisible(true);
+        //     telaCadastro.toFront();
+        // });
+
+        // NovoMedico.addActionListener((java.awt.event.ActionEvent evt) -> {
+        //      
+        //     TelaCadastroMedico telaCadastroMedico = new TelaCadastroMedico();
+        //     telaCadastroMedico.setVisible(true);
+        //     telaCadastroMedico.toFront();
+        // });
+
+        // NovaConsulta.addActionListener((java.awt.event.ActionEvent evt) -> {
+        //      
+        //     TelaCadastroConsulta telaCadastroConsulta = new TelaCadastroConsulta();
+        //     telaCadastroConsulta.setVisible(true);
+        //     telaCadastroConsulta.toFront();
+        // });
+
+        // EntradasFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> {
+        //  
+        //     TelaExibirEntradas telaExibirEntradas = new TelaExibirEntradas();
+        //     telaExibirEntradas.setVisible(true);
+        //     telaExibirEntradas.toFront();
+        // });
+
+        // SaidasFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> {
+        //     TelaExibirSaidas telaExibirSaidas = new TelaExibirSaidas();
+        //     telaExibirSaidas.setVisible(true);
+        //     telaExibirSaidas.toFront();
+        // });
