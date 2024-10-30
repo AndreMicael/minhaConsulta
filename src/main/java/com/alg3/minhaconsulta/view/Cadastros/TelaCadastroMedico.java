@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.alg3.minhaconsulta.view;
+package com.alg3.minhaconsulta.view.Cadastros;
+
 import com.formdev.flatlaf.FlatLightLaf;
 
 import com.alg3.minhaconsulta.controller.MedicoController;
@@ -21,18 +22,16 @@ import javax.swing.text.MaskFormatter;
  *
  * @author André Micael Sampaio Pinto <andre at alg3.org>
  */
-
 public class TelaCadastroMedico extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaCadastroCliente
      */
-    
-    MaskFormatter mfdata;    
-    
-    public List<String> especialidade  = new ArrayList<>();
-    public List<String> generos  = new ArrayList<>();
-    
+    MaskFormatter mfdata;
+
+    public List<String> especialidade = new ArrayList<>();
+    public List<String> generos = new ArrayList<>();
+
     public TelaCadastroMedico() {
 
         try {
@@ -40,41 +39,38 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         } catch (Exception ex) {
             java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-         try {
+
+        try {
             mfdata = new MaskFormatter("##/##/####");
         } catch (ParseException ex) {
             System.out.println("Ocorreu um erro na criação da máscara");
         }
         // O mask formatter precisa vir antes do initComponents, caso contrário a máscara não é carregadas
-         
+
         initComponents();
         especialidade.add("Cardiologista");
         especialidade.add("Pediatria");
         especialidade.add("Urologista");
-       
+
         generos.add("Masculino");
         generos.add("Feminino");
         generos.add("Outro");
-        
-        for (String genero: generos) {
+
+        for (String genero : generos) {
             InputGenero.addItem(genero);
         }
-        
-         for (String especialidade: especialidade) {
+
+        for (String especialidade : especialidade) {
             InputEspecialidade.addItem(especialidade);
         }
-        
-     
-              
-        
-           submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
+
+        submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
             // Código para fechar a tela de cadastro
             dispose();
-              
+
         });
-           
-               submitCadastrarMedico.addActionListener((java.awt.event.ActionEvent evt) -> {
+
+        submitCadastrarMedico.addActionListener((java.awt.event.ActionEvent evt) -> {
             String nome = InputNomeMedico.getText();
             String endereco = InputEnderecoMedico.getText();
             String nascimento = InputNascimento.getText();
@@ -83,9 +79,9 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
             String genero = (String) InputGenero.getSelectedItem();
             String telefone = InputTelefone.getText(); // Adicionei o campo telefone
             boolean sucesso;
-        
+
             String generoFinal = String.valueOf(genero.charAt(0));
-        
+
             try {
                 MedicoController medicoController = new MedicoController();
                 try {
@@ -93,7 +89,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                     Date nascimentoDate = dateFormat.parse(nascimento);
                     String nascimentoStr = dateFormat.format(nascimentoDate);
                     sucesso = medicoController.cadastrarMedico(nome, nascimentoStr, endereco, telefone, crm, especialidade, generoFinal);
-        
+
                     if (sucesso) {
                         System.out.println("Médico cadastrado com sucesso");
                         JOptionPane.showMessageDialog(null, "Médico cadastrado com sucesso");
@@ -109,14 +105,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar o paciente. Erro: " + ex);
             }
         });
-           
-              
-         
-         
-         
-         
-        
-        
+
     }
 
     /**
@@ -363,7 +352,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                     break;
                 }
             }
-            
+
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {

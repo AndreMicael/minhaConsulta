@@ -1,19 +1,13 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package com.alg3.minhaconsulta;
 
 import javax.swing.SwingUtilities;
 
- 
 import com.alg3.minhaconsulta.view.TelaPrincipal; // Importa a classe TelaPrincipal
 
- 
-
 import javax.swing.JFrame; // Importa JFrame
-
- 
 
 /**
  *
@@ -22,13 +16,10 @@ import javax.swing.JFrame; // Importa JFrame
 public class MinhaConsulta {
 
     public static void main(String[] args) {
-    
-        
-
 
         // Usa SwingUtilities para garantir que a interface gráfica seja criada na thread de eventos do Swing
         SwingUtilities.invokeLater(new Runnable() {
-            @Override 
+            @Override
             public void run() {
                 // Cria uma instância da tela principal
                 TelaPrincipal telaPrincipal = new TelaPrincipal();
@@ -37,8 +28,5 @@ public class MinhaConsulta {
             }
         });
     }
-
-
-    
 
 }

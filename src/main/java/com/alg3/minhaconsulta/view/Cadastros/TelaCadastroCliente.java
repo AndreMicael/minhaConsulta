@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.alg3.minhaconsulta.view;
+package com.alg3.minhaconsulta.view.Cadastros;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -26,65 +26,58 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroCliente
      */
-    
-    
-     
     MaskFormatter mfdata;
     MaskFormatter mfcpf;
-    
+
     public List<String> convenios = new ArrayList<>();
     public List<String> generos = new ArrayList<>();
-    public TelaCadastroCliente() {  
-        
-         try {
+
+    public TelaCadastroCliente() {
+
+        try {
             FlatLightLaf.setup();
         } catch (Exception ex) {
             java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-   
-         try {
+
+        try {
             mfdata = new MaskFormatter("##/##/####");
         } catch (ParseException ex) {
             System.out.println("Ocorreu um erro na criação da máscara");
         }
-         
-           try {
+
+        try {
             mfcpf = new MaskFormatter("###.###.###-##");
         } catch (ParseException ex) {
             System.out.println("Ocorreu um erro na criação da máscara");
         }
-           
-        
-          initComponents();
-          
-       
+
+        initComponents();
 
         InputConvenio.removeAll();
         convenios.add("Unimed");
         convenios.add("Sulamerica");
         convenios.add("Bradesco");
-        
+
         for (String convenio : convenios) {
             InputConvenio.addItem(convenio);
         }
-        
+
         InputSexo.removeAll();
         generos.add("Masculino");
         generos.add("Feminino");
         generos.add("Outro");
-        
-        for (String genero: generos) {
+
+        for (String genero : generos) {
             InputSexo.addItem(genero);
         }
-        
-        
-          submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
+
+        submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
             // Código para fechar a tela de cadastro
             dispose();
-              
+
         });
-          
+
         submitCadastrarPaciente.addActionListener((java.awt.event.ActionEvent evt) -> {
             String nome = InputNomePaciente.getText();
             String endereco = InputEnderecoPaciente.getText();
@@ -94,9 +87,9 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             String genero = (String) InputSexo.getSelectedItem();
             String telefone = InputTelefone.getText(); // Adicionei o campo telefone
             boolean sucesso;
-        
+
             String generoFinal = String.valueOf(genero.charAt(0));
-        
+
             try {
                 PacienteController pacienteController = new PacienteController();
                 try {
@@ -104,7 +97,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                     Date nascimentoDate = dateFormat.parse(nascimento);
                     String nascimentoStr = dateFormat.format(nascimentoDate);
                     sucesso = pacienteController.cadastrarPaciente(nome, nascimentoStr, endereco, telefone, cpf, convenio, generoFinal);
-        
+
                     if (sucesso) {
                         System.out.println("Paciente cadastrado com sucesso");
                         JOptionPane.showMessageDialog(null, "Paciente cadastrado com sucesso");
@@ -120,9 +113,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar o paciente. Erro: " + ex);
             }
         });
-        
-        
-        
+
     }
 
     /**
@@ -341,7 +332,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-   
     private void InputNomePacienteActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -376,7 +366,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("FlatLightLaf".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;

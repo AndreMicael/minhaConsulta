@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.alg3.minhaconsulta.view;
+package com.alg3.minhaconsulta.view.Cadastros;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -26,42 +26,40 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroCliente
      */
-    
-    
-     
     MaskFormatter mfdata;
     MaskFormatter mfcpf;
-    
+
     public List<String> convenios = new ArrayList<>();
     public List<String> generos = new ArrayList<>();
-    public TelaCadastroConsulta() {  
-        
-         try {
+
+    public TelaCadastroConsulta() {
+
+        try {
             FlatLightLaf.setup();
         } catch (Exception ex) {
             java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         initComponents();
-          
-         try {
+
+        try {
             mfdata = new MaskFormatter("##/##/####");
         } catch (ParseException ex) {
             System.out.println("Ocorreu um erro na criação da máscara");
         }
-         
-           try {
+
+        try {
             mfcpf = new MaskFormatter("###.###.###-##");
         } catch (ParseException ex) {
             System.out.println("Ocorreu um erro na criação da máscara");
         }
-           
-            submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
+
+        submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
             // Código para fechar a tela de cadastro
             dispose();
-              
+
         });
-           
+
         /*
         InputConvenio.removeAll();
         convenios.add("Unimed");
@@ -120,8 +118,7 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
             }
         });
         
-        */
-        
+         */
     }
 
     /**
@@ -227,7 +224,6 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_submitCadastrarPacienteActionPerformed
 
-   
     private void InputNomePacienteActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -242,7 +238,7 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("FlatLightLaf".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
