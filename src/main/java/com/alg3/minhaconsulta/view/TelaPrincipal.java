@@ -6,6 +6,9 @@ package com.alg3.minhaconsulta.view;
 
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroConsulta;
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroMedico;
+
+import javax.swing.JPanel;
+
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroCliente;
 import com.alg3.minhaconsulta.view.Exibicoes.TelaExibirEntradas;
 import com.alg3.minhaconsulta.view.Exibicoes.TelaExibirSaidas;
@@ -35,6 +38,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         initComponents();
         addActionListeners(); // Chama o método que adiciona os ActionListeners
+    }
+
+    private void exibirPainel(JPanel painelParaExibir) {
+        TelaConsultasPanel.setVisible(false);
+        Tela1Jpanel.setVisible(false);
+        TelaPacientesPanel.setVisible(false);
+        TelaConveniosPanel.setVisible(false);
+        TelaBuscaMedicoPanel.setVisible(false);
+        TelaEspecialidadesPanel.setVisible(false);
+        TelaBalancos.setVisible(false);
+        
+        // Exibe apenas o painel desejado
+        painelParaExibir.setVisible(true);
     }
 
     private void addActionListeners() {
@@ -75,65 +91,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             telaExibirSaidas.toFront();
         });
 
-        //Alternar entre os panels
-        VerTodasConsultas.addActionListener((java.awt.event.ActionEvent evt) -> {
-            TelaConsultasPanel.setVisible(true);
-            Tela1Jpanel.setVisible(false);
-            TelaPacientesPanel.setVisible(false);
-            TelaConveniosPanel.setVisible(false);
-            TelaBuscaMedicoPanel.setVisible(false);
-            TelaBalancos.setVisible(false);
-        });
+      
 
-        VerPacientes.addActionListener((java.awt.event.ActionEvent evt) -> {
-            TelaPacientesPanel.setVisible(true);
-            TelaConsultasPanel.setVisible(false);
-            Tela1Jpanel.setVisible(false);
-            TelaConveniosPanel.setVisible(false);
-            TelaBuscaMedicoPanel.setVisible(false);
-            TelaBalancos.setVisible(false);
-        });
-
-        VerConvenios.addActionListener((java.awt.event.ActionEvent evt) -> {
-            TelaConveniosPanel.setVisible(true);
-            TelaConsultasPanel.setVisible(false);
-            Tela1Jpanel.setVisible(false);
-            TelaPacientesPanel.setVisible(false);
-            TelaBuscaMedicoPanel.setVisible(false);
-            TelaBalancos.setVisible(false);
-        });
-
-        VerEspecialidades.addActionListener((java.awt.event.ActionEvent evt) -> {
-            TelaEspecialidadesPanel.setVisible(true);
-            TelaConveniosPanel.setVisible(false);
-            TelaConsultasPanel.setVisible(false);
-            Tela1Jpanel.setVisible(false);
-            TelaPacientesPanel.setVisible(false);
-            TelaBuscaMedicoPanel.setVisible(false);
-            TelaBalancos.setVisible(false);
-        });
-
-        VerMedicos.addActionListener((java.awt.event.ActionEvent evt) -> {
-            TelaBuscaMedicoPanel.setVisible(true);
-            TelaEspecialidadesPanel.setVisible(false);
-            TelaConveniosPanel.setVisible(false);
-            TelaConsultasPanel.setVisible(false);
-            Tela1Jpanel.setVisible(false);
-            TelaPacientesPanel.setVisible(false);
-            TelaBalancos.setVisible(false);
-
-        });
-
-        BalancoFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> {
-            TelaBalancos.setVisible(true);
-            TelaBuscaMedicoPanel.setVisible(false);
-            TelaEspecialidadesPanel.setVisible(false);
-            TelaConveniosPanel.setVisible(false);
-            TelaConsultasPanel.setVisible(false);
-            Tela1Jpanel.setVisible(false);
-            TelaPacientesPanel.setVisible(false);
-
-        });
+        VerTodasConsultas.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaConsultasPanel));
+        VerPacientes.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaPacientesPanel));
+        VerConvenios.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaConveniosPanel));
+        VerEspecialidades.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaEspecialidadesPanel));
+        VerMedicos.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaBuscaMedicoPanel));
+        BalancoFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaBalancos));
 
     }
 
