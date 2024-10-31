@@ -4,7 +4,8 @@
  */
 package com.alg3.minhaconsulta.model;
 
-import java.util.Date;
+import com.alg3.minhaconsulta.dao.ConsultaDAO;
+import com.alg3.minhaconsulta.dao.ExceptionDAO;
 
 /**
  *
@@ -13,9 +14,10 @@ import java.util.Date;
 public class Consulta {
    
     private Integer consultaId;
-    private Paciente paciente;
-    private Medico medico;
-    private Date dataConsulta;
+    private Integer pacienteId;
+    private Integer medicoId;
+    private String dataConsulta;
+    private double valor;
     private String status;
     private String observacoes;
 
@@ -27,28 +29,37 @@ public class Consulta {
     public void setConsultaId(Integer consultaId) {
         this.consultaId = consultaId;
     }
-
-    public Paciente getPaciente() {
-        return paciente;
+    
+       public double getValor() {
+        return valor;
+    }
+    
+     public void setValor(double valor) {
+        this.valor = valor;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public Integer getPacienteId() {
+        return pacienteId;
     }
 
-    public Medico getMedico() {
-        return medico;
+    public void setPacienteId(Integer pacienteId) {
+        this.pacienteId = pacienteId;
     }
 
-    public void setMedico(Medico medico) {
-        this.medico = medico;
+    public Integer getMedicoId() {
+        return medicoId;
     }
 
-    public Date getDataConsulta() {
+    public void setMedicoId(Integer medicoId) {
+        this.medicoId = medicoId;
+    }
+
+
+    public String getDataConsulta() {
         return dataConsulta;
     }
 
-    public void setDataConsulta(Date dataConsulta) {
+    public void setDataConsulta(String dataConsulta) {
         this.dataConsulta = dataConsulta;
     }
 
@@ -68,6 +79,9 @@ public class Consulta {
         this.observacoes = observacoes;
     }
 
+     public void cadastrarConsulta(Consulta consulta) throws ExceptionDAO {
+        new ConsultaDAO().cadastrarConsulta(consulta);
+    }
         
     
 }

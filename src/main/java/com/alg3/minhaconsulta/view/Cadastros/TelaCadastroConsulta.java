@@ -4,18 +4,17 @@
  */
 package com.alg3.minhaconsulta.view.Cadastros;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
-import javax.swing.JOptionPane;
+import java.text.ParseException;
+import com.alg3.minhaconsulta.controller.ConsultaController;
+
+
 import javax.swing.text.MaskFormatter;
 
-import com.alg3.minhaconsulta.controller.PacienteController;
+
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,11 +26,10 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
      * Creates new form TelaCadastroCliente
      */
     MaskFormatter mfdata;
-    MaskFormatter mfcpf;
-
-    public List<String> convenios = new ArrayList<>();
-    public List<String> generos = new ArrayList<>();
-
+ //
+   // public List<String> convenios = new ArrayList<>();
+  //public List<String> generos = new ArrayList<>();
+//
     public TelaCadastroConsulta() {
 
         try {
@@ -48,12 +46,7 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
             System.out.println("Ocorreu um erro na criação da máscara");
         }
 
-        try {
-            mfcpf = new MaskFormatter("###.###.###-##");
-        } catch (ParseException ex) {
-            System.out.println("Ocorreu um erro na criação da máscara");
-        }
-
+       
         submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
             // Código para fechar a tela de cadastro
             dispose();
@@ -81,44 +74,35 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
         
         
          
-          
-        submitCadastrarPaciente.addActionListener((java.awt.event.ActionEvent evt) -> {
-            String nome = InputConsultaPaciente.getText();
-            String endereco = InputEnderecoPaciente.getText();
-            String nascimento = InputNascimento.getText();
-            String cpf = InputCPF.getText();
-            String convenio = (String) InputConvenio.getSelectedItem();
-            String genero = (String) InputConsultaPaciente.getSelectedItem();
-            String telefone = InputTelefone.getText(); // Adicionei o campo telefone
+          */
+            submitCadastrarConsulta.addActionListener((java.awt.event.ActionEvent evt) -> {
+            int pacienteId = Integer.parseInt(InputPacienteId.getText());   //transformar em int       
+            int medicoId = Integer.parseInt(InputMedicoId.getText()); // transformar em int
+            String dataConsulta = InputDataConsulta.getText();
+            String tipo = InputTipoConsulta.getText();
+            double valor = Double.parseDouble(InputValorConsulta.getText()); //transformar em double
+            String status = InputStatus.getText();
             boolean sucesso;
         
-            String generoFinal = String.valueOf(genero.charAt(0));
+     
         
             try {
-                PacienteController pacienteController = new PacienteController();
-                try {
-                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    Date nascimentoDate = dateFormat.parse(nascimento);
-                    String nascimentoStr = dateFormat.format(nascimentoDate);
-                    sucesso = pacienteController.cadastrarPaciente(nome, nascimentoStr, endereco, telefone, cpf, convenio, generoFinal);
-        
-                    if (sucesso) {
-                        System.out.println("Paciente cadastrado com sucesso");
-                        JOptionPane.showMessageDialog(null, "Paciente cadastrado com sucesso");
-                        System.out.println("Dados enviados para o controller: " + nome + ", " + endereco);
-                        dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar o paciente");
-                    }
-                } catch (ParseException e) {
-                    JOptionPane.showMessageDialog(null, "Preencha todos os dados corretamente.");
+                ConsultaController consultaController = new ConsultaController();
+                sucesso = consultaController.cadastrarConsulta(pacienteId, medicoId, dataConsulta, valor, tipo, status);
+                if (sucesso) {
+                    System.out.println("Consulta cadastrada com sucesso");
+                    JOptionPane.showMessageDialog(null, "Consulta cadastrada com sucesso");
+                    // System.out.println("Dados enviados para o controller: " + nome + ", " + endereco);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar consulta");
                 }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar o paciente. Erro: " + ex);
+            } catch (HeadlessException ex) {
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar consulta. Erro: " + ex);
             }
         });
         
-         */
+        
     }
 
     /**
@@ -132,8 +116,20 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
 
         TitleCadastrarPaciente = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        submitCadastrarPaciente = new javax.swing.JButton();
+        submitCadastrarConsulta = new javax.swing.JButton();
         submitCancelar = new javax.swing.JButton();
+        LabelPaciente = new javax.swing.JLabel();
+        InputPacienteId = new javax.swing.JTextField();
+        InputDataConsulta =  new javax.swing.JFormattedTextField(mfdata);
+        LabelDataConsulta = new javax.swing.JLabel();
+        LabelMedico = new javax.swing.JLabel();
+        InputMedicoId = new javax.swing.JTextField();
+        LabelTipo = new javax.swing.JLabel();
+        InputTipoConsulta = new javax.swing.JTextField();
+        LabelValor = new javax.swing.JLabel();
+        InputValorConsulta = new javax.swing.JTextField();
+        InputStatus = new javax.swing.JTextField();
+        LabelStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -149,12 +145,12 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        submitCadastrarPaciente.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        submitCadastrarPaciente.setForeground(new java.awt.Color(0, 51, 153));
-        submitCadastrarPaciente.setText("OK");
-        submitCadastrarPaciente.addActionListener(new java.awt.event.ActionListener() {
+        submitCadastrarConsulta.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitCadastrarConsulta.setForeground(new java.awt.Color(0, 51, 153));
+        submitCadastrarConsulta.setText("OK");
+        submitCadastrarConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitCadastrarPacienteActionPerformed(evt);
+                submitCadastrarConsultaActionPerformed(evt);
             }
         });
 
@@ -167,23 +163,129 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
             }
         });
 
+        LabelPaciente.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelPaciente.setText("Paciente:");
+
+        InputPacienteId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputPacienteIdActionPerformed(evt);
+            }
+        });
+
+        InputDataConsulta.setToolTipText("");
+        InputDataConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputDataConsultaActionPerformed(evt);
+            }
+        });
+
+        LabelDataConsulta.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelDataConsulta.setText("Data Consulta:");
+
+        LabelMedico.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelMedico.setText("Médico:");
+
+        InputMedicoId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputMedicoIdActionPerformed(evt);
+            }
+        });
+
+        LabelTipo.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelTipo.setText("Tipo de Consulta:");
+
+        InputTipoConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputTipoConsultaActionPerformed(evt);
+            }
+        });
+
+        LabelValor.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelValor.setText("Valor:");
+
+        InputValorConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputValorConsultaActionPerformed(evt);
+            }
+        });
+
+        InputStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputStatusActionPerformed(evt);
+            }
+        });
+
+        LabelStatus.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelStatus.setText("Status:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(175, Short.MAX_VALUE)
-                .addComponent(submitCancelar)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(LabelTipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputTipoConsulta))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(LabelPaciente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputPacienteId))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 150, Short.MAX_VALUE)
+                        .addComponent(submitCancelar)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(submitCadastrarConsulta))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(LabelDataConsulta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputDataConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LabelValor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputValorConsulta)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(LabelMedico)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(submitCadastrarPaciente)
-                .addGap(164, 164, 164))
+                .addComponent(InputMedicoId, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(LabelStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(InputStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(151, 151, 151)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submitCadastrarPaciente)
+                    .addComponent(InputPacienteId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelPaciente)
+                    .addComponent(LabelDataConsulta)
+                    .addComponent(InputDataConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputTipoConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelTipo)
+                    .addComponent(InputValorConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelValor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputMedicoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelMedico)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(InputStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LabelStatus)))
+                .addGap(67, 67, 67)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitCadastrarConsulta)
                     .addComponent(submitCancelar))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -221,9 +323,33 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_submitCancelarActionPerformed
 
-    private void submitCadastrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCadastrarPacienteActionPerformed
+    private void submitCadastrarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCadastrarConsultaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_submitCadastrarPacienteActionPerformed
+    }//GEN-LAST:event_submitCadastrarConsultaActionPerformed
+
+    private void InputPacienteIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputPacienteIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputPacienteIdActionPerformed
+
+    private void InputDataConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputDataConsultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputDataConsultaActionPerformed
+
+    private void InputMedicoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputMedicoIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputMedicoIdActionPerformed
+
+    private void InputTipoConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputTipoConsultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputTipoConsultaActionPerformed
+
+    private void InputValorConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputValorConsultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputValorConsultaActionPerformed
+
+    private void InputStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputStatusActionPerformed
 
     private void InputNomePacienteActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -266,9 +392,21 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField InputDataConsulta;
+    private javax.swing.JTextField InputMedicoId;
+    private javax.swing.JTextField InputPacienteId;
+    private javax.swing.JTextField InputStatus;
+    private javax.swing.JTextField InputTipoConsulta;
+    private javax.swing.JTextField InputValorConsulta;
+    private javax.swing.JLabel LabelDataConsulta;
+    private javax.swing.JLabel LabelMedico;
+    private javax.swing.JLabel LabelPaciente;
+    private javax.swing.JLabel LabelStatus;
+    private javax.swing.JLabel LabelTipo;
+    private javax.swing.JLabel LabelValor;
     private javax.swing.JLabel TitleCadastrarPaciente;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton submitCadastrarPaciente;
+    private javax.swing.JButton submitCadastrarConsulta;
     private javax.swing.JButton submitCancelar;
     // End of variables declaration//GEN-END:variables
 }

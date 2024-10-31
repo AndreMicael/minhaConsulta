@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.alg3.minhaconsulta.model;
+import com.alg3.minhaconsulta.dao.DespesaDAO;
 import com.alg3.minhaconsulta.dao.ExceptionDAO;
 
 /**
@@ -29,7 +30,7 @@ public class Despesa {
         return valor;
     }
     
-    public String setDataRegistro(){
+    public String getDataRegistro(){
         return dataRegistro;
     }
     

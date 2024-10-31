@@ -21,14 +21,7 @@ import com.formdev.flatlaf.FlatLightLaf;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    public void Fechar() {
-        addActionListeners();
-
-    }
-
-    /**
-     * Creates new form TelaPrincipal
-     */
+  
     public TelaPrincipal() {
 
         try {
@@ -37,8 +30,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        initComponents();
-        addActionListeners(); // Chama o método que adiciona os ActionListeners
+        initComponents(); // Inicializa os componentes da tela
+        addActionListeners(); // Adiciona os listeners aos botões
+       
     }
 
     //Função para alternar entre os painéis da tela principal
@@ -61,9 +55,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         janelaParaExibir.toFront();
     }
 
-    private void addActionListeners() {     
+    // Função para executar os listeners dos botões
+    private void addActionListeners() {    
         
-
+        // Instancia as telas
         TelaCadastroCliente telaCadastro = new TelaCadastroCliente();
         TelaCadastroMedico telaCadastroMedico = new TelaCadastroMedico();
         TelaCadastroConsulta telaCadastroConsulta = new TelaCadastroConsulta();
@@ -87,6 +82,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }
 
+    // Função para voltar para a tela principal
     public void voltarButton() {
         Tela1Jpanel.setVisible(true);
         TelaBalancos.setVisible(false);
@@ -95,7 +91,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaConveniosPanel.setVisible(false);
         TelaConsultasPanel.setVisible(false);
         TelaPacientesPanel.setVisible(false);
-
     }
 
     /**
