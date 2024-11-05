@@ -12,7 +12,6 @@ import com.alg3.minhaconsulta.model.Medico;
 import com.alg3.minhaconsulta.model.Paciente;
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroConsulta;
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroMedico;
-import javax.swing.table.DefaultTableCellRenderer;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,7 +34,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
   
     public TelaPrincipal() {
-        
 
         try {
             FlatLightLaf.setup();
@@ -47,8 +45,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         addActionListeners(); // Adiciona os listeners aos botões
        
     }
-
- 
 
     //Função para alternar entre os painéis da tela principal
     private void exibirPainel(JPanel painelParaExibir) {
@@ -120,7 +116,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     private void consultarPaciente(java.awt.event.ActionEvent evt) {
         String nome = TextFieldNomePaciente.getText();
-        DefaultTableModel tableModel = (DefaultTableModel) jTable1ConsultaMedico.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1ConsultaPaciente.getModel();
         tableModel.setRowCount(0);
         PacienteController pacienteController = new PacienteController();
 
