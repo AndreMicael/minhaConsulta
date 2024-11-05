@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.alg3.minhaconsulta.model;
+import com.alg3.minhaconsulta.dao.ExceptionDAO;
+import com.alg3.minhaconsulta.dao.MedicoDAO;
+import java.util.ArrayList;
 
 /**
  *
@@ -10,15 +13,15 @@ package com.alg3.minhaconsulta.model;
  */
 public class Medico extends Pessoa {
 
-    private int medicoId;
+    private int id;
     private String crm;
     private String especialidade;
     
-    public int getMedicoId() {
-        return medicoId;
+    public int getId() {
+        return id;
     }
-    public void setMedicoId(int medicoId) {
-        this.medicoId = medicoId;
+    public void setId(int id) {
+        this.id = id;
     }
     public String getCrm() {
         return crm;
@@ -33,15 +36,20 @@ public class Medico extends Pessoa {
         this.especialidade = especialidade;
     }
 
+
+     public void cadastrarMedico(Medico medico) throws ExceptionDAO {
+        new MedicoDAO().cadastrarMedico(medico);
+    }
+
+
+
+      public ArrayList<Medico> listarMedicos(String nome) throws ExceptionDAO {
+        MedicoDAO medicoDAO = new MedicoDAO();
+        return medicoDAO.listarMedicos(nome);
+
+    }
+
     
     
 }
 
-// CREATE TABLE MEDICO (
-//     medico_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-//     nome VARCHAR(255),
-//     crm VARCHAR(20) UNIQUE,  -- Definindo CRM como único
-//     especialidade_id INT,
-//     telefone VARCHAR(15),
-//     CONSTRAINT FK_MEDICO_ESPECIALIDADE FOREIGN KEY (especialidade_id) REFERENCES ESPECIALIDADE(especialidade_id) ON DELETE RESTRICT
-// );

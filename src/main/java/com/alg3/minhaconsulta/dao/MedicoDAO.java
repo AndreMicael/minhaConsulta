@@ -5,9 +5,12 @@
 package com.alg3.minhaconsulta.dao;
 
 import com.alg3.minhaconsulta.model.Medico;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 
@@ -56,6 +59,57 @@ public class MedicoDAO {
             }
         }
     }
+
+    public ArrayList<Medico> listarMedicos(String nome) throws ExceptionDAO {
+        String sql = "SELECT * FROM medico WHERE nome LIKE ? ORDER BY medico_id";
+
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+        ArrayList<Medico> listarMedicos = new ArrayList<>();
+
+        try {
+            connection = new ConnectionDAO().getConnection();
+            pStatement = connection.prepareStatement(sql);
+            pStatement.setString(1, "%" + nome + "%");
+            ResultSet rs = pStatement.executeQuery();
+
+            while (rs.next()) {
+                Medico medico = new Medico();
+                medico.setId(rs.getInt("medico_id"));
+                medico.setNome(rs.getString("nome"));
+                medico.setData_nascimento(rs.getString("data_nascimento"));
+                medico.setEndereco(rs.getString("endereco"));
+                medico.setTelefone(rs.getString("telefone"));
+                medico.setEspecialidade(rs.getString("especialidade"));
+                medico.setCrm(rs.getString("crm"));
+                medico.setGenero(rs.getString("genero"));
+                listarMedicos.add(medico);
+                               
+            }
+
+        } catch (SQLException ex) {
+            throw new ExceptionDAO("Erro ao listar medicos. Erro " + ex);
+        } finally {
+            try {
+                if (pStatement != null) {
+                    pStatement.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar o Statement. Erro " + ex);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
+            }
+        }
+
+        return listarMedicos;
+    }
+
+
     }
     
 
