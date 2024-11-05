@@ -4,12 +4,15 @@
  */
 package com.alg3.minhaconsulta.view;
 
+import com.alg3.minhaconsulta.controller.ConsultaController;
 import com.alg3.minhaconsulta.controller.MedicoController;
 import com.alg3.minhaconsulta.controller.PacienteController;
+import com.alg3.minhaconsulta.model.Consulta;
 import com.alg3.minhaconsulta.model.Medico;
 import com.alg3.minhaconsulta.model.Paciente;
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroConsulta;
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroMedico;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,6 +35,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
   
     public TelaPrincipal() {
+        
 
         try {
             FlatLightLaf.setup();
@@ -44,14 +48,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
        
     }
 
+ 
+
     //Função para alternar entre os painéis da tela principal
     private void exibirPainel(JPanel painelParaExibir) {
         TelaConsultasPanel.setVisible(false);
         Tela1Jpanel.setVisible(false);
         TelaPacientesPanel.setVisible(false);
-        TelaConveniosPanel.setVisible(false);
+     
         TelaBuscaMedicoPanel.setVisible(false);
-        TelaEspecialidadesPanel.setVisible(false);
+      
         TelaBalancos.setVisible(false);
         
         // Exibe apenas o painel desejado
@@ -61,6 +67,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             consultarPaciente(null);
         } else if (painelParaExibir == TelaBuscaMedicoPanel) {
             consultarMedico(null);
+        } else if (painelParaExibir == TelaConsultasPanel) {
+            consultarConsulta(null);
         }
     }
 
@@ -92,8 +100,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // Alterna entre os paineis
         VerTodasConsultas.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaConsultasPanel));
         VerPacientes.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaPacientesPanel));
-        VerConvenios.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaConveniosPanel));
-        VerEspecialidades.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaEspecialidadesPanel));
+        
         VerMedicos.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaBuscaMedicoPanel));
         BalancoFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaBalancos));
 
@@ -103,6 +110,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         TextFieldNomeMedico.addActionListener(this::consultarMedico); //Busca ao teclar enter
         ButtonConsultaMedico.addActionListener(this::consultarMedico); // Busca ao apertar botão
+
+        TextFieldNomeConsulta.addActionListener(this::consultarConsulta); //Busca ao teclar enter
+        ButtonConsultaConsultas.addActionListener(this::consultarConsulta); // Busca ao apertar botão
 
     }
     
@@ -160,14 +170,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
+    private void consultarConsulta(java.awt.event.ActionEvent evt) {
+        String nome = TextFieldNomeConsulta.getText();
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1Consultas.getModel();
+        tableModel.setRowCount(0);
+        ConsultaController consultaController = new ConsultaController();
+    
+        try {
+            ArrayList<Consulta> consultas = consultaController.listarConsultas(nome);
+            for (Consulta consulta : consultas) {
+                Object[] rowData = {
+                    consulta.getId(),
+                    consulta.getData(),
+                    consulta.getValor(),
+                    consulta.getMedico().getNome(), // Mostra o nome do médico
+                    consulta.getPaciente().getNome(), // Mostra o nome do paciente
+                   
+                };
+                tableModel.addRow(rowData);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao consultar consultas: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     // Função para voltar para a tela principal
     public void voltarButton() {
         Tela1Jpanel.setVisible(true);
         TelaBalancos.setVisible(false);
         TelaBuscaMedicoPanel.setVisible(false);
-        TelaEspecialidadesPanel.setVisible(false);
-        TelaConveniosPanel.setVisible(false);
+        
         TelaConsultasPanel.setVisible(false);
         TelaPacientesPanel.setVisible(false);
     }
@@ -188,8 +220,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ProximasConsultasPanel = new javax.swing.JPanel();
         TelaConsultasPanel = new javax.swing.JPanel();
         VoltarBtn = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        LabelTodasConsultas = new javax.swing.JLabel();
+        TextFieldNomeConsulta = new javax.swing.JTextField();
+        ButtonConsultaConsultas = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1Consultas = new javax.swing.JTable();
         TelaPacientesPanel = new javax.swing.JPanel();
         VoltarBtn1 = new javax.swing.JButton();
         LabelTodosPacientes = new javax.swing.JLabel();
@@ -198,14 +234,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ButtonConsultaPaciente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1ConsultaPaciente = new javax.swing.JTable();
-        TelaConveniosPanel = new javax.swing.JPanel();
-        VoltarBtn2 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
-        TelaEspecialidadesPanel = new javax.swing.JPanel();
-        VoltarBtn3 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jTextField4 = new javax.swing.JTextField();
         TelaBuscaMedicoPanel = new javax.swing.JPanel();
         VoltarBtn4 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -222,8 +250,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuCadastros = new javax.swing.JMenu();
         VerPacientes = new javax.swing.JMenuItem();
         VerMedicos = new javax.swing.JMenuItem();
-        VerConvenios = new javax.swing.JMenuItem();
-        VerEspecialidades = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         CadastroPaciente = new javax.swing.JMenuItem();
         NovoMedico = new javax.swing.JMenuItem();
@@ -317,46 +343,81 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("Todas as Consultas");
+        jLabel4.setText("Buscar Consulta:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(267, 267, 267)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(294, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
+        LabelTodasConsultas.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        LabelTodasConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon-paciente.png"))); // NOI18N
+        LabelTodasConsultas.setText("Todas as Consultas");
+
+        TextFieldNomeConsulta.setToolTipText("Informe do paciente da consulta");
+
+        ButtonConsultaConsultas.setText("Buscar");
+
+        jTable1Consultas.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        jTable1Consultas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Data", "Valor", "Medico", "Paciente"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1Consultas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable1Consultas.setShowGrid(true);
+        jScrollPane3.setViewportView(jTable1Consultas);
 
         javax.swing.GroupLayout TelaConsultasPanelLayout = new javax.swing.GroupLayout(TelaConsultasPanel);
         TelaConsultasPanel.setLayout(TelaConsultasPanelLayout);
         TelaConsultasPanelLayout.setHorizontalGroup(
             TelaConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TelaConsultasPanelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaConsultasPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(VoltarBtn)
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addGroup(TelaConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(TelaConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane3)
+                        .addComponent(LabelTodasConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(TelaConsultasPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(TextFieldNomeConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(ButtonConsultaConsultas)))
+                    .addComponent(VoltarBtn))
                 .addGap(50, 50, 50))
         );
         TelaConsultasPanelLayout.setVerticalGroup(
             TelaConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaConsultasPanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(LabelTodasConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(TelaConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(TextFieldNomeConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonConsultaConsultas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(VoltarBtn)
-                .addGap(58, 58, 58))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         BackgroundPanel.add(TelaConsultasPanel, "card3");
@@ -449,126 +510,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
 
         BackgroundPanel.add(TelaPacientesPanel, "card3");
-
-        TelaConveniosPanel.setBackground(new java.awt.Color(255, 255, 204));
-        TelaConveniosPanel.setMaximumSize(new java.awt.Dimension(712, 423));
-        TelaConveniosPanel.setMinimumSize(new java.awt.Dimension(712, 423));
-
-        VoltarBtn2.setText("Voltar");
-        VoltarBtn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VoltarBtn2ActionPerformed(evt);
-            }
-        });
-
-        jTextField3.setText("Todas os Convenios");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(267, 267, 267)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(294, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout TelaConveniosPanelLayout = new javax.swing.GroupLayout(TelaConveniosPanel);
-        TelaConveniosPanel.setLayout(TelaConveniosPanelLayout);
-        TelaConveniosPanelLayout.setHorizontalGroup(
-            TelaConveniosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TelaConveniosPanelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaConveniosPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(VoltarBtn2)
-                .addGap(50, 50, 50))
-        );
-        TelaConveniosPanelLayout.setVerticalGroup(
-            TelaConveniosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaConveniosPanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
-                .addComponent(VoltarBtn2)
-                .addGap(58, 58, 58))
-        );
-
-        BackgroundPanel.add(TelaConveniosPanel, "card3");
-
-        TelaEspecialidadesPanel.setBackground(new java.awt.Color(255, 51, 51));
-        TelaEspecialidadesPanel.setMaximumSize(new java.awt.Dimension(712, 423));
-        TelaEspecialidadesPanel.setMinimumSize(new java.awt.Dimension(712, 423));
-
-        VoltarBtn3.setText("Voltar");
-        VoltarBtn3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VoltarBtn3ActionPerformed(evt);
-            }
-        });
-
-        jTextField4.setText("Todas as Especialidades");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(267, 267, 267)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(294, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout TelaEspecialidadesPanelLayout = new javax.swing.GroupLayout(TelaEspecialidadesPanel);
-        TelaEspecialidadesPanel.setLayout(TelaEspecialidadesPanelLayout);
-        TelaEspecialidadesPanelLayout.setHorizontalGroup(
-            TelaEspecialidadesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TelaEspecialidadesPanelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaEspecialidadesPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(VoltarBtn3)
-                .addGap(50, 50, 50))
-        );
-        TelaEspecialidadesPanelLayout.setVerticalGroup(
-            TelaEspecialidadesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaEspecialidadesPanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
-                .addComponent(VoltarBtn3)
-                .addGap(58, 58, 58))
-        );
-
-        BackgroundPanel.add(TelaEspecialidadesPanel, "card3");
 
         TelaBuscaMedicoPanel.setBackground(new java.awt.Color(255, 51, 51));
         TelaBuscaMedicoPanel.setMaximumSize(new java.awt.Dimension(712, 423));
@@ -744,14 +685,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         MenuCadastros.add(VerMedicos);
-
-        VerConvenios.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
-        VerConvenios.setText("Ver Convênios");
-        MenuCadastros.add(VerConvenios);
-
-        VerEspecialidades.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
-        VerEspecialidades.setText("Ver Especialidades");
-        MenuCadastros.add(VerEspecialidades);
         MenuCadastros.add(jSeparator1);
 
         CadastroPaciente.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
@@ -836,22 +769,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         voltarButton();
     }//GEN-LAST:event_VoltarBtn1ActionPerformed
 
-    private void VoltarBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarBtn2ActionPerformed
-        voltarButton();
-    }//GEN-LAST:event_VoltarBtn2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void VoltarBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarBtn3ActionPerformed
-        voltarButton();
-    }//GEN-LAST:event_VoltarBtn3ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
     private void VoltarBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarBtn4ActionPerformed
         voltarButton();
     }//GEN-LAST:event_VoltarBtn4ActionPerformed
@@ -914,10 +831,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BackgroundPanel;
     private javax.swing.JMenuItem BalancoFinanceiro;
+    private javax.swing.JButton ButtonConsultaConsultas;
     private javax.swing.JButton ButtonConsultaMedico;
     private javax.swing.JButton ButtonConsultaPaciente;
     private javax.swing.JMenuItem CadastroPaciente;
     private javax.swing.JMenuItem EntradasFinanceiro;
+    private javax.swing.JLabel LabelTodasConsultas;
     private javax.swing.JLabel LabelTodosMedicos;
     private javax.swing.JLabel LabelTodosPacientes;
     private javax.swing.JMenu MenuBuscarMedico;
@@ -933,38 +852,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel TelaBalancos;
     private javax.swing.JPanel TelaBuscaMedicoPanel;
     private javax.swing.JPanel TelaConsultasPanel;
-    private javax.swing.JPanel TelaConveniosPanel;
-    private javax.swing.JPanel TelaEspecialidadesPanel;
     private javax.swing.JPanel TelaPacientesPanel;
+    private javax.swing.JTextField TextFieldNomeConsulta;
     private javax.swing.JTextField TextFieldNomeMedico;
     private javax.swing.JTextField TextFieldNomePaciente;
-    private javax.swing.JMenuItem VerConvenios;
-    private javax.swing.JMenuItem VerEspecialidades;
     private javax.swing.JMenuItem VerMedicos;
     private javax.swing.JMenuItem VerPacientes;
     private javax.swing.JMenuItem VerTodasConsultas;
     private javax.swing.JButton VoltarBtn;
     private javax.swing.JButton VoltarBtn1;
-    private javax.swing.JButton VoltarBtn2;
-    private javax.swing.JButton VoltarBtn3;
     private javax.swing.JButton VoltarBtn4;
     private javax.swing.JButton VoltarBtn5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelImage;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTable jTable1ConsultaMedico;
     private javax.swing.JTable jTable1ConsultaPaciente;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable jTable1Consultas;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
