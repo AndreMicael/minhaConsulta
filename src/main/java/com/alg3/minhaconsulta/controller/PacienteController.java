@@ -3,6 +3,7 @@ package com.alg3.minhaconsulta.controller;
 import com.alg3.minhaconsulta.dao.PacienteDAO;
 import com.alg3.minhaconsulta.model.Paciente;
 import com.alg3.minhaconsulta.dao.ExceptionDAO;
+import java.util.ArrayList;
 
 public class PacienteController {
 
@@ -29,5 +30,9 @@ public class PacienteController {
             }
         }
         return false;
+    }
+
+    public ArrayList<Paciente> listarPacientes(String nome) throws ExceptionDAO {
+        return new Paciente().listarPacientes(nome);
     }
 }

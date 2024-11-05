@@ -5,6 +5,7 @@
 package com.alg3.minhaconsulta.model;
 import com.alg3.minhaconsulta.dao.ExceptionDAO;
 import com.alg3.minhaconsulta.dao.PacienteDAO;
+import java.util.ArrayList;
 
 
 
@@ -14,16 +15,21 @@ import com.alg3.minhaconsulta.dao.PacienteDAO;
  */
 public class Paciente extends Pessoa{
 
-    private int pacienteId;
+  
     private String convenio;
     private String cpf;
+    private int id;
 
-    public int getPacienteId() {
-        return pacienteId;
+    public void setId(int id) {
+        this.id = id;
     }
-    public void setPacienteId(int pacienteId) {
-        this.pacienteId = pacienteId;
+
+    public int getId() {
+        return id;
     }
+
+   
+    
     public String getConvenio() {
         return convenio;
     }
@@ -43,6 +49,9 @@ public class Paciente extends Pessoa{
         new PacienteDAO().cadastrarPaciente(paciente);
     }
 
+    public ArrayList<Paciente> listarPacientes(String nome) throws ExceptionDAO {
+        return new PacienteDAO().listarPacientes(nome);
+    }
     
 }
 
