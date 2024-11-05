@@ -7,7 +7,7 @@ import com.alg3.minhaconsulta.dao.ExceptionDAO;
 public class DespesaController {
 
     public boolean cadastrarDespesa(String descricao, String tipo, double valor, String dataRegistro) {
-        if (descricao == null || descricao.length() <= 0 || dataRegistro == null || dataRegistro.length() <= 0 || valor <= 0 || tipo == null || tipo.length() <= 0) {
+        if (descricao != null && descricao.length() > 0 && dataRegistro != null && dataRegistro.length() > 0 && valor > 0 && tipo != null && tipo.length() > 0) {
             Despesa despesa = new Despesa();
             despesa.setDescricao(descricao);
             despesa.setTipo(tipo);

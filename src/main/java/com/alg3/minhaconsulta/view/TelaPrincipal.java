@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroCliente;
+import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroDespesa;
 import com.alg3.minhaconsulta.view.Exibicoes.TelaExibirEntradas;
 import com.alg3.minhaconsulta.view.Exibicoes.TelaExibirSaidas;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -64,6 +65,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaCadastroConsulta telaCadastroConsulta = new TelaCadastroConsulta();
         TelaExibirEntradas telaExibirEntradas = new TelaExibirEntradas();
         TelaExibirSaidas telaExibirSaidas = new TelaExibirSaidas();
+        TelaCadastroDespesa telaCadastroDespesa = new TelaCadastroDespesa();
 
         // Abre as janelas
         CadastroPaciente.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastro));
@@ -71,6 +73,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         NovaConsulta.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroConsulta));
         EntradasFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaExibirEntradas));
         SaidasFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaExibirSaidas));   
+        NovaDepesa.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroDespesa));   
 
         // Alterna entre os paineis
         VerTodasConsultas.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaConsultasPanel));
@@ -144,6 +147,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         NovaConsulta = new javax.swing.JMenuItem();
         VerTodasConsultas = new javax.swing.JMenuItem();
         MenuBuscarMedico = new javax.swing.JMenu();
+        NovaDepesa = new javax.swing.JMenuItem();
         EntradasFinanceiro = new javax.swing.JMenuItem();
         SaidasFinanceiro = new javax.swing.JMenuItem();
         BalancoFinanceiro = new javax.swing.JMenuItem();
@@ -644,6 +648,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        NovaDepesa.setText("Nova Despesa");
+        MenuBuscarMedico.add(NovaDepesa);
+
         EntradasFinanceiro.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         EntradasFinanceiro.setText("Entradas");
         MenuBuscarMedico.add(EntradasFinanceiro);
@@ -778,6 +785,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuConsultas;
     private javax.swing.JMenuBar MenuPrincipal;
     private javax.swing.JMenuItem NovaConsulta;
+    private javax.swing.JMenuItem NovaDepesa;
     private javax.swing.JMenuItem NovoMedico;
     private javax.swing.JPanel ProximasConsultasPanel;
     private javax.swing.JMenuItem SaidasFinanceiro;

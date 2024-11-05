@@ -8,7 +8,7 @@ import com.alg3.minhaconsulta.model.Despesa;
 public class DespesaDAO {
 
     public void cadastrarDespesa(Despesa despesa) throws ExceptionDAO {
-        String sql = "INSERT INTO paciente (descricao, tipo, valor, data_registro) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO despesa (descricao, tipo, valor, data_registro) VALUES(?,?,?,?)";
 
         PreparedStatement pStatement = null;
         Connection connection = null;
