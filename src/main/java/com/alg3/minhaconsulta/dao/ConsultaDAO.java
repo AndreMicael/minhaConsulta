@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.alg3.minhaconsulta.model.Consulta;
-import com.alg3.minhaconsulta.model.Medico;
-import com.alg3.minhaconsulta.model.Paciente;
 import java.util.ArrayList;
 
 public class ConsultaDAO {
@@ -68,22 +66,16 @@ public class ConsultaDAO {
             ResultSet rs = pStatement.executeQuery();
 
             while (rs.next()) {
-                Medico medico = new Medico();
-                medico.setId(rs.getInt("medico_id"));
-                medico.setNome(rs.getString("medico_nome"));
-
-                Paciente paciente = new Paciente();
-                paciente.setId(rs.getInt("paciente_id"));
-                paciente.setNome(rs.getString("paciente_nome"));
-
                 Consulta consulta = new Consulta();
                 consulta.setId(rs.getInt("consulta_id"));
                 consulta.setData(rs.getString("data_consulta"));
-                consulta.setMedico(medico);
-                consulta.setPaciente(paciente);
+                consulta.setPacienteId(rs.getInt("paciente_id"));
+                consulta.setMedicoId(rs.getInt("medico_id"));
                 consulta.setValor(rs.getDouble("valor"));
                 consulta.setStatus(rs.getString("status"));
                 consulta.setObservacoes(rs.getString("observacoes"));
+                consulta.setMedicoNome(rs.getString("medico_nome"));
+                consulta.setPacienteNome(rs.getString("paciente_nome"));
 
                 listaConsultas.add(consulta);
             }

@@ -7,21 +7,23 @@ import java.util.ArrayList;
 public class Consulta {
     private Integer id;
     private String data;
-    private Medico medico;
-    private Paciente paciente;
+    private int pacienteId;
+    private int medicoId;
     private double valor;
     private String status;
     private String observacoes;
+    private String medicoNome;
+    private String pacienteNome;
 
     // Construtor
     public Consulta() {
     }
 
-    public Consulta(Integer id, String data, Medico medico, Paciente paciente, double valor, String status, String observacoes) {
+    public Consulta(Integer id, String data, int pacienteId, int medicoId, double valor, String status, String observacoes) {
         this.id = id;
         this.data = data;
-        this.medico = medico;
-        this.paciente = paciente;
+        this.pacienteId = pacienteId;
+        this.medicoId = medicoId;
         this.valor = valor;
         this.status = status;
         this.observacoes = observacoes;
@@ -44,20 +46,20 @@ public class Consulta {
         this.data = data;
     }
 
-    public Medico getMedico() {
-        return medico;
+    public int getPacienteId() {
+        return pacienteId;
     }
 
-    public void setMedico(Medico medico) {
-        this.medico = medico;
+    public void setPacienteId(int pacienteId) {
+        this.pacienteId = pacienteId;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public int getMedicoId() {
+        return medicoId;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setMedicoId(int medicoId) {
+        this.medicoId = medicoId;
     }
 
     public double getValor() {
@@ -84,16 +86,24 @@ public class Consulta {
         this.observacoes = observacoes;
     }
 
-    public int getPacienteId() {
-        return paciente.getId();
-    }
-
-    public int getMedicoId() {
-        return medico.getId();
-    }
-
     public String getDataConsulta() {
         return data;
+    }
+
+    public String getMedicoNome() {
+        return medicoNome;
+    }
+
+    public void setMedicoNome(String medicoNome) {
+        this.medicoNome = medicoNome;
+    }
+
+    public String getPacienteNome() {
+        return pacienteNome;
+    }
+
+    public void setPacienteNome(String pacienteNome) {
+        this.pacienteNome = pacienteNome;
     }
 
     public void cadastrarConsulta(Consulta consulta) throws ExceptionDAO {

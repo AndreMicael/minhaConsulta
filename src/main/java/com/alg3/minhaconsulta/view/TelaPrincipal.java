@@ -7,6 +7,8 @@ package com.alg3.minhaconsulta.view;
 import com.alg3.minhaconsulta.controller.ConsultaController;
 import com.alg3.minhaconsulta.controller.MedicoController;
 import com.alg3.minhaconsulta.controller.PacienteController;
+import com.alg3.minhaconsulta.dao.ConnectionDAO;
+import com.alg3.minhaconsulta.dao.ExceptionDAO;
 import com.alg3.minhaconsulta.model.Consulta;
 import com.alg3.minhaconsulta.model.Medico;
 import com.alg3.minhaconsulta.model.Paciente;
@@ -22,6 +24,11 @@ import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroDespesa;
 import com.alg3.minhaconsulta.view.Exibicoes.TelaExibirEntradas;
 import com.alg3.minhaconsulta.view.Exibicoes.TelaExibirSaidas;
 import com.formdev.flatlaf.FlatLightLaf;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -107,8 +114,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TextFieldNomeMedico.addActionListener(this::consultarMedico); //Busca ao teclar enter
         ButtonConsultaMedico.addActionListener(this::consultarMedico); // Busca ao apertar botão
 
-        TextFieldNomeConsulta.addActionListener(this::consultarConsulta); //Busca ao teclar enter
-        ButtonConsultaConsultas.addActionListener(this::consultarConsulta); // Busca ao apertar botão
+        TextFieldNomeConsulta.addActionListener(evt -> consultarConsulta(evt)); //Busca ao teclar enter
+        ButtonConsultaConsultas.addActionListener(evt -> consultarConsulta(evt)); // Busca ao apertar botão
 
     }
     
@@ -179,15 +186,65 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     consulta.getId(),
                     consulta.getData(),
                     consulta.getValor(),
-                    consulta.getMedico().getNome(), // Mostra o nome do médico
-                    consulta.getPaciente().getNome(), // Mostra o nome do paciente
-                   
+                    consulta.getMedicoNome(), // Mostra o nome do médico
+                    consulta.getPacienteNome() // Mostra o nome do paciente
                 };
                 tableModel.addRow(rowData);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Erro ao consultar consultas: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    public ArrayList<Consulta> listarConsultas(String nome) throws ExceptionDAO {
+        String sql = "SELECT c.*, m.nome AS medico_nome, p.nome AS paciente_nome FROM consulta c "
+                   + "JOIN medico m ON c.medico_id = m.medico_id "
+                   + "JOIN paciente p ON c.paciente_id = p.paciente_id "
+                   + "WHERE p.nome LIKE ? ORDER BY c.data_consulta";
+
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+        ArrayList<Consulta> listaConsultas = new ArrayList<>();
+
+        try {
+            connection = new ConnectionDAO().getConnection();
+            pStatement = connection.prepareStatement(sql);
+            pStatement.setString(1, "%" + nome + "%");
+            ResultSet rs = pStatement.executeQuery();
+
+            while (rs.next()) {
+                Consulta consulta = new Consulta();
+                consulta.setId(rs.getInt("consulta_id"));
+                consulta.setData(rs.getString("data_consulta"));
+                consulta.setPacienteId(rs.getInt("paciente_id"));
+                consulta.setMedicoId(rs.getInt("medico_id"));
+                consulta.setValor(rs.getDouble("valor"));
+                consulta.setStatus(rs.getString("status"));
+                consulta.setObservacoes(rs.getString("observacoes"));
+
+                listaConsultas.add(consulta);
+            }
+
+        } catch (SQLException ex) {
+            throw new ExceptionDAO("Erro ao listar consultas. Erro " + ex);
+        } finally {
+            try {
+                if (pStatement != null) {
+                    pStatement.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar o Statement. Erro " + ex);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
+            }
+        }
+
+        return listaConsultas;
     }
 
     // Função para voltar para a tela principal

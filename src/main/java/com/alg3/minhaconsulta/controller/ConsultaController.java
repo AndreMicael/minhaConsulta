@@ -12,7 +12,7 @@ public class ConsultaController {
             Consulta consulta = new Consulta();
             consulta.setPacienteId(pacienteId);
             consulta.setMedicoId(medicoId);
-            consulta.setDataConsulta(dataConsulta);
+            consulta.setData(dataConsulta);
             consulta.setValor(valor);
             consulta.setStatus(status);
             consulta.setObservacoes(observacao);

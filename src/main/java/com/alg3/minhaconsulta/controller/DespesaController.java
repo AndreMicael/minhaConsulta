@@ -1,8 +1,10 @@
 package com.alg3.minhaconsulta.controller;
 
 import com.alg3.minhaconsulta.dao.DespesaDAO;
+
 import com.alg3.minhaconsulta.model.Despesa;
 import com.alg3.minhaconsulta.dao.ExceptionDAO;
+import java.util.ArrayList;
 
 public class DespesaController {
 
@@ -27,4 +29,11 @@ public class DespesaController {
         }
         return false;
     }
+
+      public ArrayList<Despesa> listarDespesas(String descricao) throws ExceptionDAO {
+        return new Despesa().listarDespesas(descricao);
+    }
+
+    
+    
 }
