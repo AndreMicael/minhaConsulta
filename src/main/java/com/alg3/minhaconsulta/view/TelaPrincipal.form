@@ -751,10 +751,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="11" max="-2" attributes="0"/>
-                              <Component id="VoltarBtn5" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="VoltarBtn5" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="TextFieldBalanco" alignment="1" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="32" max="32767" attributes="0"/>
@@ -976,12 +973,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane5" min="-2" pref="187" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TextFieldSaidasTotal" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="jButtonEditarSaida" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="JButtonRemoverSaida" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="TextFieldSaidasTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="8" max="32767" attributes="0"/>

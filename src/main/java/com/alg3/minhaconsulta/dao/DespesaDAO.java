@@ -7,29 +7,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.alg3.minhaconsulta.model.Despesa;
-import com.alg3.minhaconsulta.model.Medico;
 
 public class DespesaDAO {
 
-    public void cadastrarDespesa(Despesa despesa) throws ExceptionDAO {
+    public int cadastrarDespesa(Despesa despesa) throws ExceptionDAO {
         String sql = "INSERT INTO despesa (descricao, tipo, valor, data_registro) VALUES(?,?,?,?)";
 
         PreparedStatement pStatement = null;
         Connection connection = null;
+        int generatedId = -1;
 
         try {
             connection = new ConnectionDAO().getConnection();
-            pStatement = connection.prepareStatement(sql);
+            pStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             pStatement.setString(1, despesa.getDescricao());
             pStatement.setString(2, despesa.getTipo());
             pStatement.setDouble(3, despesa.getValor());
             pStatement.setString(4, despesa.getDataRegistro());
-          
-
-            System.out.println("Dados recebidos no DAO: " + despesa.getDescricao() + ", " + despesa.getValor());
 
             pStatement.executeUpdate();
-            System.out.println("Despesa cadastrado com sucesso no banco de dados.");
+            ResultSet rs = pStatement.getGeneratedKeys();
+            if (rs.next()) {
+                generatedId = rs.getInt(1);
+            }
+            System.out.println("Despesa cadastrada com sucesso no banco de dados.");
         } catch (SQLException ex) {
             throw new ExceptionDAO("Erro ao cadastrar despesa. Erro " + ex);
         } finally {
@@ -48,9 +49,50 @@ public class DespesaDAO {
                 throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
             }
         }
+        return generatedId;
     }
 
-     public ArrayList<Despesa> listarDespesas(String descricao) throws ExceptionDAO {
+    public boolean editarDespesa(Despesa despesa) throws ExceptionDAO {
+        String sql = "UPDATE despesa SET descricao = ?, tipo = ?, valor = ?, data_registro = ? WHERE despesa_id = ?";
+
+        PreparedStatement pStatement = null;
+        Connection connection = null;
+
+        try {
+            connection = new ConnectionDAO().getConnection();
+            pStatement = connection.prepareStatement(sql);
+            pStatement.setString(1, despesa.getDescricao());
+            pStatement.setString(2, despesa.getTipo());
+            pStatement.setDouble(3, despesa.getValor());
+            pStatement.setString(4, despesa.getDataRegistro());
+            pStatement.setInt(5, despesa.getId());
+
+            System.out.println("Dados recebidos no DAO: " + despesa.getDescricao() + ", " + despesa.getValor());
+
+            int rowsAffected = pStatement.executeUpdate();
+            System.out.println("Despesa editada com sucesso no banco de dados.");
+            return rowsAffected > 0;
+        } catch (SQLException ex) {
+            throw new ExceptionDAO("Erro ao editar despesa. Erro " + ex);
+        } finally {
+            try {
+                if (pStatement != null) {
+                    pStatement.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar o Statement. Erro " + ex);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
+            }
+        }
+    }
+
+    public ArrayList<Despesa> listarDespesas(String descricao) throws ExceptionDAO {
         String sql = "SELECT * FROM despesa WHERE descricao LIKE ? ORDER BY despesa_id";
 
         Connection connection = null;
@@ -70,8 +112,7 @@ public class DespesaDAO {
                 despesa.setTipo(rs.getString("tipo"));
                 despesa.setValor(rs.getDouble("valor"));
                 despesa.setDataRegistro(rs.getString("data_registro"));
-                listarDespesas.add(despesa);               
-                               
+                listarDespesas.add(despesa);
             }
 
         } catch (SQLException ex) {
@@ -96,4 +137,49 @@ public class DespesaDAO {
         return listarDespesas;
     }
 
+    public ArrayList<Despesa> listarDespesasTipo(String tipo) throws ExceptionDAO {
+        String sql = "SELECT * FROM despesa WHERE tipo = ? ORDER BY data_registro";
+
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+        ArrayList<Despesa> listaDespesas = new ArrayList<>();
+
+        try {
+            connection = new ConnectionDAO().getConnection();
+            pStatement = connection.prepareStatement(sql);
+            pStatement.setString(1, tipo);
+            ResultSet rs = pStatement.executeQuery();
+
+            while (rs.next()) {
+                Despesa despesa = new Despesa();
+                despesa.setId(rs.getInt("despesa_id"));
+                despesa.setDescricao(rs.getString("descricao"));
+                despesa.setValor(rs.getDouble("valor"));
+                despesa.setDataRegistro(rs.getString("data_registro"));
+                despesa.setTipo(rs.getString("tipo"));
+
+                listaDespesas.add(despesa);
+            }
+
+        } catch (SQLException ex) {
+            throw new ExceptionDAO("Erro ao listar despesas. Erro " + ex);
+        } finally {
+            try {
+                if (pStatement != null) {
+                    pStatement.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar o Statement. Erro " + ex);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
+            }
+        }
+
+        return listaDespesas;
+    }
 }

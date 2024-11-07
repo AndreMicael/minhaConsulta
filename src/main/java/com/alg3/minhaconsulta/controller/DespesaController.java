@@ -1,39 +1,40 @@
 package com.alg3.minhaconsulta.controller;
 
 import com.alg3.minhaconsulta.dao.DespesaDAO;
-
 import com.alg3.minhaconsulta.model.Despesa;
 import com.alg3.minhaconsulta.dao.ExceptionDAO;
 import java.util.ArrayList;
 
 public class DespesaController {
 
-    public boolean cadastrarDespesa(String descricao, String tipo, double valor, String dataRegistro) {
-        if (descricao != null && descricao.length() > 0 && dataRegistro != null && dataRegistro.length() > 0 && valor > 0 && tipo != null && tipo.length() > 0) {
-            Despesa despesa = new Despesa();
-            despesa.setDescricao(descricao);
-            despesa.setTipo(tipo);
-            despesa.setValor(valor);
-            despesa.setDataRegistro(dataRegistro);
-            
-            System.out.println("Dados recebidos no controller: " + descricao + ", " + tipo);
+    public boolean cadastrarDespesa(String descricao, String tipo, double valor, String data) throws ExceptionDAO {
+        Despesa despesa = new Despesa();
+        despesa.setDescricao(descricao);
+        despesa.setTipo(tipo);
+        despesa.setValor(valor);
+        despesa.setDataRegistro(data);
 
-            DespesaDAO dao = new DespesaDAO();
-            try {
-                dao.cadastrarDespesa(despesa);
-                return true;
-            } catch (ExceptionDAO ex) {
-                ex.printStackTrace();
-                return false;
-            }
-        }
-        return false;
+        DespesaDAO despesaDAO = new DespesaDAO();
+        return despesaDAO.cadastrarDespesa(despesa) != -1;
     }
 
-      public ArrayList<Despesa> listarDespesas(String descricao) throws ExceptionDAO {
-        return new Despesa().listarDespesas(descricao);
+    public boolean editarDespesa(int id, String descricao, String tipo, double valor, String data) throws ExceptionDAO {
+        Despesa despesa = new Despesa();
+        despesa.setId(id);
+        despesa.setDescricao(descricao);
+        despesa.setTipo(tipo);
+        despesa.setValor(valor);
+        despesa.setDataRegistro(data);
+
+        DespesaDAO despesaDAO = new DespesaDAO();
+        return despesaDAO.editarDespesa(despesa);
     }
 
-    
-    
+    public ArrayList<Despesa> listarDespesasTipo(String tipo) throws ExceptionDAO {
+        return new DespesaDAO().listarDespesasTipo(tipo);
+    }
+
+    public ArrayList<Despesa> listarDespesas(String descricao) throws ExceptionDAO {
+        return new DespesaDAO().listarDespesas(descricao);
+    }
 }

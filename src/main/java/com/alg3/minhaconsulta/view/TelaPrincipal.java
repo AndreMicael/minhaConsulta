@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroCliente;
 import com.alg3.minhaconsulta.view.Cadastros.TelaCadastroDespesa;
+import com.alg3.minhaconsulta.view.Cadastros.TelaEditarDespesa;
 import com.alg3.minhaconsulta.view.Exibicoes.TelaExibirEntradas;
 import com.alg3.minhaconsulta.view.Exibicoes.TelaExibirSaidas;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -96,12 +97,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaCadastroMedico telaCadastroMedico = new TelaCadastroMedico();
         TelaCadastroConsulta telaCadastroConsulta = new TelaCadastroConsulta();
         TelaCadastroDespesa telaCadastroDespesa = new TelaCadastroDespesa();
+        TelaEditarDespesa telaEditarDespesa = new TelaEditarDespesa();
 
         // Abre as janelas
         CadastroPaciente.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastro));
         NovoMedico.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroMedico));
         NovaConsulta.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroConsulta));
-         
+        jButtonEditarEntrada.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaEditarDespesa)); 
+        
         NovaDepesa.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroDespesa));   
 
         // Alterna entre os paineis
@@ -981,12 +984,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextFieldSaidasTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonEditarSaida)
-                        .addComponent(JButtonRemoverSaida)))
+                        .addComponent(JButtonRemoverSaida))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(TextFieldSaidasTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -1041,9 +1045,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(TelaBalancosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(VoltarBtn5))
+                    .addComponent(VoltarBtn5)
                     .addComponent(TextFieldBalanco, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );

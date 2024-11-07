@@ -7,6 +7,7 @@ package com.alg3.minhaconsulta.view.Cadastros;
 
 import java.text.ParseException;
 import com.alg3.minhaconsulta.controller.DespesaController;
+import com.alg3.minhaconsulta.dao.ExceptionDAO;
 
 
 import javax.swing.text.MaskFormatter;
@@ -86,7 +87,12 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
         
             try {
                 DespesaController despesaController = new DespesaController();
-                sucesso = despesaController.cadastrarDespesa(descricao, tipo, valor, data);
+                try {
+                    sucesso = despesaController.cadastrarDespesa(descricao, tipo, valor, data);
+                } catch (ExceptionDAO ex) {
+                    JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar despesa. Erro: " + ex);
+                    sucesso = false;
+                }
                 if (sucesso) {
                     System.out.println("Despesa cadastrada com sucesso");
                     JOptionPane.showMessageDialog(null, "Despesa cadastrada com sucesso");

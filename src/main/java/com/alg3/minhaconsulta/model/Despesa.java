@@ -1,27 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.alg3.minhaconsulta.model;
-import java.util.ArrayList;
 
-import com.alg3.minhaconsulta.dao.ConsultaDAO;
+import java.util.ArrayList;
 import com.alg3.minhaconsulta.dao.DespesaDAO;
 import com.alg3.minhaconsulta.dao.ExceptionDAO;
 
-/**
- *
- * @author andresampaio
- */
 public class Despesa {
     private int id;
     private String descricao;
-    private String tipo;
     private double valor;
     private String dataRegistro;
-    
-    //Getters and setters
+    private String tipo;
 
+    // Construtor
+    public Despesa() {
+    }
+
+    public Despesa(int id, String descricao, double valor, String dataRegistro, String tipo) {
+        this.id = id;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.dataRegistro = dataRegistro;
+        this.tipo = tipo;
+    }
+
+    // Getters e Setters
     public int getId() {
         return id;
     }
@@ -29,50 +31,48 @@ public class Despesa {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public String getDescricao(){
+
+    public String getDescricao() {
         return descricao;
     }
-    
-    public String getTipo(){
-        return tipo;
-    }
-    
-    public double getValor(){
-        return valor;
-    }
-    
-    public String getDataRegistro(){
-        return dataRegistro;
-    }
-    
-     public void setDescricao(String descricao) {
+
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-     
-    public void setTipo(String tipo){
-        this.tipo = tipo;
+
+    public double getValor() {
+        return valor;
     }
-    
-    public void setValor(double valor){
+
+    public void setValor(double valor) {
         this.valor = valor;
     }
-    
-    public void setDataRegistro(String dataRegistro){
+
+    public String getDataRegistro() {
+        return dataRegistro;
+    }
+
+    public void setDataRegistro(String dataRegistro) {
         this.dataRegistro = dataRegistro;
     }
-    
-     public void cadastrarDespesa(Despesa despesa) throws ExceptionDAO {
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void cadastrarDespesa(Despesa despesa) throws ExceptionDAO {
         new DespesaDAO().cadastrarDespesa(despesa);
     }
 
-       
-
-
- public ArrayList<Despesa> listarDespesas(String descricao) throws ExceptionDAO {
-        return new DespesaDAO().listarDespesas(descricao);
+    public void editarDespesa(Despesa despesa) throws ExceptionDAO {
+        new DespesaDAO().editarDespesa(despesa);
     }
 
-     
-     
+    public ArrayList<Despesa> listarDespesas(String descricao) throws ExceptionDAO {
+        return new DespesaDAO().listarDespesas(descricao);
+    }
 }
