@@ -91,12 +91,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Função para executar os listeners dos botões
     private void addActionListeners() {    
         
-        // Instancia as telas
+       // Instancia as telas
         TelaCadastroCliente telaCadastro = new TelaCadastroCliente();
         TelaCadastroMedico telaCadastroMedico = new TelaCadastroMedico();
         TelaCadastroConsulta telaCadastroConsulta = new TelaCadastroConsulta();
         TelaCadastroDespesa telaCadastroDespesa = new TelaCadastroDespesa();
-        TelaEditarDespesa telaEditarDespesa = new TelaEditarDespesa();
+        TelaEditarDespesa telaEditarDespesaEntrada = new TelaEditarDespesa("Entrada");
+        TelaEditarDespesa telaEditarDespesaSaida = new TelaEditarDespesa("Saída");
         TelaEditarCliente telaEditarCliente = new TelaEditarCliente();
         TelaEditarMedico telaEditarMedico = new TelaEditarMedico();
 
@@ -104,7 +105,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         CadastroPaciente.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastro));
         NovoMedico.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroMedico));
         NovaConsulta.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroConsulta));
-        jButtonEditarEntrada.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaEditarDespesa)); 
+        jButtonEditarEntrada.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaEditarDespesaEntrada)); 
+        jButtonEditarSaida.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaEditarDespesaSaida));
         jButtonEditarPaciente.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaEditarCliente)); 
         NovaDepesa.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroDespesa));   
         jButtonEditarMedico.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaEditarMedico));

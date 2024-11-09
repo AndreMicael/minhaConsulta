@@ -37,4 +37,12 @@ public class DespesaController {
     public ArrayList<Despesa> listarDespesas(String descricao) throws ExceptionDAO {
         return new DespesaDAO().listarDespesas(descricao);
     }
+
+    public ArrayList<Despesa> listarDespesasId(int id) throws ExceptionDAO {
+
+        DespesaDAO despesaDAO = new DespesaDAO();
+
+        return despesaDAO.listarDespesasId(id);
+
+    }
 }

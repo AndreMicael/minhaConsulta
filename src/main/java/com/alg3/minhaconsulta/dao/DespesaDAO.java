@@ -137,6 +137,51 @@ public class DespesaDAO {
         return listarDespesas;
     }
 
+    public ArrayList<Despesa> listarDespesasId(int id) throws ExceptionDAO {
+        String sql = "SELECT * FROM despesa WHERE despesa_id = ? ORDER BY despesa_id";
+
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+        ArrayList<Despesa> listarDespesas = new ArrayList<>();
+
+        try {
+            connection = new ConnectionDAO().getConnection();
+            pStatement = connection.prepareStatement(sql);
+            pStatement.setInt(1, id);
+            ResultSet rs = pStatement.executeQuery();
+
+            while (rs.next()) {
+                Despesa despesa = new Despesa();
+                despesa.setId(rs.getInt("despesa_id"));
+                despesa.setDescricao(rs.getString("descricao"));
+                despesa.setTipo(rs.getString("tipo"));
+                despesa.setValor(rs.getDouble("valor"));
+                despesa.setDataRegistro(rs.getString("data_registro"));
+                listarDespesas.add(despesa);
+            }
+
+        } catch (SQLException ex) {
+            throw new ExceptionDAO("Erro ao listar despesas. Erro " + ex);
+        } finally {
+            try {
+                if (pStatement != null) {
+                    pStatement.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar o Statement. Erro " + ex);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
+            }
+        }
+
+        return listarDespesas;
+    }
+
     public ArrayList<Despesa> listarDespesasTipo(String tipo) throws ExceptionDAO {
         String sql = "SELECT * FROM despesa WHERE tipo = ? ORDER BY data_registro";
 

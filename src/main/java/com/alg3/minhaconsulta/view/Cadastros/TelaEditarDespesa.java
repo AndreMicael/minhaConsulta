@@ -30,92 +30,118 @@ public class TelaEditarDespesa extends javax.swing.JFrame {
      */
     MaskFormatter mfdata;
 
-    public TelaEditarDespesa() {
-
-        try {
-            FlatLightLaf.setup();
-        } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(TelaEditarDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        initComponents();
-        listarDespesas();
-       
-        
-
-        try {
-            mfdata = new MaskFormatter("##/##/####");
-        } catch (ParseException ex) {
-            System.out.println("Ocorreu um erro na criação da máscara");
-        }
-
-       
-        submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
-            // Código para fechar a tela de cadastro
-            dispose();
-
-        });
-        
-
-         
-           
-
-        submitEditarDespesa.addActionListener((java.awt.event.ActionEvent evt) -> {
-            String selectedItem = (String) jComboBoxEditar.getSelectedItem();
-            if (selectedItem != null && !selectedItem.isEmpty()) {
-                try {
-                    // Assuming the ID is the first part of the string before the first space
-                    int id = Integer.parseInt(selectedItem.split(" - ")[0].trim());
-                    String descricao = InputEditarDescricao.getText();
-                    String tipo = InputEditarTipoDespesa.getText();
-                    String data = InputEditarData.getText();
-                    double valor = Double.parseDouble(InputEditarDespesa.getText());
-                    boolean sucesso;
-        
+   
+        public TelaEditarDespesa(String tipoDespesa) {
+    
+            try {
+                FlatLightLaf.setup();
+            } catch (Exception ex) {
+                java.util.logging.Logger.getLogger(TelaEditarDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+    
+            try {
+                mfdata = new MaskFormatter("##/##/####");
+            } catch (ParseException ex) {
+                System.out.println("Ocorreu um erro na criação da máscara");
+            }
+    
+            initComponents();
+            listarDespesas(tipoDespesa);
+    
+            submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
+                // Código para fechar a tela de cadastro
+                dispose();
+            });
+    
+            submitEditarDespesa.addActionListener((java.awt.event.ActionEvent evt) -> {
+                String selectedItem = (String) jComboBoxEditar.getSelectedItem();
+                if (selectedItem != null && !selectedItem.isEmpty()) {
                     try {
-                        DespesaController despesaController = new DespesaController();
+                        // Assuming the ID is the first part of the string before the first space
+                        int id = Integer.parseInt(selectedItem.split(" - ")[0].trim());
+                        String descricao = InputEditarDescricao.getText();
+                        String tipo = InputEditarTipoDespesa.getText();
+                        String data = InputEditarData.getText();
+                        double valor = Double.parseDouble(InputEditarDespesa.getText());
+                        boolean sucesso;
+    
                         try {
-                            sucesso = despesaController.editarDespesa(id, descricao, tipo, valor, data);
-                        } catch (ExceptionDAO ex) {
+                            DespesaController despesaController = new DespesaController();
+                            try {
+                                sucesso = despesaController.editarDespesa(id, descricao, tipo, valor, data);
+                            } catch (ExceptionDAO ex) {
+                                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao editar despesa. Erro: " + ex);
+                                sucesso = false;
+                            }
+                            if (sucesso) {
+                                System.out.println("Despesa editada com sucesso");
+                                JOptionPane.showMessageDialog(null, "Despesa editada com sucesso. ID: " + id);
+                                System.out.println("Dados enviados para o controller: " + descricao + ", " + tipo);
+                                dispose();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao editar despesa.");
+                            }
+                        } catch (HeadlessException ex) {
                             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao editar despesa. Erro: " + ex);
-                            sucesso = false;
                         }
-                        if (sucesso) {
-                            System.out.println("Despesa editada com sucesso");
-                            JOptionPane.showMessageDialog(null, "Despesa editada com sucesso. ID: " + id);
-                            System.out.println("Dados enviados para o controller: " + descricao + ", " + tipo);
-                            dispose();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao editar despesa.");
-                        }
-                    } catch (HeadlessException ex) {
-                        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao editar despesa. Erro: " + ex);
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Formato de ID inválido: " + ex.getMessage());
                     }
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Formato de ID inválido: " + ex.getMessage());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nenhuma despesa selecionada.");
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Nenhuma despesa selecionada.");
-            }
-        });
-        
-        
-    }
-
-    public void listarDespesas() {
-        try {
-            DespesaController despesaController = new DespesaController();
-            ArrayList<Despesa> despesas = despesaController.listarDespesasTipo("Entrada");
-            jComboBoxEditar.removeAllItems();
-            for (Despesa despesa : despesas) {
-                String item = despesa.getId() + " - " + despesa.getDescricao() + " - R$ " + String.format("%.2f", despesa.getValor());
-                jComboBoxEditar.addItem(item);
-            }
-        } catch (ExceptionDAO ex) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao listar as despesas. Erro: " + ex);
+            });
+    
+            jComboBoxEditar.addActionListener((java.awt.event.ActionEvent evt) -> {
+                String selectedItem = (String) jComboBoxEditar.getSelectedItem();
+                if (selectedItem != null && !selectedItem.equals("Selecione a despesa")) {
+                    try {
+                        int id = Integer.parseInt(selectedItem.split(" - ")[0].trim());
+                        DespesaController despesaController = new DespesaController();
+                        ArrayList<Despesa> despesas = despesaController.listarDespesasId(id);
+                        Despesa despesa = despesas.isEmpty() ? null : despesas.get(0);
+                        preencherCampos(despesa);
+                    } catch (NumberFormatException | ExceptionDAO ex) {
+                        JOptionPane.showMessageDialog(null, "Erro ao buscar despesa: " + ex.getMessage());
+                    }
+                } else {
+                    preencherCampos(null); // Limpa os campos quando "Selecione a despesa" está selecionado
+                }
+            });
         }
-    }
+    
+        public void preencherCampos(Despesa despesa) {
+            if (despesa != null) {
+                InputEditarDescricao.setText(despesa.getDescricao());
+                InputEditarTipoDespesa.setText(despesa.getTipo());
+                InputEditarData.setText(despesa.getDataRegistro());
+                InputEditarDespesa.setText(String.valueOf(despesa.getValor()));
+            } else {
+                // Limpar campos
+                InputEditarDescricao.setText("");
+                InputEditarTipoDespesa.setText("");
+                InputEditarData.setText("");
+                InputEditarDespesa.setText("");
+            }
+        }
+    
+        public void listarDespesas(String tipoDespesa) {
+            try {
+                DespesaController despesaController = new DespesaController();
+                ArrayList<Despesa> despesas = despesaController.listarDespesasTipo(tipoDespesa);
+                jComboBoxEditar.removeAllItems();
+                jComboBoxEditar.addItem("Selecione a despesa"); // Adiciona item inicial
+                for (Despesa despesa : despesas) {
+                    String item = despesa.getId() + " - " + despesa.getDescricao() + " - R$ " + String.format("%.2f", despesa.getValor());
+                    jComboBoxEditar.addItem(item);
+                }
+            } catch (ExceptionDAO ex) {
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao listar as despesas. Erro: " + ex);
+            }
+        }
+    
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -324,9 +350,7 @@ public class TelaEditarDespesa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_InputEditarDespesaActionPerformed
 
-    private void InputNomePacienteActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+    
 
     /**
      * @param args the command line arguments
@@ -365,7 +389,7 @@ public class TelaEditarDespesa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaEditarDespesa().setVisible(true);
+                new TelaEditarDespesa("someTipoDespesa").setVisible(true);
             }
         });
     }
