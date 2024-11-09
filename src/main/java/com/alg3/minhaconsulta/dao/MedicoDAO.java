@@ -108,7 +108,89 @@ public class MedicoDAO {
 
         return listarMedicos;
     }
+    
+    public ArrayList<Medico> listarMedicosId(int id) throws ExceptionDAO {
+        ArrayList<Medico> medicos = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = new ConnectionDAO().getConnection();
+            String sql = "SELECT * FROM medico WHERE medico_id = ?"; 
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, id);
+            rs = pstm.executeQuery();
+            
+            while (rs.next()) {
+                Medico medico = new Medico();
+                medico.setId(rs.getInt("medico_id"));
+                medico.setNome(rs.getString("nome"));
+                medico.setData_nascimento(rs.getString("data_nascimento"));
+                medico.setEndereco(rs.getString("endereco"));
+                medico.setTelefone(rs.getString("telefone"));
+                medico.setCrm(rs.getString("crm"));
+                medico.setEspecialidade(rs.getString("especialidade"));
+                medico.setGenero(rs.getString("genero"));
+                medicos.add(medico);
+            }
+        } catch (SQLException e) {
+            throw new ExceptionDAO("Erro ao consultar médico: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pstm != null) pstm.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                throw new ExceptionDAO("Erro ao fechar conexão: " + e.getMessage());
+            }
+        }
+        return medicos;
+    }
 
+    public boolean editarMedico(Medico medico) throws ExceptionDAO {
+        String sql = "UPDATE medico SET nome = ?, data_nascimento = ?, endereco = ?, " +
+                    "telefone = ?, crm = ?, especialidade = ?, genero = ? WHERE medico_id = ?";
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+        
+        try {
+            connection = new ConnectionDAO().getConnection();
+            pStatement = connection.prepareStatement(sql);
+            
+            // Lógica para converter o gênero
+            String genero;
+            if (medico.getGenero().equalsIgnoreCase("Feminino")) {
+                genero = "F";
+            } else if (medico.getGenero().equalsIgnoreCase("Masculino")) {
+                genero = "M";
+            } else {
+                genero = "X";
+            }
+            
+            pStatement.setString(1, medico.getNome());
+            pStatement.setString(2, medico.getData_nascimento());
+            pStatement.setString(3, medico.getEndereco());
+            pStatement.setString(4, medico.getTelefone());
+            pStatement.setString(5, medico.getCrm());
+            pStatement.setString(6, medico.getEspecialidade());
+            pStatement.setString(7, genero);
+            pStatement.setInt(8, medico.getId());
+            
+            int resultado = pStatement.executeUpdate();
+            return resultado > 0;
+            
+        } catch (SQLException e) {
+            throw new ExceptionDAO("Erro ao editar médico: " + e);
+        } finally {
+            try {
+                if (pStatement != null) { pStatement.close(); }
+                if (connection != null) { connection.close(); }
+            } catch (SQLException e) {
+                throw new ExceptionDAO("Erro ao fechar conexão: " + e);
+            }
+        }
+    }
 
     }
     

@@ -49,20 +49,13 @@ public class Paciente extends Pessoa{
         new PacienteDAO().cadastrarPaciente(paciente);
     }
 
+    public void editarPaciente(Paciente paciente) throws ExceptionDAO {
+        new PacienteDAO().editarPaciente(paciente);
+    }
+
     public ArrayList<Paciente> listarPacientes(String nome) throws ExceptionDAO {
         return new PacienteDAO().listarPacientes(nome);
     }
     
 }
 
-/*
-CREATE TABLE PACIENTE (
-    paciente_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255),
-    data_nascimento DATE,
-    endereco VARCHAR(255),
-    telefone VARCHAR(15),
-    convenio VARCHAR(50),
-    cpf VARCHAR(11) UNIQUE 
-);
-*/

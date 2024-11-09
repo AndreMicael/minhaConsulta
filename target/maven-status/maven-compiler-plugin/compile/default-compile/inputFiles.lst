@@ -1,4 +1,3 @@
-C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\controller\ArrayList.java
 C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\controller\ConsultaController.java
 C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\controller\DespesaController.java
 C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\controller\MedicoController.java
@@ -21,7 +20,9 @@ C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\m
 C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\view\Cadastros\TelaCadastroConsulta.java
 C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\view\Cadastros\TelaCadastroDespesa.java
 C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\view\Cadastros\TelaCadastroMedico.java
+C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\view\Cadastros\TelaEditarCliente.java
 C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\view\Cadastros\TelaEditarDespesa.java
+C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\view\Cadastros\TelaEditarMedico.java
 C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\view\Exibicoes\TelaExibirEntradas.java
 C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\view\Exibicoes\TelaExibirSaidas.java
 C:\Users\andre\Documents\NetBeansProjects\MinhaConsulta\src\main\java\com\alg3\minhaconsulta\view\RealRenderer.java

@@ -32,7 +32,37 @@ public class PacienteController {
         return false;
     }
 
+    public boolean editarPaciente(String nome, String data_nascimento, String endereco, String telefone, String cpf, String convenio, String genero, int id) {
+        if (nome != null && nome.length() > 0 && data_nascimento != null && endereco != null && endereco.length() > 0 && telefone != null && telefone.length() > 0 && cpf != null && cpf.length() > 0 && convenio != null && convenio.length() > 0) {
+            Paciente paciente = new Paciente();
+            paciente.setNome(nome);
+            paciente.setData_nascimento(data_nascimento);
+            paciente.setEndereco(endereco);
+            paciente.setTelefone(telefone);
+            paciente.setCpf(cpf);
+            paciente.setConvenio(convenio);
+            paciente.setGenero(genero);
+            paciente.setId(id);
+
+            System.out.println("Dados recebidos no controller: " + nome + ", " + endereco);
+
+            PacienteDAO dao = new PacienteDAO();
+            try {
+                dao.editarPaciente(paciente);
+                return true;
+            } catch (ExceptionDAO ex) {
+                ex.printStackTrace();
+                return false;
+            }
+        }
+        return false;
+    }
+
     public ArrayList<Paciente> listarPacientes(String nome) throws ExceptionDAO {
         return new Paciente().listarPacientes(nome);
+    }
+
+    public ArrayList<Paciente> listarPacientesId(int id) throws ExceptionDAO {
+        return new PacienteDAO().listarPacientesId(id);
     }
 }

@@ -44,5 +44,33 @@ public class MedicoController {
       public ArrayList<Medico> listarMedicos(String nome) throws ExceptionDAO {
         return new Medico().listarMedicos(nome);
     }
+
+    public ArrayList<Medico> listarMedicosId(int id) throws ExceptionDAO {
+        return new MedicoDAO().listarMedicosId(id);
+    }
+    
+    public boolean editarMedico(String nome, String data_nascimento, String endereco, 
+    String telefone, String crm, String especialidade, String genero, int id) throws ExceptionDAO {
+
+if (nome != null && nome.length() > 0 && data_nascimento != null && 
+    data_nascimento.length() > 0 && endereco != null && endereco.length() > 0 && 
+    telefone != null && telefone.length() > 0 && crm != null && crm.length() > 0 && 
+    especialidade != null && especialidade.length() > 0 && genero != null && 
+    genero.length() > 0 && id > 0) {
+    
+    Medico medico = new Medico();
+    medico.setNome(nome);
+    medico.setData_nascimento(data_nascimento);
+    medico.setEndereco(endereco);
+    medico.setTelefone(telefone);
+    medico.setCrm(crm);
+    medico.setEspecialidade(especialidade);
+    medico.setGenero(genero);
+    medico.setId(id);
+    
+    return new MedicoDAO().editarMedico(medico);
+}
+return false;
+}
     
 }

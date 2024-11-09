@@ -1,3 +1,7 @@
-com\alg3\minhaconsulta\view\Exibicoes\TelaExibirSaidas.class
-com\alg3\minhaconsulta\view\Exibicoes\TelaExibirSaidas$1.class
+com\alg3\minhaconsulta\controller\DespesaController.class
+com\alg3\minhaconsulta\dao\ExceptionDAO.class
+com\alg3\minhaconsulta\MinhaConsulta.class
+com\alg3\minhaconsulta\model\Despesa.class
+com\alg3\minhaconsulta\controller\ConsultaController.class
 com\alg3\minhaconsulta\MinhaConsulta$1.class
+com\alg3\minhaconsulta\model\Consulta.class
