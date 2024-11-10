@@ -51,4 +51,6 @@ public class Paciente extends Pessoa {
     public void deletarPaciente(Paciente paciente) throws ExceptionDAO {
         new PacienteDAO().deletarPaciente(paciente);
     }
+
+    
 }

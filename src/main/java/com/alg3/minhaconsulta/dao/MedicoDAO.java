@@ -5,6 +5,7 @@
 package com.alg3.minhaconsulta.dao;
 
 import com.alg3.minhaconsulta.model.Medico;
+ 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -191,6 +192,41 @@ public class MedicoDAO {
             }
         }
     }
+
+    public void deletarMedico(Medico medico) throws ExceptionDAO {
+        String sql = "DELETE FROM medico WHERE medico_id = ?";
+
+        PreparedStatement pStatement = null;
+        Connection connection = null;
+
+        try {
+            connection = new ConnectionDAO().getConnection();
+            pStatement = connection.prepareStatement(sql);
+            pStatement.setInt(1, medico.getId());
+            pStatement.execute();
+
+            System.out.println("Médico deletado com sucesso no banco de dados.");
+        } catch (SQLException ex) {
+            throw new ExceptionDAO("Erro ao deletar médico. Erro " + ex);
+        } finally {
+            try {
+                if (pStatement != null) {
+                    pStatement.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar o Statement. Erro " + ex);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
+            }
+        }
+    }
+
+
 
     }
     

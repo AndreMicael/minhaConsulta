@@ -7,6 +7,8 @@ package com.alg3.minhaconsulta.controller;
 import com.alg3.minhaconsulta.dao.ExceptionDAO;
 import com.alg3.minhaconsulta.dao.MedicoDAO;
 import com.alg3.minhaconsulta.model.Medico;
+ 
+
 import java.util.ArrayList;
 
 
@@ -72,5 +74,24 @@ if (nome != null && nome.length() > 0 && data_nascimento != null &&
 }
 return false;
 }
+
+    public boolean deletarMedico(int id) throws ExceptionDAO {
+        if (id > 0) {
+            try {
+             
+    
+          
+                Medico medico = new Medico();
+                medico.setId(id);
+                medico.deletarMedico(medico);
+                return true;
+            } catch (ExceptionDAO ex) {
+                ex.printStackTrace();
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     
 }

@@ -10,91 +10,103 @@ import java.awt.Component;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import com.alg3.minhaconsulta.controller.PacienteController;
+import com.alg3.minhaconsulta.controller.MedicoController;
+ 
 import com.alg3.minhaconsulta.dao.ExceptionDAO;
-import com.alg3.minhaconsulta.model.Paciente;
-
+import com.alg3.minhaconsulta.model.Medico;
+ 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author André Micael Sampaio Pinto <andre at alg3.org>
+ */
+public class TelaDeletarMedico extends javax.swing.JFrame {
 
-public class TelaDeletarCliente extends javax.swing.JFrame {
+    
+    
 
-    public TelaDeletarCliente() {
+    public TelaDeletarMedico() {
 
         try {
             FlatLightLaf.setup();
         } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(TelaDeletarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDeletarMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        initComponents();
-        listarPacientes();
+   
+
+    initComponents();
+    listarMedicos();
+ 
 
         submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
-            // Código para fechar a tela de cadastro
             dispose();
         });
 
-        submitExcluirCliente.addActionListener((java.awt.event.ActionEvent evt) -> {
+      
+
+        submitExcluirMedico.addActionListener((java.awt.event.ActionEvent evt) -> {
             String selectedItem = (String) jComboBoxExcluir.getSelectedItem();
 
-            if (selectedItem != null && !selectedItem.isEmpty() && !selectedItem.equals("Selecione o paciente")) {
+            if (selectedItem != null && !selectedItem.isEmpty() && !selectedItem.equals("Selecione o médico")) {
                 try {
                     int id = Integer.parseInt(selectedItem.split(" - ")[0].trim());
-                    PacienteController pacienteController = new PacienteController();
-                    boolean sucesso = pacienteController.deletarPaciente(id);
+                    MedicoController medicoController = new MedicoController();
+                    boolean sucesso = medicoController.deletarMedico(id);
 
                     if (sucesso) {
-                        System.out.println("Paciente excluído com sucesso");
-                        JOptionPane.showMessageDialog(null, "Paciente excluído com sucesso. ID: " + id);
-                        jComboBoxExcluir.removeItem(selectedItem); // Remove o paciente da lista imediatamente
-                        listarPacientes(); // Atualiza a lista de pacientes
+                        System.out.println("Médico excluído com sucesso");
+                        JOptionPane.showMessageDialog(null, "Médico excluído com sucesso. ID: " + id);
+                        jComboBoxExcluir.removeItem(selectedItem); // Remove o médico da lista imediatamente
+                        listarMedicos(); // Atualiza a lista de médicos
 
                         // Seleciona um item válido após a exclusão
                         if (jComboBoxExcluir.getItemCount() > 1) {
                             jComboBoxExcluir.setSelectedIndex(1);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao excluir paciente.");
+                        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao excluir médico.");
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Formato de ID inválido: " + ex.getMessage());
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Ocorreu um erro ao excluir paciente. Erro: " + ex);
+                } catch (ExceptionDAO | HeadlessException ex) {
+                    JOptionPane.showMessageDialog(null, "Ocorreu um erro ao excluir médico. Erro: " + ex);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Nenhum paciente selecionado.");
+                JOptionPane.showMessageDialog(null, "Nenhum médico selecionado.");
             }
         });
 
+
         jComboBoxExcluir.addActionListener((java.awt.event.ActionEvent evt) -> {
             String selectedItem = (String) jComboBoxExcluir.getSelectedItem();
-            if (selectedItem != null && !selectedItem.isEmpty() && !selectedItem.equals("Selecione o paciente")) {
+            if (selectedItem != null && !selectedItem.isEmpty() && !selectedItem.equals("Selecione o médico")) {
                 try {
                     int id = Integer.parseInt(selectedItem.split(" - ")[0].trim());
-                    PacienteController pacienteController = new PacienteController();
-                    ArrayList<Paciente> pacientes = pacienteController.listarPacientesId(id);
-                    if (pacientes != null && !pacientes.isEmpty()) {
-                        System.out.println("Paciente encontrado: " + pacientes);
+                    MedicoController medicoController = new MedicoController();
+                    ArrayList<Medico> medicos = medicoController.listarMedicosId(id);
+                    if (medicos != null && !medicos.isEmpty()) {
+                        System.out.println("Medico encontrado: " + medicos);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Paciente não encontrado.");
+                        JOptionPane.showMessageDialog(null, "Médico não encontrado.");
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Formato de ID inválido: " + ex.getMessage());
                 } catch (ExceptionDAO ex) {
-                    JOptionPane.showMessageDialog(null, "Ocorreu um erro ao buscar paciente. Erro: " + ex);
+                    JOptionPane.showMessageDialog(null, "Ocorreu um erro ao buscar médico. Erro: " + ex);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Nenhum paciente selecionado.");
+                JOptionPane.showMessageDialog(null, "Nenhum médico selecionado.");
             }
         });
     }
-
-public void listarPacientes() {
+public void listarMedicos() {
     try {
-        PacienteController pacienteController = new PacienteController();
-        ArrayList<Paciente> pacientes = pacienteController.listarPacientes("");
+        MedicoController medicoController = new MedicoController();
+        ArrayList<Medico> medicos = medicoController.listarMedicos("");
 
         // Criar um modelo personalizado que permite desabilitar itens
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>() {
@@ -108,12 +120,12 @@ public void listarPacientes() {
         
         jComboBoxExcluir.setModel(model);
 
-        if (pacientes.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Não há mais pacientes.");
+        if (medicos.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não há mais médicos.");
         } else {
-            model.addElement("Selecione o paciente"); // Adiciona item inicial
-            for (Paciente paciente : pacientes) {
-                String item = paciente.getId() + " - " + paciente.getNome() + " - " + paciente.getCpf();
+            model.addElement("Selecione o médico"); // Adiciona item inicial
+            for (Medico medico : medicos) {
+                String item = medico.getId() + " - " + medico.getNome() + " - " + medico.getCrm();
                 model.addElement(item);
             }
             
@@ -123,7 +135,7 @@ public void listarPacientes() {
                 public Component getListCellRendererComponent(JList<?> list, Object value, 
                         int index, boolean isSelected, boolean cellHasFocus) {
                     Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                    if (value != null && value.equals("Selecione o paciente")) {
+                    if (value != null && value.equals("Selecione o médico")) {
                         c.setForeground(Color.GRAY);
                         setEnabled(false);
                     }
@@ -137,9 +149,16 @@ public void listarPacientes() {
             }
         }
     } catch (ExceptionDAO ex) {
-        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao listar os pacientes. Erro: " + ex);
+        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao listar os médicos. Erro: " + ex);
     }
 }
+
+  
+        
+        
+      
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -150,9 +169,9 @@ public void listarPacientes() {
     private void initComponents() {
 
         jComboBox1 = new javax.swing.JComboBox<>();
-        TitleEditarDespesa = new javax.swing.JLabel();
+        TitleDeletarMedico = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        submitExcluirCliente = new javax.swing.JButton();
+        submitExcluirMedico = new javax.swing.JButton();
         submitCancelar = new javax.swing.JButton();
         jComboBoxExcluir = new javax.swing.JComboBox<>();
 
@@ -163,21 +182,21 @@ public void listarPacientes() {
         setMinimumSize(new java.awt.Dimension(512, 300));
         setResizable(false);
 
-        TitleEditarDespesa.setFont(new java.awt.Font("Inter SemiBold", 0, 12)); // NOI18N
-        TitleEditarDespesa.setForeground(new java.awt.Color(0, 51, 153));
-        TitleEditarDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/doutora.png"))); // NOI18N
-        TitleEditarDespesa.setText("Deletar");
-        TitleEditarDespesa.setMaximumSize(new java.awt.Dimension(178, 64));
-        TitleEditarDespesa.setMinimumSize(new java.awt.Dimension(178, 64));
+        TitleDeletarMedico.setFont(new java.awt.Font("Inter SemiBold", 0, 12)); // NOI18N
+        TitleDeletarMedico.setForeground(new java.awt.Color(0, 51, 153));
+        TitleDeletarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/doutora.png"))); // NOI18N
+        TitleDeletarMedico.setText("Deletar Médico");
+        TitleDeletarMedico.setMaximumSize(new java.awt.Dimension(178, 64));
+        TitleDeletarMedico.setMinimumSize(new java.awt.Dimension(178, 64));
 
-        jPanel1.setBackground(new java.awt.Color(255, 51, 102));
+        jPanel1.setBackground(new java.awt.Color(153, 0, 255));
 
-        submitExcluirCliente.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        submitExcluirCliente.setForeground(new java.awt.Color(0, 51, 153));
-        submitExcluirCliente.setText("OK");
-        submitExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
+        submitExcluirMedico.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitExcluirMedico.setForeground(new java.awt.Color(0, 51, 153));
+        submitExcluirMedico.setText("OK");
+        submitExcluirMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitExcluirClienteActionPerformed(evt);
+                submitEditarMedicoActionPerformed(evt);
             }
         });
 
@@ -204,18 +223,18 @@ public void listarPacientes() {
                 .addGap(194, 194, 194)
                 .addComponent(submitCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(submitExcluirCliente)
+                .addComponent(submitExcluirMedico)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
                 .addComponent(jComboBoxExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addGap(134, 134, 134)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitCancelar)
-                    .addComponent(submitExcluirCliente))
+                    .addComponent(submitExcluirMedico))
                 .addContainerGap())
         );
 
@@ -230,14 +249,14 @@ public void listarPacientes() {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(TitleEditarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 395, Short.MAX_VALUE))))
+                        .addComponent(TitleDeletarMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 348, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(TitleEditarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TitleDeletarMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(13, Short.MAX_VALUE))
@@ -252,10 +271,11 @@ public void listarPacientes() {
     private void submitCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_submitCancelarActionPerformed
+    // TODO add your handling code here:
 
-    private void submitExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitExcluirClienteActionPerformed
+    private void submitEditarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitEditarMedicoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_submitExcluirClienteActionPerformed
+    }//GEN-LAST:event_submitEditarMedicoActionPerformed
 
  
     /**
@@ -275,14 +295,110 @@ public void listarPacientes() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaDeletarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDeletarMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaDeletarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDeletarMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaDeletarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDeletarMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaDeletarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDeletarMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -319,17 +435,17 @@ public void listarPacientes() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaDeletarCliente().setVisible(true);
+                new TelaDeletarMedico().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel TitleEditarDespesa;
+    private javax.swing.JLabel TitleDeletarMedico;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxExcluir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton submitCancelar;
-    private javax.swing.JButton submitExcluirCliente;
+    private javax.swing.JButton submitExcluirMedico;
     // End of variables declaration//GEN-END:variables
 }

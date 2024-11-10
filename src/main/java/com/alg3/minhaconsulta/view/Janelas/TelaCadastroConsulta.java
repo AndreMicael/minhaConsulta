@@ -151,7 +151,7 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        InputSexo = new javax.swing.JComboBox<>();
+        
         TitleCadastrarPaciente = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         submitCadastrarConsulta = new javax.swing.JButton();
@@ -391,7 +391,7 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField InputDataConsulta;
-    private javax.swing.JComboBox<String> InputSexo;
+    
     private javax.swing.JTextField InputTipoConsulta;
     private javax.swing.JTextField InputValorConsulta;
     private javax.swing.JLabel LabelDataConsulta;

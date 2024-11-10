@@ -36,18 +36,21 @@ public class Medico extends Pessoa {
         this.especialidade = especialidade;
     }
 
-
      public void cadastrarMedico(Medico medico) throws ExceptionDAO {
         new MedicoDAO().cadastrarMedico(medico);
     }
 
+    public ArrayList<Medico> listarMedicos(String nome) throws ExceptionDAO {
+    MedicoDAO medicoDAO = new MedicoDAO();
+    return medicoDAO.listarMedicos(nome);
 
+}
 
-      public ArrayList<Medico> listarMedicos(String nome) throws ExceptionDAO {
-        MedicoDAO medicoDAO = new MedicoDAO();
-        return medicoDAO.listarMedicos(nome);
-
+    public void deletarMedico(Medico medico) throws ExceptionDAO {
+        new MedicoDAO().deletarMedico(medico);
     }
+
+    
 
     
     
