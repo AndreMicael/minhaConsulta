@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.alg3.minhaconsulta.model.Consulta;
+import com.alg3.minhaconsulta.model.Despesa;
+
 import java.util.ArrayList;
 
 public class ConsultaDAO {
@@ -99,6 +101,59 @@ public class ConsultaDAO {
             }
         }
 
+        return listaConsultas;
+    }
+
+    public ArrayList<Consulta> listarConsultasData(String data) throws ExceptionDAO {
+        String sql = "SELECT c.*, m.nome AS medico_nome, p.nome AS paciente_nome FROM consulta c "
+                   + "JOIN medico m ON c.medico_id = m.medico_id "
+                   + "JOIN paciente p ON c.paciente_id = p.paciente_id "
+                   + "WHERE c.data_consulta LIKE ? ORDER BY c.data_consulta DESC";
+    
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+        ArrayList<Consulta> listaConsultas = new ArrayList<>();
+    
+        try {
+            connection = new ConnectionDAO().getConnection();
+            pStatement = connection.prepareStatement(sql);
+            pStatement.setString(1, "%" + data + "%");
+            ResultSet rs = pStatement.executeQuery();
+    
+            while (rs.next()) {
+                Consulta consulta = new Consulta();
+                consulta.setId(rs.getInt("consulta_id"));
+                consulta.setData(rs.getString("data_consulta"));
+                consulta.setPacienteId(rs.getInt("paciente_id"));
+                consulta.setMedicoId(rs.getInt("medico_id"));
+                consulta.setValor(rs.getDouble("valor"));
+                consulta.setStatus(rs.getString("status"));
+                consulta.setObservacoes(rs.getString("observacoes"));
+                consulta.setMedicoNome(rs.getString("medico_nome"));
+                consulta.setPacienteNome(rs.getString("paciente_nome"));
+    
+                listaConsultas.add(consulta);
+            }
+    
+        } catch (SQLException ex) {
+            throw new ExceptionDAO("Erro ao listar consultas. Erro " + ex);
+        } finally {
+            try {
+                if (pStatement != null) {
+                    pStatement.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar o Statement. Erro " + ex);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
+            }
+        }
+    
         return listaConsultas;
     }
 }

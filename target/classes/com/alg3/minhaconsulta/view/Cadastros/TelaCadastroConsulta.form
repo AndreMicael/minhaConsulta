@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JComboBox" name="InputSexo">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -91,51 +103,55 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="LabelTipo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="InputTipoConsulta" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="LabelPaciente" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="InputPacienteId" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="150" max="32767" attributes="0"/>
-                          <Component id="submitCancelar" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="submitCadastrarConsulta" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="LabelTipoConsulta" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="InputTipoConsulta" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="LabelPaciente" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="inputSelectPaciente" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="150" max="32767" attributes="0"/>
+                                  <Component id="submitCancelar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="LabelValor" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="InputValorConsulta" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="submitCadastrarConsulta" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                          <Component id="LabelDataConsulta" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="InputDataConsulta" min="-2" pref="149" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="LabelDataConsulta" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="LabelMedico" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="InputDataConsulta" min="-2" pref="149" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="LabelValor" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="InputValorConsulta" max="32767" attributes="0"/>
+                          <Component id="inputSelectMedico" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="LabelMedico" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="InputMedicoId" min="-2" pref="123" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="LabelStatus" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="InputStatus" min="-2" pref="242" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -144,28 +160,22 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="InputPacienteId" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="LabelPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="LabelDataConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="InputDataConsulta" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="inputSelectPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="InputTipoConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="LabelTipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="LabelTipoConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="InputValorConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="LabelValor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="InputStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="LabelStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="InputMedicoId" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="LabelMedico" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="LabelMedico" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="inputSelectMedico" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -214,11 +224,6 @@
             <Property name="text" type="java.lang.String" value="Paciente:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="InputPacienteId">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InputPacienteIdActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JFormattedTextField" name="InputDataConsulta">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -246,17 +251,12 @@
             <Property name="text" type="java.lang.String" value="M&#xe9;dico:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="InputMedicoId">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InputMedicoIdActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LabelTipo">
+        <Component class="javax.swing.JLabel" name="LabelTipoConsulta">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tipo de Consulta:"/>
+            <Property name="text" type="java.lang.String" value="Consulta:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="InputTipoConsulta">
@@ -277,18 +277,25 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InputValorConsultaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="InputStatus">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InputStatusActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LabelStatus">
+        <Component class="javax.swing.JComboBox" name="inputSelectMedico">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter" size="12" style="0"/>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Status:"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="inputSelectPaciente">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

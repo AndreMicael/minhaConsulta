@@ -397,6 +397,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ButtonConsultaConsultas = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1Consultas = new javax.swing.JTable();
+        jButtonEditarConsultas = new javax.swing.JButton();
         TelaPacientesPanel = new javax.swing.JPanel();
         VoltarBtn1 = new javax.swing.JButton();
         LabelTodosPacientes = new javax.swing.JLabel();
@@ -574,6 +575,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTable1Consultas.setShowGrid(true);
         jScrollPane3.setViewportView(jTable1Consultas);
 
+        jButtonEditarConsultas.setText("Editar");
+
         javax.swing.GroupLayout TelaConsultasPanelLayout = new javax.swing.GroupLayout(TelaConsultasPanel);
         TelaConsultasPanel.setLayout(TelaConsultasPanelLayout);
         TelaConsultasPanelLayout.setHorizontalGroup(
@@ -581,16 +584,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaConsultasPanelLayout.createSequentialGroup()
                 .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(TelaConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(TelaConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane3)
-                        .addComponent(LabelTodasConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(TelaConsultasPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(TextFieldNomeConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(ButtonConsultaConsultas)))
-                    .addComponent(VoltarBtn))
+                    .addComponent(VoltarBtn)
+                    .addGroup(TelaConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButtonEditarConsultas)
+                        .addGroup(TelaConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3)
+                            .addComponent(LabelTodasConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(TelaConsultasPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextFieldNomeConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ButtonConsultaConsultas)))))
                 .addGap(50, 50, 50))
         );
         TelaConsultasPanelLayout.setVerticalGroup(
@@ -604,8 +609,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(TextFieldNomeConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButtonConsultaConsultas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonEditarConsultas)
+                .addGap(32, 32, 32)
                 .addComponent(VoltarBtn)
                 .addContainerGap(47, Short.MAX_VALUE))
         );
@@ -1278,6 +1285,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton VoltarBtn1;
     private javax.swing.JButton VoltarBtn4;
     private javax.swing.JButton VoltarBtn5;
+    private javax.swing.JButton jButtonEditarConsultas;
     private javax.swing.JButton jButtonEditarEntrada;
     private javax.swing.JButton jButtonEditarMedico;
     private javax.swing.JButton jButtonEditarPaciente;
