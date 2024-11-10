@@ -1,46 +1,50 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.alg3.minhaconsulta.model;
 
-/**
- *
- * @author André Micael Sampaio Pinto
- */
+import java.util.ArrayList;
+
+import com.alg3.minhaconsulta.dao.ExceptionDAO; 
+import com.alg3.minhaconsulta.dao.ProntuarioDAO;
+
 public class Prontuario {
 
-    private int prontuario_id;
-    private int paciente_id;
-    private int consulta_id;
-    private String data_registro;
+    private int id;
+    private int pacienteId;
+    private int consultaId;
+    private int medicoId;
+    private String dataRegistro;
     private String observacoes;
     private String exames;
-    private String historico_medico;
+    private String historicoMedico;
     
-    public int getProntuario_id() {
-        return prontuario_id;
+    public int getId() {
+        return id;
     }
-    public void setProntuario_id(int prontuario_id) {
-        this.prontuario_id = prontuario_id;
+    public void setId(int id) {
+        this.id = id;
     }
-    public int getPaciente_id() {
-        return paciente_id;
+    public int getPacienteId() {
+        return pacienteId;
     }
-    public void setPaciente_id(int paciente_id) {
-        this.paciente_id = paciente_id;
+    public void setPacienteId(int pacienteId) {
+        this.pacienteId = pacienteId;
     }
-    public int getConsulta_id() {
-        return consulta_id;
+    public int getConsultaId() {
+        return consultaId;
     }
-    public void setConsulta_id(int consulta_id) {
-        this.consulta_id = consulta_id;
+    public void setConsultaId(int consultaId) {
+        this.consultaId = consultaId;
     }
-    public String getData_registro() {
-        return data_registro;
+    public int getMedicoId() {
+        return medicoId;
     }
-    public void setData_registro(String data_registro) {
-        this.data_registro = data_registro;
+    public void setMedicoId(int medicoId) {
+        this.medicoId = medicoId;
+    }
+    public String getDataRegistro() {
+        return dataRegistro;
+    }
+    public void setDataRegistro(String dataRegistro) {
+        this.dataRegistro = dataRegistro;
     }
     public String getObservacoes() {
         return observacoes;
@@ -54,27 +58,27 @@ public class Prontuario {
     public void setExames(String exames) {
         this.exames = exames;
     }
-    public String getHistorico_medico() {
-        return historico_medico;
+    public String getHistoricoMedico() {
+        return historicoMedico;
     }
-    public void setHistorico_medico(String historico_medico) {
-        this.historico_medico = historico_medico;
+    public void setHistoricoMedico(String historicoMedico) {
+        this.historicoMedico = historicoMedico;
     }
 
+    public void cadastrarProntuario(Prontuario prontuario) throws ExceptionDAO {
+        new ProntuarioDAO().cadastrarProntuario(prontuario);
+    }
 
-    
+    public void editarProntuario(Prontuario prontuario) throws ExceptionDAO {
+        new ProntuarioDAO().editarProntuario(prontuario);
+    }
+
+    public ArrayList<Prontuario> listarProntuarios(String nome) throws ExceptionDAO {
+        return new ProntuarioDAO().listarProntuarios(nome);
+    }
+
+    public void deletarProntuario(Prontuario prontuario) throws ExceptionDAO {
+        new ProntuarioDAO().deletarProntuario(prontuario);
+    }
+
 }
-
-
-// CREATE TABLE PRONTUARIO (
-//     prontuario_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-//     paciente_id INT,
-//     consulta_id INT,
-//     data_registro DATE,
-//     observacoes VARCHAR(255),
-//     exames VARCHAR(255),
-//     historico_medico VARCHAR(255),
-//     CONSTRAINT FK_PRONTUARIO_PACIENTE FOREIGN KEY (paciente_id) REFERENCES PACIENTE(paciente_id) ON DELETE RESTRICT,
-//     CONSTRAINT FK_PRONTUARIO_CONSULTA FOREIGN KEY (consulta_id) REFERENCES CONSULTA(consulta_id) ON DELETE RESTRICT
-// );
-

@@ -73,8 +73,8 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
             String descricao = InputDescricao.getText().trim();
             String tipo = jComboBoxTipo.getSelectedItem() != null ? jComboBoxTipo.getSelectedItem().toString() : "";
             if (tipo.equals("Selecione o tipo da despesa")) {
-                JOptionPane.showMessageDialog(null, "Selecione o tipo da despesa.");
-                return;
+            JOptionPane.showMessageDialog(null, "Selecione o tipo da despesa.");
+            return;
             }
             String data = InputData.getText().trim();
             String valorStr = InputValorConsulta.getText().replace(",", ".").trim();
@@ -82,36 +82,36 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
         
             // Verificação para campos obrigatórios
             if (descricao.isEmpty() || data.contains("_") || valorStr.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios corretamente.");
-                return;
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios corretamente.");
+            return;
             }
         
             double valor;
             try {
-                valor = Double.parseDouble(valorStr); //transformar em double
+            valor = Double.parseDouble(valorStr); //transformar em double
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Valor inválido.");
-                return;
+            JOptionPane.showMessageDialog(null, "Valor inválido.");
+            return;
             }
         
             try {
-                DespesaController despesaController = new DespesaController();
-                try {
-                    sucesso = despesaController.cadastrarDespesa(descricao, tipo, valor, data);
-                } catch (ExceptionDAO ex) {
-                    JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar despesa. Erro: " + ex);
-                    sucesso = false;
-                }
-                if (sucesso) {
-                    System.out.println("Despesa cadastrada com sucesso");
-                    JOptionPane.showMessageDialog(null, "Despesa cadastrada com sucesso");
-                    System.out.println("Dados enviados para o controller: " + descricao + ", " + tipo);
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar despesa.");
-                }
-            } catch (HeadlessException ex) {
+            DespesaController despesaController = new DespesaController();
+            try {
+                sucesso = despesaController.cadastrarDespesa(descricao, tipo, valor, data);
+            } catch (ExceptionDAO ex) {
                 JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar despesa. Erro: " + ex);
+                sucesso = false;
+            }
+            if (sucesso) {
+                System.out.println("Despesa cadastrada com sucesso");
+                JOptionPane.showMessageDialog(null, "Despesa cadastrada com sucesso");
+                System.out.println("Dados enviados para o controller: " + descricao + ", " + tipo);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar despesa.");
+            }
+            } catch (HeadlessException ex) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar despesa. Erro: " + ex);
             }
         });
         

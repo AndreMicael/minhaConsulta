@@ -103,6 +103,7 @@ public class TelaDeletarMedico extends javax.swing.JFrame {
             }
         });
     }
+    
 public void listarMedicos() {
     try {
         MedicoController medicoController = new MedicoController();

@@ -2,7 +2,7 @@ package com.alg3.minhaconsulta.controller;
 
 import com.alg3.minhaconsulta.dao.ConsultaDAO;
 import com.alg3.minhaconsulta.model.Consulta;
-
+ 
 import com.alg3.minhaconsulta.dao.ExceptionDAO;
 
 
@@ -65,6 +65,25 @@ public class ConsultaController {
     
     public ArrayList<Consulta> listarConsultasData(String data) throws ExceptionDAO {
         return new ConsultaDAO().listarConsultasData(data);
+    }
+
+       public boolean deletarConsulta(int id) throws ExceptionDAO {
+        if (id > 0) {
+            try {
+             
+    
+          
+                Consulta consulta = new Consulta();
+                consulta.setId(id);
+                consulta.deletarConsulta(consulta);
+                return true;
+            } catch (ExceptionDAO ex) {
+                ex.printStackTrace();
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
 

@@ -97,6 +97,23 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="MenuProntuario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Prontu&#xe1;rio"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="NovoProntuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Novo Prontuario"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="VerTodosProntuarios">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Todos os Prontu&#xe1;rios"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="MenuBuscarMedico">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -316,11 +333,17 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="49" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="VoltarBtn" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="jButtonEditarConsultas" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jButtonEditarConsultas" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButtonExcluirConsultas" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButtonNovaConsulta" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
                                   <Component id="LabelTodasConsultas" alignment="0" min="-2" pref="211" max="-2" attributes="0"/>
@@ -352,7 +375,11 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="188" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonEditarConsultas" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButtonEditarConsultas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonExcluirConsultas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonNovaConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="VoltarBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="47" max="32767" attributes="0"/>
@@ -427,6 +454,19 @@
                 <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JButton" name="jButtonExcluirConsultas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Excluir"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonNovaConsulta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nova Consulta"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNovaConsultaActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="TelaPacientesPanel">
@@ -459,6 +499,8 @@
                                   <Component id="jButtonEditarPaciente" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButtonExcluirPaciente" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButtonNovoPaciente" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jScrollPane1" max="32767" attributes="0"/>
@@ -494,6 +536,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonEditarPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonExcluirPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonNovoPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Component id="VoltarBtn1" min="-2" max="-2" attributes="0"/>
@@ -576,6 +619,11 @@
                 <Property name="text" type="java.lang.String" value="Excluir"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JButton" name="jButtonNovoPaciente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Novo Paciente"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="TelaBuscaMedicoPanel">
@@ -611,6 +659,8 @@
                               <Component id="jButtonEditarMedico" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonExcluirMedico" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonNovoMedico" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
@@ -645,6 +695,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonEditarMedico" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonExcluirMedico" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonNovoMedico" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="VoltarBtn4" min="-2" max="-2" attributes="0"/>
@@ -727,6 +778,137 @@
                 <Property name="text" type="java.lang.String" value="Excluir"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JButton" name="jButtonNovoMedico">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Novo M&#xe9;dico"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="TelaProntu&#xe1;rio">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="ff" red="99" type="rgb"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[712, 423]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[712, 423]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="card3"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="287" max="-2" attributes="0"/>
+                      <Component id="jButtonNovoProntuario" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="TextFieldBuscaProntuario" min="-2" pref="229" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="ButtonBuscaProntuario" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
+                      <Component id="LabelTodosProntuarios" min="-2" pref="322" max="-2" attributes="0"/>
+                      <EmptySpace pref="207" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="jScrollPane4" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                      <Component id="LabelTodosProntuarios" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="ButtonBuscaProntuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TextFieldBuscaProntuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="257" max="-2" attributes="0"/>
+                      <Component id="jButtonNovoProntuario" min="-2" pref="34" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                          <Component id="jScrollPane4" min="-2" pref="188" max="-2" attributes="0"/>
+                          <EmptySpace pref="118" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="TextFieldBuscaProntuario">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Informe o nome do paciente..."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="ButtonBuscaProntuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="LabelTodosProntuarios">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Inter" size="14" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Prontu&#xe1;rios"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonNovoProntuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Novo Prontuario"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="jTable1ConsultaProntuario">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Inter" size="12" style="0"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="7" rowCount="4">
+                        <Column editable="false" title="C&#xf3;digo" type="java.lang.Integer"/>
+                        <Column editable="false" title="Paciente" type="java.lang.String"/>
+                        <Column editable="false" title="M&#xe9;dico" type="java.lang.String"/>
+                        <Column editable="false" title="Hist&#xf3;rico" type="java.lang.String"/>
+                        <Column editable="false" title="Exames" type="java.lang.String"/>
+                        <Column editable="false" title="Obs." type="java.lang.String"/>
+                        <Column editable="false" title="Data Registro" type="java.lang.String"/>
+                      </Table>
+                    </Property>
+                    <Property name="showGrid" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="TelaBalancos">
@@ -751,15 +933,24 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="TextFieldBalanco" min="-2" pref="155" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
-                              <Component id="VoltarBtn5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="437" max="-2" attributes="0"/>
+                                      <Component id="VoltarBtn5" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="TextFieldBalanco" min="-2" pref="155" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <Component id="jButtonNovaDespesa" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
@@ -770,50 +961,61 @@
                                       </Group>
                                       <Component id="LabelTodosPacientes2" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="TextFieldBuscaSaida" min="-2" pref="244" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="ButtonBuscaSaida" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="LabelTodosPacientes1" min="-2" pref="322" max="-2" attributes="0"/>
                                   <Component id="jPanel2" min="-2" pref="334" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="LabelTodosPacientes1" min="-2" pref="322" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="TextFieldBuscaSaida" min="-2" pref="244" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="ButtonBuscaSaida" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="LabelTodosPacientes2" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="LabelTodosPacientes1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TextFieldBuscaEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ButtonBuscaEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TextFieldBuscaSaida" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ButtonBuscaSaida" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="VoltarBtn5" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="TextFieldBalanco" alignment="1" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="VoltarBtn5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="LabelTodosPacientes2" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="LabelTodosPacientes1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="TextFieldBuscaEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ButtonBuscaEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TextFieldBuscaSaida" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ButtonBuscaSaida" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButtonNovaDespesa" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="TextFieldBalanco" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -894,8 +1096,8 @@
                               <Component id="jScrollPane6" pref="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="jButtonEditarEntrada" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="JButtonRemoverEntrada" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                                  <Component id="JButtonExcluirEntrada" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -920,7 +1122,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jButtonEditarEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JButtonRemoverEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JButtonExcluirEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -982,9 +1184,9 @@
                     <Property name="text" type="java.lang.String" value="Editar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="JButtonRemoverEntrada">
+                <Component class="javax.swing.JButton" name="JButtonExcluirEntrada">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Remover"/>
+                    <Property name="text" type="java.lang.String" value="Excluir"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -1011,7 +1213,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jButtonEditarSaida" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="JButtonRemoverSaida" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JButtonExcluirSaida" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1035,7 +1237,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="jButtonEditarSaida" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="JButtonRemoverSaida" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JButtonExcluirSaida" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="TextFieldSaidasTotal" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1094,9 +1296,9 @@
                     <Property name="text" type="java.lang.String" value="Total"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="JButtonRemoverSaida">
+                <Component class="javax.swing.JButton" name="JButtonExcluirSaida">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Remover"/>
+                    <Property name="text" type="java.lang.String" value="Excluir"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButtonEditarSaida">
@@ -1106,6 +1308,16 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="jButtonNovaDespesa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nova Despesa"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Balan&#xe7;o:"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

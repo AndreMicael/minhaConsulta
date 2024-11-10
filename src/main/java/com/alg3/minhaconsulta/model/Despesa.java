@@ -75,4 +75,8 @@ public class Despesa {
     public ArrayList<Despesa> listarDespesas(String descricao) throws ExceptionDAO {
         return new DespesaDAO().listarDespesas(descricao);
     }
+
+    public void deletarDespesa(Despesa despesa) throws ExceptionDAO {
+        new DespesaDAO().deletarDespesa(despesa);
+    }
 }

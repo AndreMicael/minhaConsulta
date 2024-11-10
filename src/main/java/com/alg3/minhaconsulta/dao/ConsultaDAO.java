@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.alg3.minhaconsulta.model.Consulta;
-
+ 
 
 import java.util.ArrayList;
 
@@ -46,12 +46,45 @@ public class ConsultaDAO {
                     connection.close();
                 }
             } catch (SQLException ex) {
-                throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
-            }
-        }
-    }
+                throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);}}
+            
 
-    public ArrayList<Consulta> listarConsultas(String nome) throws ExceptionDAO {
+            }
+
+            public void deletarConsulta(Consulta consulta) throws ExceptionDAO {
+                String sql = "DELETE FROM consulta WHERE consulta_id = ?";
+
+                PreparedStatement pStatement = null;
+                Connection connection = null;
+
+                try {
+                    connection = new ConnectionDAO().getConnection();
+                    pStatement = connection.prepareStatement(sql);
+                    pStatement.setInt(1, consulta.getId());
+                    pStatement.execute();
+
+                    System.out.println("Consulta deletada com sucesso no banco de dados.");
+                } catch (SQLException ex) {
+                    throw new ExceptionDAO("Erro ao deletar consulta. Erro " + ex);
+                } finally {
+                    try {
+                        if (pStatement != null) {
+                            pStatement.close();
+                        }
+                    } catch (SQLException ex) {
+                        throw new ExceptionDAO("Erro ao fechar o Statement. Erro " + ex);
+                    }
+                    try {
+                        if (connection != null) {
+                            connection.close();
+                        }
+                    } catch (SQLException ex) {
+                        throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
+                    }
+                }
+            }
+
+            public ArrayList<Consulta> listarConsultas(String nome) throws ExceptionDAO {
         String sql = "SELECT c.*, m.nome AS medico_nome, p.nome AS paciente_nome FROM consulta c "
                    + "JOIN medico m ON c.medico_id = m.medico_id "
                    + "JOIN paciente p ON c.paciente_id = p.paciente_id "

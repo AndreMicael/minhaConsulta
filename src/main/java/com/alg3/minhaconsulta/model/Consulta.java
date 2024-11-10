@@ -2,6 +2,8 @@ package com.alg3.minhaconsulta.model;
 
 import com.alg3.minhaconsulta.dao.ConsultaDAO;
 import com.alg3.minhaconsulta.dao.ExceptionDAO;
+ 
+
 import java.util.ArrayList;
 
 public class Consulta {
@@ -112,5 +114,8 @@ public class Consulta {
 
     public ArrayList<Consulta> listarConsultas(String nome) throws ExceptionDAO {
         return new ConsultaDAO().listarConsultas(nome);
+    }
+     public void deletarConsulta(Consulta consulta) throws ExceptionDAO {
+        new ConsultaDAO().deletarConsulta(consulta);
     }
 }
