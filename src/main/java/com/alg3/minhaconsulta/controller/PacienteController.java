@@ -65,4 +65,23 @@ public class PacienteController {
     public ArrayList<Paciente> listarPacientesId(int id) throws ExceptionDAO {
         return new PacienteDAO().listarPacientesId(id);
     }
+
+    public boolean deletarPaciente(int id) throws ExceptionDAO {
+        if (id > 0) {
+            try {
+             
+    
+          
+                Paciente paciente = new Paciente();
+                paciente.setId(id);
+                paciente.deletarPaciente(paciente);
+                return true;
+            } catch (ExceptionDAO ex) {
+                ex.printStackTrace();
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

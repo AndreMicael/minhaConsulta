@@ -2,9 +2,9 @@ package com.alg3.minhaconsulta.controller;
 
 import com.alg3.minhaconsulta.dao.ConsultaDAO;
 import com.alg3.minhaconsulta.model.Consulta;
-import com.alg3.minhaconsulta.model.Paciente;
+
 import com.alg3.minhaconsulta.dao.ExceptionDAO;
-import com.alg3.minhaconsulta.dao.PacienteDAO;
+
 
 import java.util.ArrayList;
 

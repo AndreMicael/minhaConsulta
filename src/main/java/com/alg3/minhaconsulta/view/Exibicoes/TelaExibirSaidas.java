@@ -6,15 +6,10 @@ package com.alg3.minhaconsulta.view.Exibicoes;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-import com.alg3.minhaconsulta.controller.MedicoController;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
-import javax.swing.JOptionPane;
 
 import javax.swing.text.MaskFormatter;
 

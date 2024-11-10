@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.alg3.minhaconsulta.model.Consulta;
-import com.alg3.minhaconsulta.model.Despesa;
+
 
 import java.util.ArrayList;
 

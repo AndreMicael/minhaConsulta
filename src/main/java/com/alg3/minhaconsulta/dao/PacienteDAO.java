@@ -50,6 +50,47 @@ public class PacienteDAO {
         }
     }
 
+    public void deletarPaciente(Paciente paciente) throws ExceptionDAO {
+        String sql = "DELETE FROM paciente WHERE paciente_id = ?";
+
+        PreparedStatement pStatement = null;
+        Connection connection = null;
+
+        try {
+            connection = new ConnectionDAO().getConnection();
+            pStatement = connection.prepareStatement(sql);
+            pStatement.setInt(1, paciente.getId());
+            pStatement.execute();
+
+            System.out.println("Paciente deletado com sucesso no banco de dados.");
+        } catch (SQLException ex) {
+            throw new ExceptionDAO("Erro ao deletar paciente. Erro " + ex);
+        } finally {
+            try {
+                if (pStatement != null) {
+                    pStatement.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar o Statement. Erro " + ex);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
+            }
+        }
+    }
+
+
+
+  
+  
+
+  
+    
+
     public void editarPaciente(Paciente paciente) throws ExceptionDAO {
         String sql = "UPDATE paciente SET nome = ?, data_nascimento = ?, endereco = ?, telefone = ?, convenio = ?, cpf = ?, genero = ? " +
                      "WHERE paciente_id = ?";
