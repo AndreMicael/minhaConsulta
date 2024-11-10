@@ -199,16 +199,16 @@ public class TelaDeletarDespesa extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(512, 300));
         setResizable(false);
 
-        TitleDeletarDespesa.setFont(new java.awt.Font("Inter SemiBold", 0, 12)); // NOI18N
+        TitleDeletarDespesa.setFont(new java.awt.Font("Inter SemiBold", 0, 18)); // NOI18N
         TitleDeletarDespesa.setForeground(new java.awt.Color(0, 51, 153));
-        TitleDeletarDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/doutora.png"))); // NOI18N
+        TitleDeletarDespesa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TitleDeletarDespesa.setText("Deletar Despesa");
         TitleDeletarDespesa.setMaximumSize(new java.awt.Dimension(178, 64));
         TitleDeletarDespesa.setMinimumSize(new java.awt.Dimension(178, 64));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
-        submitExcluirDespesa.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitExcluirDespesa.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         submitExcluirDespesa.setForeground(new java.awt.Color(0, 51, 153));
         submitExcluirDespesa.setText("OK");
         submitExcluirDespesa.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +217,7 @@ public class TelaDeletarDespesa extends javax.swing.JFrame {
             }
         });
 
-        submitCancelar.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitCancelar.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         submitCancelar.setForeground(new java.awt.Color(0, 51, 153));
         submitCancelar.setText("Cancelar");
         submitCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +226,7 @@ public class TelaDeletarDespesa extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxExcluir.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         jComboBoxExcluir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -237,7 +238,7 @@ public class TelaDeletarDespesa extends javax.swing.JFrame {
                 .addComponent(jComboBoxExcluir, 0, 488, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(169, 169, 169)
+                .addGap(160, 160, 160)
                 .addComponent(submitCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(submitExcluirDespesa)
@@ -248,7 +249,7 @@ public class TelaDeletarDespesa extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(jComboBoxExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(106, 106, 106)
+                .addGap(70, 70, 70)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitExcluirDespesa)
                     .addComponent(submitCancelar))
@@ -262,10 +263,8 @@ public class TelaDeletarDespesa extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TitleDeletarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TitleDeletarDespesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -275,7 +274,7 @@ public class TelaDeletarDespesa extends javax.swing.JFrame {
                 .addComponent(TitleDeletarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("Nova Consulta");

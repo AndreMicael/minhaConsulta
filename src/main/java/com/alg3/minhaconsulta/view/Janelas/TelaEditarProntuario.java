@@ -264,16 +264,16 @@ public class TelaEditarProntuario extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(512, 300));
         setResizable(false);
 
-        TitleCadastrarPaciente.setFont(new java.awt.Font("Inter SemiBold", 0, 12)); // NOI18N
+        TitleCadastrarPaciente.setFont(new java.awt.Font("Inter SemiBold", 0, 18)); // NOI18N
         TitleCadastrarPaciente.setForeground(new java.awt.Color(0, 51, 153));
-        TitleCadastrarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/doutora.png"))); // NOI18N
+        TitleCadastrarPaciente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TitleCadastrarPaciente.setText("Editar Prontuario");
         TitleCadastrarPaciente.setMaximumSize(new java.awt.Dimension(178, 64));
         TitleCadastrarPaciente.setMinimumSize(new java.awt.Dimension(178, 64));
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 255, 204));
 
-        submitEditarProntuario.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitEditarProntuario.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         submitEditarProntuario.setForeground(new java.awt.Color(0, 51, 153));
         submitEditarProntuario.setText("OK");
         submitEditarProntuario.addActionListener(new java.awt.event.ActionListener() {
@@ -282,7 +282,7 @@ public class TelaEditarProntuario extends javax.swing.JFrame {
             }
         });
 
-        submitCancelar.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitCancelar.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         submitCancelar.setForeground(new java.awt.Color(0, 51, 153));
         submitCancelar.setText("Cancelar");
         submitCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -344,11 +344,11 @@ public class TelaEditarProntuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 150, Short.MAX_VALUE)
+                        .addGap(0, 145, Short.MAX_VALUE)
                         .addComponent(submitCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(submitEditarProntuario)
-                        .addGap(0, 177, Short.MAX_VALUE))
+                        .addGap(0, 172, Short.MAX_VALUE))
                     .addComponent(jComboBoxEditarProntuario, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(LabelPaciente)
@@ -419,10 +419,8 @@ public class TelaEditarProntuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -432,7 +430,7 @@ public class TelaEditarProntuario extends javax.swing.JFrame {
                 .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("Nova Consulta");

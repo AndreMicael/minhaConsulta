@@ -163,16 +163,16 @@ public void listarPacientes() {
         setMinimumSize(new java.awt.Dimension(512, 300));
         setResizable(false);
 
-        TitleEditarDespesa.setFont(new java.awt.Font("Inter SemiBold", 0, 12)); // NOI18N
+        TitleEditarDespesa.setFont(new java.awt.Font("Inter SemiBold", 0, 18)); // NOI18N
         TitleEditarDespesa.setForeground(new java.awt.Color(0, 51, 153));
-        TitleEditarDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/doutora.png"))); // NOI18N
-        TitleEditarDespesa.setText("Deletar");
+        TitleEditarDespesa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TitleEditarDespesa.setText("Deletar Paciente");
         TitleEditarDespesa.setMaximumSize(new java.awt.Dimension(178, 64));
         TitleEditarDespesa.setMinimumSize(new java.awt.Dimension(178, 64));
 
-        jPanel1.setBackground(new java.awt.Color(255, 51, 102));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
-        submitExcluirCliente.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitExcluirCliente.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         submitExcluirCliente.setForeground(new java.awt.Color(0, 51, 153));
         submitExcluirCliente.setText("OK");
         submitExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +181,7 @@ public void listarPacientes() {
             }
         });
 
-        submitCancelar.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitCancelar.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         submitCancelar.setForeground(new java.awt.Color(0, 51, 153));
         submitCancelar.setText("Cancelar");
         submitCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -190,6 +190,7 @@ public void listarPacientes() {
             }
         });
 
+        jComboBoxExcluir.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         jComboBoxExcluir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -201,7 +202,7 @@ public void listarPacientes() {
                 .addComponent(jComboBoxExcluir, 0, 488, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(194, 194, 194)
+                .addGap(161, 161, 161)
                 .addComponent(submitCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(submitExcluirCliente)
@@ -212,26 +213,23 @@ public void listarPacientes() {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(jComboBoxExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitCancelar)
                     .addComponent(submitExcluirCliente))
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TitleEditarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 395, Short.MAX_VALUE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(TitleEditarDespesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,7 +238,7 @@ public void listarPacientes() {
                 .addComponent(TitleEditarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("Nova Consulta");

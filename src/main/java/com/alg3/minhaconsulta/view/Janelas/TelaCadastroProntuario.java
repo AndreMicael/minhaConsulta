@@ -155,7 +155,7 @@ public class TelaCadastroProntuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        
+        InputSexo = new javax.swing.JComboBox<>();
         TitleCadastrarPaciente = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         submitCadastrarProntuario = new javax.swing.JButton();
@@ -178,16 +178,17 @@ public class TelaCadastroProntuario extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(512, 300));
         setResizable(false);
 
-        TitleCadastrarPaciente.setFont(new java.awt.Font("Inter SemiBold", 0, 12)); // NOI18N
+        TitleCadastrarPaciente.setBackground(new java.awt.Color(255, 255, 255));
+        TitleCadastrarPaciente.setFont(new java.awt.Font("Inter SemiBold", 0, 18)); // NOI18N
         TitleCadastrarPaciente.setForeground(new java.awt.Color(0, 51, 153));
-        TitleCadastrarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/doutora.png"))); // NOI18N
+        TitleCadastrarPaciente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TitleCadastrarPaciente.setText("Novo Prontuario");
         TitleCadastrarPaciente.setMaximumSize(new java.awt.Dimension(178, 64));
         TitleCadastrarPaciente.setMinimumSize(new java.awt.Dimension(178, 64));
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 153));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        submitCadastrarProntuario.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitCadastrarProntuario.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         submitCadastrarProntuario.setForeground(new java.awt.Color(0, 51, 153));
         submitCadastrarProntuario.setText("OK");
         submitCadastrarProntuario.addActionListener(new java.awt.event.ActionListener() {
@@ -196,7 +197,7 @@ public class TelaCadastroProntuario extends javax.swing.JFrame {
             }
         });
 
-        submitCancelar.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitCancelar.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         submitCancelar.setForeground(new java.awt.Color(0, 51, 153));
         submitCancelar.setText("Cancelar");
         submitCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -205,7 +206,7 @@ public class TelaCadastroProntuario extends javax.swing.JFrame {
             }
         });
 
-        LabelPaciente.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelPaciente.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         LabelPaciente.setText("Paciente:");
 
         InputDataRegistro.setToolTipText("");
@@ -215,19 +216,19 @@ public class TelaCadastroProntuario extends javax.swing.JFrame {
             }
         });
 
-        LabelDataConsulta.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelDataConsulta.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         LabelDataConsulta.setText("Data Registro:");
 
-        LabelMedico.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelMedico.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         LabelMedico.setText("Médico:");
 
-        LabelObs.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelObs.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         LabelObs.setText("Obs.:");
 
-        LabelExame.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelExame.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         LabelExame.setText("Exame:");
 
-        LabelExame1.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelExame1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         LabelExame1.setText("Histórico Medico:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -250,23 +251,14 @@ public class TelaCadastroProntuario extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(LabelPaciente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputSelectPaciente, 0, 176, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 151, Short.MAX_VALUE)
-                                .addComponent(submitCancelar)
-                                .addGap(1, 1, 1)))
+                                .addComponent(inputSelectPaciente, 0, 151, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(submitCadastrarProntuario))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(17, 17, 17)
-                                        .addComponent(LabelDataConsulta)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(InputDataRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 1, Short.MAX_VALUE))
+                                .addGap(17, 17, 17)
+                                .addComponent(LabelDataConsulta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(InputDataRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(LabelExame)
@@ -277,6 +269,12 @@ public class TelaCadastroProntuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(inputObservacoes)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(submitCancelar)
+                .addGap(7, 7, 7)
+                .addComponent(submitCadastrarProntuario)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,15 +296,15 @@ public class TelaCadastroProntuario extends javax.swing.JFrame {
                         .addComponent(inputSelectMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(LabelExame)
                         .addComponent(inputExames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelExame1)
                     .addComponent(inputHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitCadastrarProntuario)
                     .addComponent(submitCancelar))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -316,10 +314,8 @@ public class TelaCadastroProntuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -329,7 +325,7 @@ public class TelaCadastroProntuario extends javax.swing.JFrame {
                 .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("Nova Consulta");
@@ -392,7 +388,7 @@ public class TelaCadastroProntuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField InputDataRegistro;
-   
+    private javax.swing.JComboBox<String> InputSexo;
     private javax.swing.JLabel LabelDataConsulta;
     private javax.swing.JLabel LabelExame;
     private javax.swing.JLabel LabelExame1;

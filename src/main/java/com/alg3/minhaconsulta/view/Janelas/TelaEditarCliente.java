@@ -244,14 +244,14 @@ public class TelaEditarCliente extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(512, 300));
         setResizable(false);
 
-        TitleEditarDespesa.setFont(new java.awt.Font("Inter SemiBold", 0, 12)); // NOI18N
+        TitleEditarDespesa.setFont(new java.awt.Font("Inter SemiBold", 0, 18)); // NOI18N
         TitleEditarDespesa.setForeground(new java.awt.Color(0, 51, 153));
-        TitleEditarDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/doutora.png"))); // NOI18N
-        TitleEditarDespesa.setText("Editar");
+        TitleEditarDespesa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TitleEditarDespesa.setText("Editar Paciente");
         TitleEditarDespesa.setMaximumSize(new java.awt.Dimension(178, 64));
         TitleEditarDespesa.setMinimumSize(new java.awt.Dimension(178, 64));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 255, 204));
 
         submitEditarCliente.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
         submitEditarCliente.setForeground(new java.awt.Color(0, 51, 153));
@@ -423,15 +423,12 @@ public class TelaEditarCliente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TitleEditarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 404, Short.MAX_VALUE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(TitleEditarDespesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

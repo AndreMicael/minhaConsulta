@@ -151,7 +151,7 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        
+        InputSexo = new javax.swing.JComboBox<>();
         TitleCadastrarPaciente = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         submitCadastrarConsulta = new javax.swing.JButton();
@@ -172,17 +172,17 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(512, 300));
         setResizable(false);
 
-        TitleCadastrarPaciente.setFont(new java.awt.Font("Inter SemiBold", 0, 12)); // NOI18N
+        TitleCadastrarPaciente.setFont(new java.awt.Font("Inter SemiBold", 0, 18)); // NOI18N
         TitleCadastrarPaciente.setForeground(new java.awt.Color(0, 51, 153));
-        TitleCadastrarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/doutora.png"))); // NOI18N
+        TitleCadastrarPaciente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TitleCadastrarPaciente.setText("Nova Consulta");
         TitleCadastrarPaciente.setMaximumSize(new java.awt.Dimension(178, 64));
         TitleCadastrarPaciente.setMinimumSize(new java.awt.Dimension(178, 64));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        submitCadastrarConsulta.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        submitCadastrarConsulta.setForeground(new java.awt.Color(0, 51, 153));
+        submitCadastrarConsulta.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        submitCadastrarConsulta.setForeground(new java.awt.Color(51, 0, 153));
         submitCadastrarConsulta.setText("OK");
         submitCadastrarConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,8 +190,8 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
             }
         });
 
-        submitCancelar.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        submitCancelar.setForeground(new java.awt.Color(0, 51, 153));
+        submitCancelar.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        submitCancelar.setForeground(new java.awt.Color(51, 0, 153));
         submitCancelar.setText("Cancelar");
         submitCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,7 +199,8 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
             }
         });
 
-        LabelPaciente.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelPaciente.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        LabelPaciente.setForeground(new java.awt.Color(102, 0, 204));
         LabelPaciente.setText("Paciente:");
 
         InputDataConsulta.setToolTipText("");
@@ -209,13 +210,16 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
             }
         });
 
-        LabelDataConsulta.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelDataConsulta.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        LabelDataConsulta.setForeground(new java.awt.Color(102, 0, 204));
         LabelDataConsulta.setText("Data Consulta:");
 
-        LabelMedico.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelMedico.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        LabelMedico.setForeground(new java.awt.Color(102, 0, 204));
         LabelMedico.setText("Médico:");
 
-        LabelTipoConsulta.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelTipoConsulta.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        LabelTipoConsulta.setForeground(new java.awt.Color(102, 0, 204));
         LabelTipoConsulta.setText("Consulta:");
 
         InputTipoConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -224,7 +228,8 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
             }
         });
 
-        LabelValor.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelValor.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        LabelValor.setForeground(new java.awt.Color(102, 0, 204));
         LabelValor.setText("Valor:");
 
         InputValorConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -249,10 +254,7 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(LabelPaciente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputSelectPaciente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 150, Short.MAX_VALUE)
-                                .addComponent(submitCancelar)))
+                                .addComponent(inputSelectPaciente, 0, 147, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -260,26 +262,27 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(InputValorConsulta))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(submitCadastrarConsulta))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(LabelDataConsulta)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(InputDataConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(LabelDataConsulta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(InputDataConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(LabelMedico)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(inputSelectMedico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(submitCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(submitCadastrarConsulta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelPaciente)
                     .addComponent(LabelDataConsulta)
@@ -295,11 +298,11 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelMedico)
                     .addComponent(inputSelectMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitCadastrarConsulta)
                     .addComponent(submitCancelar))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -309,10 +312,8 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -322,7 +323,7 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
                 .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("Nova Consulta");
@@ -391,7 +392,7 @@ public class TelaCadastroConsulta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField InputDataConsulta;
-    
+    private javax.swing.JComboBox<String> InputSexo;
     private javax.swing.JTextField InputTipoConsulta;
     private javax.swing.JTextField InputValorConsulta;
     private javax.swing.JLabel LabelDataConsulta;

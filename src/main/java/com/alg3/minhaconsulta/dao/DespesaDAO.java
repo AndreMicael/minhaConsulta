@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.alg3.minhaconsulta.model.Despesa;
- 
 
 public class DespesaDAO {
 
@@ -184,9 +183,9 @@ public class DespesaDAO {
   }
 
   public Despesa listarPorId(int id) throws ExceptionDAO {
-    ArrayList<Despesa> despesas = listarDespesasId(id);
+    ArrayList < Despesa > despesas = listarDespesasId(id);
     return despesas.isEmpty() ? null : despesas.get(0);
-}
+  }
 
   public ArrayList < Despesa > listarDespesasTipo(String tipo) throws ExceptionDAO {
     String sql = "SELECT * FROM despesa WHERE tipo = ? ORDER BY data_registro";
@@ -235,36 +234,36 @@ public class DespesaDAO {
   }
 
   public void deletarDespesa(Despesa despesa) throws ExceptionDAO {
-        String sql = "DELETE FROM despesa WHERE despesa_id = ?";
+    String sql = "DELETE FROM despesa WHERE despesa_id = ?";
 
-        PreparedStatement pStatement = null;
-        Connection connection = null;
+    PreparedStatement pStatement = null;
+    Connection connection = null;
 
-        try {
-            connection = new ConnectionDAO().getConnection();
-            pStatement = connection.prepareStatement(sql);
-            pStatement.setInt(1, despesa.getId());
-            pStatement.execute();
+    try {
+      connection = new ConnectionDAO().getConnection();
+      pStatement = connection.prepareStatement(sql);
+      pStatement.setInt(1, despesa.getId());
+      pStatement.execute();
 
-            System.out.println("Despesa deletada com sucesso no banco de dados.");
-        } catch (SQLException ex) {
-            throw new ExceptionDAO("Erro ao deletar despesa. Erro " + ex);
-        } finally {
-            try {
-                if (pStatement != null) {
-                    pStatement.close();
-                }
-            } catch (SQLException ex) {
-                throw new ExceptionDAO("Erro ao fechar o Statement. Erro " + ex);
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException ex) {
-                throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
-            }
+      System.out.println("Despesa deletada com sucesso no banco de dados.");
+    } catch (SQLException ex) {
+      throw new ExceptionDAO("Erro ao deletar despesa. Erro " + ex);
+    } finally {
+      try {
+        if (pStatement != null) {
+          pStatement.close();
         }
+      } catch (SQLException ex) {
+        throw new ExceptionDAO("Erro ao fechar o Statement. Erro " + ex);
+      }
+      try {
+        if (connection != null) {
+          connection.close();
+        }
+      } catch (SQLException ex) {
+        throw new ExceptionDAO("Erro ao fechar a conexão. Erro " + ex);
+      }
     }
+  }
 
 }

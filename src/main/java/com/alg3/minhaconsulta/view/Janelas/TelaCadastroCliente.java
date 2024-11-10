@@ -10,12 +10,15 @@ import java.util.Date;
 import java.util.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+ 
 
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 import com.alg3.minhaconsulta.controller.PacienteController;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.HeadlessException;
+ 
 
 /**
  *
@@ -23,130 +26,125 @@ import com.formdev.flatlaf.FlatLightLaf;
  */
 public class TelaCadastroCliente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCadastroCliente
-     */
-    MaskFormatter mfdata;
-    MaskFormatter mfcpf;
-    MaskFormatter mftelefone;
+  /**
+   * Creates new form TelaCadastroCliente
+   */
+  MaskFormatter mfdata;
+  MaskFormatter mfcpf;
+  MaskFormatter mftelefone;
 
-    public List<String> convenios = new ArrayList<>();
-    public List<String> generos = new ArrayList<>();
+  public List < String > convenios = new ArrayList < > ();
+  public List < String > generos = new ArrayList < > ();
 
-    public TelaCadastroCliente() {
+  public TelaCadastroCliente() {
 
-        try {
-            FlatLightLaf.setup();
-        } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        try {
-            mfdata = new MaskFormatter("##/##/####");
-            mfdata.setPlaceholderCharacter('_');
-            mfdata.setValidCharacters("0123456789");
-
-            mfcpf = new MaskFormatter("###.###.###-##");
-            mfcpf .setPlaceholderCharacter('_');
-            mfcpf .setValidCharacters("0123456789");
-            
-            mftelefone = new MaskFormatter("(##) #####-####");
-            mftelefone.setPlaceholderCharacter('_');
-            mftelefone.setValidCharacters("0123456789");
-
-
-
-
-        } catch (ParseException ex) {
-            System.err.println("Erro ao criar máscara de data: " + ex.getMessage());
-        }
-       
-
-        initComponents();
-
-            
-        try {
-            InputNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(mfdata));
-            InputCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(mfcpf));
-            InputTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(mftelefone));
-        } catch (Exception ex) {
-            System.err.println("Erro ao aplicar máscara ao campo de data: " + ex.getMessage());
-        }
-
-        InputConvenio.removeAll();
-        convenios.add("Unimed");
-        convenios.add("Sulamerica");
-        convenios.add("Bradesco");
-
-        for (String convenio : convenios) {
-            InputConvenio.addItem(convenio);
-        }
-
-        InputSexo.removeAll();
-        generos.add("Masculino");
-        generos.add("Feminino");
-        generos.add("Outro");
-
-        for (String genero : generos) {
-            InputSexo.addItem(genero);
-        }
-
-        submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
-            // Código para fechar a tela de cadastro
-            dispose();
-
-        });
-
-        submitCadastrarPaciente.addActionListener((java.awt.event.ActionEvent evt) -> {
-            String nome = InputNomePaciente.getText().trim();
-            String endereco = InputEnderecoPaciente.getText().trim();
-            String nascimento = InputNascimento.getText().trim();
-            String cpf = InputCPF.getText().trim();
-            String convenio = (String) InputConvenio.getSelectedItem();
-            String genero = (String) InputSexo.getSelectedItem();
-            String telefone = InputTelefone.getText().trim(); // Adicionei o campo telefone
-        
-            // Verificação para campos obrigatórios
-            if (nome.isEmpty() || endereco.isEmpty() || nascimento.contains("_") || cpf.contains("_") || telefone.contains("_")) {
-                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios corretamente.");
-                return;
-            }
-        
-            boolean sucesso;
-            String generoFinal = String.valueOf(genero.charAt(0));
-        
-            try {
-                PacienteController pacienteController = new PacienteController();
-                try {
-                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    Date nascimentoDate = dateFormat.parse(nascimento);
-                    String nascimentoStr = dateFormat.format(nascimentoDate);
-                    sucesso = pacienteController.cadastrarPaciente(nome, nascimentoStr, endereco, telefone, cpf, convenio, generoFinal);
-        
-                    if (sucesso) {
-                        System.out.println("Paciente cadastrado com sucesso");
-                        JOptionPane.showMessageDialog(null, "Paciente cadastrado com sucesso");
-                        System.out.println("Dados enviados para o controller: " + nome + ", " + endereco);
-                        dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar o paciente");
-                    }
-                } catch (ParseException e) {
-                    JOptionPane.showMessageDialog(null, "Preencha todos os dados corretamente.");
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar o paciente. Erro: " + ex);
-            }
-        });
-
+    try {
+      FlatLightLaf.setup();
+    } catch (Exception ex) {
+      java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    // @SuppressWarnings("unchecked")
+    try {
+      mfdata = new MaskFormatter("##/##/####");
+      mfdata.setPlaceholderCharacter('_');
+      mfdata.setValidCharacters("0123456789");
+
+      mfcpf = new MaskFormatter("###.###.###-##");
+      mfcpf.setPlaceholderCharacter('_');
+      mfcpf.setValidCharacters("0123456789");
+
+      mftelefone = new MaskFormatter("(##) #####-####");
+      mftelefone.setPlaceholderCharacter('_');
+      mftelefone.setValidCharacters("0123456789");
+
+    } catch (ParseException ex) {
+      System.err.println("Erro ao criar máscara de data: " + ex.getMessage());
+    }
+
+    initComponents();
+
+    try {
+      InputNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(mfdata));
+      InputCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(mfcpf));
+      InputTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(mftelefone));
+    } catch (Exception ex) {
+      System.err.println("Erro ao aplicar máscara ao campo de data: " + ex.getMessage());
+    }
+
+    InputConvenio.removeAll();
+    convenios.add("Unimed");
+    convenios.add("Sulamerica");
+    convenios.add("Bradesco");
+
+    for (String convenio: convenios) {
+      InputConvenio.addItem(convenio);
+    }
+
+    InputSexo.removeAll();
+    generos.add("Masculino");
+    generos.add("Feminino");
+    generos.add("Outro");
+
+    for (String genero: generos) {
+      InputSexo.addItem(genero);
+    }
+
+    submitCancelar.addActionListener((java.awt.event.ActionEvent evt) -> {
+      // Código para fechar a tela de cadastro
+      dispose();
+
+    });
+
+    submitCadastrarPaciente.addActionListener((java.awt.event.ActionEvent evt) -> {
+      String nome = InputNomePaciente.getText().trim();
+      String endereco = InputEnderecoPaciente.getText().trim();
+      String nascimento = InputNascimento.getText().trim();
+      String cpf = InputCPF.getText().trim();
+      String convenio = (String) InputConvenio.getSelectedItem();
+      String genero = (String) InputSexo.getSelectedItem();
+      String telefone = InputTelefone.getText().trim(); // Adicionei o campo telefone
+
+      // Verificação para campos obrigatórios
+      if (nome.isEmpty() || endereco.isEmpty() || nascimento.contains("_") || cpf.contains("_") || telefone.contains("_")) {
+        JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios corretamente.");
+        return;
+      }
+
+      boolean sucesso;
+      String generoFinal = String.valueOf(genero.charAt(0));
+
+      try {
+        PacienteController pacienteController = new PacienteController();
+        try {
+          DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+          Date nascimentoDate = dateFormat.parse(nascimento);
+          String nascimentoStr = dateFormat.format(nascimentoDate);
+          sucesso = pacienteController.cadastrarPaciente(nome, nascimentoStr, endereco, telefone, cpf, convenio, generoFinal);
+
+          if (sucesso) {
+            System.out.println("Paciente cadastrado com sucesso");
+            JOptionPane.showMessageDialog(null, "Paciente cadastrado com sucesso");
+            System.out.println("Dados enviados para o controller: " + nome + ", " + endereco);
+            dispose();
+          } else {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar o paciente");
+          }
+        } catch (ParseException e) {
+          JOptionPane.showMessageDialog(null, "Preencha todos os dados corretamente.");
+        }
+      } catch (HeadlessException ex) {
+        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar o paciente. Erro: " + ex);
+      }
+    });
+
+  }
+
+  /**
+   * This method is called from within the constructor to initialize the form.
+   * WARNING: Do NOT modify this code. The content of this method is always
+   * regenerated by the Form Editor.
+   */
+  // @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -176,19 +174,21 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(512, 300));
         setResizable(false);
 
-        TitleCadastrarPaciente.setFont(new java.awt.Font("Inter SemiBold", 0, 12)); // NOI18N
+        TitleCadastrarPaciente.setFont(new java.awt.Font("Inter SemiBold", 0, 18)); // NOI18N
         TitleCadastrarPaciente.setForeground(new java.awt.Color(0, 51, 153));
-        TitleCadastrarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon-paciente.png"))); // NOI18N
+        TitleCadastrarPaciente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TitleCadastrarPaciente.setText("Cadastrar Paciente");
         TitleCadastrarPaciente.setMaximumSize(new java.awt.Dimension(178, 64));
         TitleCadastrarPaciente.setMinimumSize(new java.awt.Dimension(178, 64));
 
-        jPanel1.setBackground(new java.awt.Color(211, 253, 211));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        LabelNome.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelNome.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        LabelNome.setForeground(new java.awt.Color(0, 0, 153));
         LabelNome.setText("Nome:");
 
-        LabelEndereco.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelEndereco.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        LabelEndereco.setForeground(new java.awt.Color(0, 0, 153));
         LabelEndereco.setText("Endereço:");
 
         InputNomePaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +197,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
         });
 
-        LabelNascimento.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelNascimento.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        LabelNascimento.setForeground(new java.awt.Color(0, 0, 153));
         LabelNascimento.setText("Data Nasc.:");
 
         InputNascimento.setToolTipText("");
@@ -207,7 +208,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
         });
 
-        LabelCPF.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelCPF.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        LabelCPF.setForeground(new java.awt.Color(0, 0, 153));
         LabelCPF.setText("CPF:");
 
         InputCPF.setToolTipText("");
@@ -217,7 +219,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
         });
 
-        LabelConvenio.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelConvenio.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        LabelConvenio.setForeground(new java.awt.Color(0, 0, 153));
         LabelConvenio.setText("Convênio:");
 
         InputEnderecoPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -226,7 +229,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
         });
 
-        submitCadastrarPaciente.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitCadastrarPaciente.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         submitCadastrarPaciente.setForeground(new java.awt.Color(0, 51, 153));
         submitCadastrarPaciente.setText("OK");
         submitCadastrarPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -235,7 +238,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
         });
 
-        submitCancelar.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitCancelar.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         submitCancelar.setForeground(new java.awt.Color(0, 51, 153));
         submitCancelar.setText("Cancelar");
         submitCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -244,10 +247,12 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             }
         });
 
-        LabelTel.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelTel.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        LabelTel.setForeground(new java.awt.Color(0, 0, 153));
         LabelTel.setText("Celular:");
 
-        LabelGenero.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelGenero.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        LabelGenero.setForeground(new java.awt.Color(0, 0, 153));
         LabelGenero.setText("Gênero:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -268,7 +273,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(LabelConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(InputConvenio, 0, 185, Short.MAX_VALUE)
+                        .addComponent(InputConvenio, 0, 179, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LabelTel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -287,11 +292,11 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                         .addComponent(InputEnderecoPaciente)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(164, 164, 164)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submitCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(submitCadastrarPaciente)
-                .addGap(164, 164, 164))
+                .addGap(160, 160, 160))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,7 +331,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitCadastrarPaciente)
                     .addComponent(submitCancelar))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -336,20 +341,18 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("Cadastrar Paciente");
@@ -358,64 +361,64 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void InputNomePacienteActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+  private void InputNomePacienteActionPerformed(java.awt.event.ActionEvent evt) {
+    // TODO add your handling code here:
+  }
 
-    private void InputNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNascimentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputNascimentoActionPerformed
+  private void InputNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNascimentoActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_InputNascimentoActionPerformed
 
-    private void InputCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputCPFActionPerformed
+  private void InputCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCPFActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_InputCPFActionPerformed
 
-    private void InputEnderecoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputEnderecoPacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputEnderecoPacienteActionPerformed
+  private void InputEnderecoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputEnderecoPacienteActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_InputEnderecoPacienteActionPerformed
 
-    private void submitCadastrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCadastrarPacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_submitCadastrarPacienteActionPerformed
+  private void submitCadastrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCadastrarPacienteActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_submitCadastrarPacienteActionPerformed
 
-    private void submitCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_submitCancelarActionPerformed
+  private void submitCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCancelarActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_submitCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
+  /**
+   * @param args the command line arguments
+   */
+  public static void main(String args[]) {
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("FlatLightLaf".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    try {
+      for (javax.swing.UIManager.LookAndFeelInfo info: javax.swing.UIManager.getInstalledLookAndFeels()) {
+        if ("FlatLightLaf".equals(info.getName())) {
+          javax.swing.UIManager.setLookAndFeel(info.getClassName());
+          break;
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaCadastroCliente().setVisible(true);
-            }
-        });
+      }
+    } catch (ClassNotFoundException ex) {
+      java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+      java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+      java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+      java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+      public void run() {
+        new TelaCadastroCliente().setVisible(true);
+      }
+    });
+  }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField InputCPF;

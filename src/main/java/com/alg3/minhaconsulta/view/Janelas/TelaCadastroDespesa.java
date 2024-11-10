@@ -145,16 +145,16 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(512, 300));
         setResizable(false);
 
-        TitleCadastrarPaciente.setFont(new java.awt.Font("Inter SemiBold", 0, 12)); // NOI18N
+        TitleCadastrarPaciente.setFont(new java.awt.Font("Inter SemiBold", 0, 18)); // NOI18N
         TitleCadastrarPaciente.setForeground(new java.awt.Color(0, 51, 153));
-        TitleCadastrarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/doutora.png"))); // NOI18N
+        TitleCadastrarPaciente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TitleCadastrarPaciente.setText("Nova despesa");
         TitleCadastrarPaciente.setMaximumSize(new java.awt.Dimension(178, 64));
         TitleCadastrarPaciente.setMinimumSize(new java.awt.Dimension(178, 64));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        submitCadastrarDespesa.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitCadastrarDespesa.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         submitCadastrarDespesa.setForeground(new java.awt.Color(0, 51, 153));
         submitCadastrarDespesa.setText("OK");
         submitCadastrarDespesa.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +163,7 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
             }
         });
 
-        submitCancelar.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        submitCancelar.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         submitCancelar.setForeground(new java.awt.Color(0, 51, 153));
         submitCancelar.setText("Cancelar");
         submitCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +172,7 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
             }
         });
 
-        LabelDescricao.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelDescricao.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         LabelDescricao.setText("Descrição:");
 
         InputDescricao.addActionListener(new java.awt.event.ActionListener() {
@@ -181,10 +181,10 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
             }
         });
 
-        LabelTipo.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelTipo.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         LabelTipo.setText("Tipo:");
 
-        Data.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        Data.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         Data.setText("Data:");
 
         InputData.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +193,7 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
             }
         });
 
-        LabelValor.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        LabelValor.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         LabelValor.setText("Valor:");
 
         InputValorConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -210,37 +210,33 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Data)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InputData))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 128, Short.MAX_VALUE)
-                                .addComponent(submitCancelar)))
+                        .addComponent(Data)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LabelValor)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InputValorConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(submitCadastrarDespesa)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(InputData)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LabelValor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InputValorConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(LabelDescricao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(InputDescricao)
+                        .addComponent(InputDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(LabelTipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(submitCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(submitCadastrarDespesa)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InputDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelDescricao)
@@ -252,11 +248,11 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
                     .addComponent(Data)
                     .addComponent(InputValorConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelValor))
-                .addGap(91, 91, 91)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitCadastrarDespesa)
                     .addComponent(submitCancelar))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -266,20 +262,18 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(14, 14, 14)
                 .addComponent(TitleCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getAccessibleContext().setAccessibleName("Nova Consulta");
