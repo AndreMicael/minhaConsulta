@@ -80,7 +80,7 @@ public class ProntuarioDAO {
     }
 
     public void editarProntuario(Prontuario prontuario) throws ExceptionDAO {
-        String sql = "UPDATE prontuario SET paciente_id = ?, consulta_id = ?, medico_id = ?, data_registro = ?, observacoes = ?, exames = ?, historico_medico = ? WHERE prontuario_id = ?";
+        String sql = "UPDATE prontuario SET paciente_id = ?, medico_id = ?, data_registro = ?, observacoes = ?, exames = ?, historico_medico = ? WHERE prontuario_id = ?";
 
         PreparedStatement pStatement = null;
         Connection connection = null;
@@ -89,13 +89,12 @@ public class ProntuarioDAO {
             connection = new ConnectionDAO().getConnection();
             pStatement = connection.prepareStatement(sql);
             pStatement.setInt(1, prontuario.getPacienteId());
-            pStatement.setInt(2, prontuario.getConsultaId());
-            pStatement.setInt(3, prontuario.getMedicoId());
-            pStatement.setString(4, prontuario.getDataRegistro());
-            pStatement.setString(5, prontuario.getObservacoes());
-            pStatement.setString(6, prontuario.getExames());
-            pStatement.setString(7, prontuario.getHistoricoMedico());
-            pStatement.setInt(8, prontuario.getId());
+            pStatement.setInt(2, prontuario.getMedicoId());
+            pStatement.setString(3, prontuario.getDataRegistro());
+            pStatement.setString(4, prontuario.getObservacoes());
+            pStatement.setString(5, prontuario.getExames());
+            pStatement.setString(6, prontuario.getHistoricoMedico());
+            pStatement.setInt(7, prontuario.getId());
 
             pStatement.executeUpdate();
             System.out.println("Prontuario editado com sucesso no banco de dados.");
@@ -135,8 +134,7 @@ public class ProntuarioDAO {
             while (rs.next()) {
                 Prontuario prontuario = new Prontuario();
                 prontuario.setId(rs.getInt("prontuario_id"));
-                prontuario.setPacienteId(rs.getInt("paciente_id"));
-                prontuario.setConsultaId(rs.getInt("consulta_id"));
+                prontuario.setPacienteId(rs.getInt("paciente_id"));               
                 prontuario.setMedicoId(rs.getInt("medico_id"));
                 prontuario.setDataRegistro(rs.getString("data_registro"));
                 prontuario.setObservacoes(rs.getString("observacoes"));
@@ -184,7 +182,6 @@ public class ProntuarioDAO {
                 Prontuario prontuario = new Prontuario();
                 prontuario.setId(rs.getInt("prontuario_id"));
                 prontuario.setPacienteId(rs.getInt("paciente_id"));
-                prontuario.setConsultaId(rs.getInt("consulta_id"));
                 prontuario.setMedicoId(rs.getInt("medico_id"));
                 prontuario.setDataRegistro(rs.getString("data_registro"));
                 prontuario.setObservacoes(rs.getString("observacoes"));

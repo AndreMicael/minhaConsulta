@@ -67,6 +67,15 @@ public class ConsultaController {
         return new ConsultaDAO().listarConsultasData(data);
     }
 
+    public Consulta listarConsultasId(int id) throws ExceptionDAO {
+        try {
+            return new ConsultaDAO().listarConsultasId(id);   // Alterado de listarConsulta para listarConsultasId
+        } catch (ExceptionDAO e) {
+            throw e;
+        }
+    }
+    
+
        public boolean deletarConsulta(int id) throws ExceptionDAO {
         if (id > 0) {
             try {

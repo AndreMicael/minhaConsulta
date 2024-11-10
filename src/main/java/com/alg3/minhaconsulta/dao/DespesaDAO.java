@@ -183,6 +183,11 @@ public class DespesaDAO {
     return listarDespesas;
   }
 
+  public Despesa listarPorId(int id) throws ExceptionDAO {
+    ArrayList<Despesa> despesas = listarDespesasId(id);
+    return despesas.isEmpty() ? null : despesas.get(0);
+}
+
   public ArrayList < Despesa > listarDespesasTipo(String tipo) throws ExceptionDAO {
     String sql = "SELECT * FROM despesa WHERE tipo = ? ORDER BY data_registro";
 

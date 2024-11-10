@@ -8,12 +8,14 @@ import com.alg3.minhaconsulta.controller.ConsultaController;
 import com.alg3.minhaconsulta.controller.DespesaController;
 import com.alg3.minhaconsulta.controller.MedicoController;
 import com.alg3.minhaconsulta.controller.PacienteController;
+import com.alg3.minhaconsulta.controller.ProntuarioController;
 import com.alg3.minhaconsulta.dao.ConnectionDAO;
 import com.alg3.minhaconsulta.dao.ExceptionDAO;
 import com.alg3.minhaconsulta.model.Consulta;
 import com.alg3.minhaconsulta.model.Despesa;
 import com.alg3.minhaconsulta.model.Medico;
 import com.alg3.minhaconsulta.model.Paciente;
+import com.alg3.minhaconsulta.model.Prontuario;
 import com.alg3.minhaconsulta.view.Janelas.TelaCadastroConsulta;
 import com.alg3.minhaconsulta.view.Janelas.TelaCadastroMedico;
 import com.alg3.minhaconsulta.view.Janelas.TelaCadastroProntuario;
@@ -26,9 +28,11 @@ import com.alg3.minhaconsulta.view.Janelas.TelaCadastroCliente;
 import com.alg3.minhaconsulta.view.Janelas.TelaCadastroDespesa;
 import com.alg3.minhaconsulta.view.Janelas.TelaDeletarCliente;
 import com.alg3.minhaconsulta.view.Janelas.TelaDeletarMedico;
+import com.alg3.minhaconsulta.view.Janelas.TelaDeletarProntuario;
 import com.alg3.minhaconsulta.view.Janelas.TelaEditarCliente;
 import com.alg3.minhaconsulta.view.Janelas.TelaEditarDespesa;
 import com.alg3.minhaconsulta.view.Janelas.TelaEditarMedico;
+import com.alg3.minhaconsulta.view.Janelas.TelaEditarProntuario;
 import com.alg3.minhaconsulta.view.Janelas.TelaDeletarConsulta;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.alg3.minhaconsulta.view.Janelas.TelaDeletarDespesa;
@@ -65,12 +69,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void exibirPainel(JPanel painelParaExibir) {
         TelaConsultasPanel.setVisible(false);
         Tela1Jpanel.setVisible(false);
-        TelaPacientesPanel.setVisible(false);
-     
-        TelaBuscaMedicoPanel.setVisible(false);
-      
+        TelaPacientesPanel.setVisible(false);     
+        TelaBuscaMedicoPanel.setVisible(false);      
         TelaBalancos.setVisible(false);
-        
+        TelaProntuarioPanel.setVisible(false);
+                
         // Exibe apenas o painel desejado
         painelParaExibir.setVisible(true);
 
@@ -84,6 +87,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             consultarEntrada(null);
             consultarSaida(null);
             totalBalancos();
+        } else if (painelParaExibir == TelaProntuarioPanel) {
+            consultarProntuario(null);
         }
     }
 
@@ -106,11 +111,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaEditarCliente telaEditarCliente = new TelaEditarCliente();
         TelaEditarMedico telaEditarMedico = new TelaEditarMedico();
         TelaDeletarCliente telaDeletarCliente = new TelaDeletarCliente();
+        TelaEditarProntuario telaEditarProntuario = new TelaEditarProntuario();
         TelaDeletarMedico telaDeletarMedico = new TelaDeletarMedico();
         TelaDeletarConsulta telaDeletarConsulta = new TelaDeletarConsulta();
         TelaDeletarDespesa telaDeletarDespesaEntrada = new TelaDeletarDespesa("Entrada");
         TelaDeletarDespesa telaDeletarDespesaSaida = new TelaDeletarDespesa("Saída");
         TelaCadastroProntuario telaCadastroProntuario = new TelaCadastroProntuario();
+        TelaDeletarProntuario TelaDeletarProntuario = new TelaDeletarProntuario();
 
         // Abre as janelas
         CadastroPaciente.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastro));
@@ -119,14 +126,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         NovoProntuario.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroProntuario));
         NovaDepesa.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroDespesa));   
         NovoProntuario.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroProntuario));
-
+        jButtonEditarProntuario.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaEditarProntuario));
         jButtonEditarEntrada.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaEditarDespesaEntrada)); 
         jButtonEditarSaida.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaEditarDespesaSaida));
         jButtonEditarPaciente.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaEditarCliente));
         jButtonEditarMedico.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaEditarMedico)); 
-        
-
-      
+        jButtonEditarConsultas.addActionListener((java.awt.event.ActionEvent evt) -> exibirTelas(telaCadastroConsulta));         
+        jButtonExcluirProntuario.addActionListener((java.awt.event.ActionEvent evt) -> {
+            exibirTelas(TelaDeletarProntuario);
+            consultarPaciente(evt);
+        });
        
         jButtonExcluirPaciente.addActionListener((java.awt.event.ActionEvent evt) -> {
             exibirTelas(telaDeletarCliente);
@@ -148,6 +157,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             exibirTelas(telaDeletarConsulta);
             consultarConsulta(evt);
         });
+       
 
         jButtonNovaConsulta.addActionListener((java.awt.event.ActionEvent evt) ->
         { exibirTelas(telaCadastroConsulta);
@@ -167,11 +177,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
             exibirTelas(telaCadastro);
             consultarPaciente(evt);
         } );
+        jButtonNovoProntuario.addActionListener((java.awt.event.ActionEvent evt) -> {
+            exibirTelas(telaCadastroProntuario);
+            consultarProntuario(evt);
+        });
 
         
         // Alterna entre os paineis
         VerTodasConsultas.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaConsultasPanel));
-        VerPacientes.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaPacientesPanel));        
+        VerPacientes.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaPacientesPanel));   
+        VerTodosProntuarios.addActionListener((java.awt.event.ActionEvent evt) -> {
+            exibirPainel(TelaProntuarioPanel);
+            consultarProntuario(evt);
+        });   
+          
         VerMedicos.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaBuscaMedicoPanel));
         BalancoFinanceiro.addActionListener((java.awt.event.ActionEvent evt) -> exibirPainel(TelaBalancos));
         
@@ -184,6 +203,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         TextFieldNomeConsulta.addActionListener(evt -> consultarConsulta(evt)); //Busca ao teclar enter
         ButtonConsultaConsultas.addActionListener(evt -> consultarConsulta(evt)); // Busca ao apertar botão
+
+        TextFieldBuscaProntuario.addActionListener(evt -> consultarProntuario(evt)); // Busca ao teclar enter
+        ButtonBuscaProntuario.addActionListener(evt -> consultarProntuario(evt)); // Busca ao apertar botão
         
         TextFieldBuscaEntrada.addActionListener(evt -> consultarEntrada(evt)); // Busca ao teclar enter
         ButtonBuscaEntrada.addActionListener(evt -> consultarEntrada(evt)); // Busca ao apertar botão
@@ -252,6 +274,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         } catch (ExceptionDAO ex) {
             JOptionPane.showMessageDialog(this, "Erro ao consultar medicos: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void consultarProntuario(java.awt.event.ActionEvent evt) {
+        String nome = TextFieldBuscaProntuario.getText();
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1ConsultaProntuario.getModel();
+        tableModel.setRowCount(0);
+        ProntuarioController prontuarioController = new ProntuarioController();
+        MedicoController medicoController = new MedicoController();
+        PacienteController pacienteController = new PacienteController();
+
+        try {
+            ArrayList<Prontuario> prontuarios = prontuarioController.listarProntuarios(nome);
+            for (Prontuario prontuario : prontuarios) {
+                Medico medico = medicoController.listarMedicosId(prontuario.getMedicoId()).get(0);
+                Paciente paciente = pacienteController.listarPacientesId(prontuario.getPacienteId()).get(0);   
+            Object[] rowData = {
+                prontuario.getId(),
+                prontuario.getPacienteId(),
+                medico.getNome(),
+                paciente.getNome(),
+                prontuario.getExames(),
+                prontuario.getObservacoes(),
+                prontuario.getDataRegistro()
+            };
+            tableModel.addRow(rowData);
+            }
+        } catch (ExceptionDAO ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao consultar prontuários: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -430,10 +481,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void voltarButton() {
         Tela1Jpanel.setVisible(true);
         TelaBalancos.setVisible(false);
-        TelaBuscaMedicoPanel.setVisible(false);
-        
+        TelaBuscaMedicoPanel.setVisible(false);        
         TelaConsultasPanel.setVisible(false);
         TelaPacientesPanel.setVisible(false);
+        TelaProntuarioPanel.setVisible(false);
     }
 
     /**
@@ -484,13 +535,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonEditarMedico = new javax.swing.JButton();
         jButtonExcluirMedico = new javax.swing.JButton();
         jButtonNovoMedico = new javax.swing.JButton();
-        TelaProntuário = new javax.swing.JPanel();
+        TelaProntuarioPanel = new javax.swing.JPanel();
         TextFieldBuscaProntuario = new javax.swing.JTextField();
         ButtonBuscaProntuario = new javax.swing.JButton();
         LabelTodosProntuarios = new javax.swing.JLabel();
-        jButtonNovoProntuario = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1ConsultaProntuario = new javax.swing.JTable();
+        jButtonEditarProntuario = new javax.swing.JButton();
+        jButtonExcluirProntuario = new javax.swing.JButton();
+        jButtonNovoProntuario = new javax.swing.JButton();
+        VoltarBtn8 = new javax.swing.JButton();
         TelaBalancos = new javax.swing.JPanel();
         VoltarBtn5 = new javax.swing.JButton();
         LabelTodosPacientes1 = new javax.swing.JLabel();
@@ -887,27 +941,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaBuscaMedicoPanelLayout.setHorizontalGroup(
             TelaBuscaMedicoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TelaBuscaMedicoPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(VoltarBtn4)
-                .addGap(144, 144, 144))
-            .addGroup(TelaBuscaMedicoPanelLayout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addGroup(TelaBuscaMedicoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(TelaBuscaMedicoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(TelaBuscaMedicoPanelLayout.createSequentialGroup()
                         .addComponent(jButtonEditarMedico)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonExcluirMedico)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonNovoMedico))
-                    .addGroup(TelaBuscaMedicoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane2)
-                        .addComponent(LabelTodosMedicos, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(TelaBuscaMedicoPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(TextFieldNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(ButtonConsultaMedico))))
+                        .addComponent(jButtonNovoMedico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(VoltarBtn4))
+                    .addComponent(jScrollPane2)
+                    .addComponent(LabelTodosMedicos, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(TelaBuscaMedicoPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextFieldNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonConsultaMedico)))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         TelaBuscaMedicoPanelLayout.setVerticalGroup(
@@ -926,17 +977,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(TelaBuscaMedicoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEditarMedico)
                     .addComponent(jButtonExcluirMedico)
-                    .addComponent(jButtonNovoMedico))
-                .addGap(32, 32, 32)
-                .addComponent(VoltarBtn4)
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addComponent(jButtonNovoMedico)
+                    .addComponent(VoltarBtn4))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         BackgroundPanel.add(TelaBuscaMedicoPanel, "card3");
 
-        TelaProntuário.setBackground(new java.awt.Color(153, 255, 153));
-        TelaProntuário.setMaximumSize(new java.awt.Dimension(712, 423));
-        TelaProntuário.setMinimumSize(new java.awt.Dimension(712, 423));
+        TelaProntuarioPanel.setBackground(new java.awt.Color(153, 255, 153));
+        TelaProntuarioPanel.setMaximumSize(new java.awt.Dimension(712, 423));
+        TelaProntuarioPanel.setMinimumSize(new java.awt.Dimension(712, 423));
 
         TextFieldBuscaProntuario.setToolTipText("Informe o nome do paciente...");
 
@@ -945,8 +995,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         LabelTodosProntuarios.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         LabelTodosProntuarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelTodosProntuarios.setText("Prontuários");
-
-        jButtonNovoProntuario.setText("Novo Prontuario");
 
         jTable1ConsultaProntuario.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         jTable1ConsultaProntuario.setModel(new javax.swing.table.DefaultTableModel(
@@ -978,50 +1026,73 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTable1ConsultaProntuario.setShowGrid(true);
         jScrollPane4.setViewportView(jTable1ConsultaProntuario);
 
-        javax.swing.GroupLayout TelaProntuárioLayout = new javax.swing.GroupLayout(TelaProntuário);
-        TelaProntuário.setLayout(TelaProntuárioLayout);
-        TelaProntuárioLayout.setHorizontalGroup(
-            TelaProntuárioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TelaProntuárioLayout.createSequentialGroup()
-                .addGap(287, 287, 287)
-                .addComponent(jButtonNovoProntuario)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(TelaProntuárioLayout.createSequentialGroup()
+        jButtonEditarProntuario.setText("Editar");
+
+        jButtonExcluirProntuario.setText("Excluir");
+
+        jButtonNovoProntuario.setText("Novo Prontuário");
+
+        VoltarBtn8.setText("Voltar");
+        VoltarBtn8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VoltarBtn8ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout TelaProntuarioPanelLayout = new javax.swing.GroupLayout(TelaProntuarioPanel);
+        TelaProntuarioPanel.setLayout(TelaProntuarioPanelLayout);
+        TelaProntuarioPanelLayout.setHorizontalGroup(
+            TelaProntuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TelaProntuarioPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(TextFieldBuscaProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscaProntuario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(TelaProntuárioLayout.createSequentialGroup()
+            .addGroup(TelaProntuarioPanelLayout.createSequentialGroup()
                 .addGap(183, 183, 183)
                 .addComponent(LabelTodosProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(207, Short.MAX_VALUE))
-            .addGroup(TelaProntuárioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(TelaProntuárioLayout.createSequentialGroup()
+            .addGroup(TelaProntuarioPanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jButtonEditarProntuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonExcluirProntuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonNovoProntuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(VoltarBtn8)
+                .addGap(52, 52, 52))
+            .addGroup(TelaProntuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(TelaProntuarioPanelLayout.createSequentialGroup()
                     .addGap(50, 50, 50)
                     .addComponent(jScrollPane4)
                     .addGap(50, 50, 50)))
         );
-        TelaProntuárioLayout.setVerticalGroup(
-            TelaProntuárioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TelaProntuárioLayout.createSequentialGroup()
+        TelaProntuarioPanelLayout.setVerticalGroup(
+            TelaProntuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TelaProntuarioPanelLayout.createSequentialGroup()
                 .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(LabelTodosProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(TelaProntuárioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(TelaProntuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonBuscaProntuario)
                     .addComponent(TextFieldBuscaProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(257, 257, 257)
-                .addComponent(jButtonNovoProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
-            .addGroup(TelaProntuárioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(TelaProntuárioLayout.createSequentialGroup()
+                .addGap(226, 226, 226)
+                .addGroup(TelaProntuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonEditarProntuario)
+                    .addComponent(jButtonExcluirProntuario)
+                    .addComponent(jButtonNovoProntuario)
+                    .addComponent(VoltarBtn8))
+                .addGap(88, 88, 88))
+            .addGroup(TelaProntuarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(TelaProntuarioPanelLayout.createSequentialGroup()
                     .addGap(117, 117, 117)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(118, Short.MAX_VALUE)))
         );
 
-        BackgroundPanel.add(TelaProntuário, "card3");
+        BackgroundPanel.add(TelaProntuarioPanel, "card3");
 
         TelaBalancos.setBackground(new java.awt.Color(0, 255, 204));
         TelaBalancos.setMaximumSize(new java.awt.Dimension(712, 423));
@@ -1244,19 +1315,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TelaBalancosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaBalancosLayout.createSequentialGroup()
+                .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(TelaBalancosLayout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(TelaBalancosLayout.createSequentialGroup()
-                                .addGap(437, 437, 437)
-                                .addComponent(VoltarBtn5))
-                            .addGroup(TelaBalancosLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TextFieldBalanco, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(jButtonNovaDespesa))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaBalancosLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextFieldBalanco, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jButtonNovaDespesa)
+                        .addGap(158, 158, 158)
+                        .addComponent(VoltarBtn5))
+                    .addGroup(TelaBalancosLayout.createSequentialGroup()
                         .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaBalancosLayout.createSequentialGroup()
@@ -1280,31 +1348,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaBalancosLayout.setVerticalGroup(
             TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TelaBalancosLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(TelaBalancosLayout.createSequentialGroup()
-                        .addComponent(VoltarBtn5)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(TelaBalancosLayout.createSequentialGroup()
-                        .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LabelTodosPacientes2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LabelTodosPacientes1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TextFieldBuscaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ButtonBuscaEntrada)
-                            .addComponent(TextFieldBuscaSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ButtonBuscaSaida))
-                        .addGap(18, 18, 18)
-                        .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonNovaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldBalanco, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(41, 41, 41))))
+                    .addComponent(LabelTodosPacientes2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelTodosPacientes1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextFieldBuscaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonBuscaEntrada)
+                    .addComponent(TextFieldBuscaSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonBuscaSaida))
+                .addGap(18, 18, 18)
+                .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TelaBalancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonNovaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TextFieldBalanco, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7))
+                    .addComponent(VoltarBtn5))
+                .addGap(41, 41, 41))
         );
 
         BackgroundPanel.add(TelaBalancos, "card3");
@@ -1449,6 +1514,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         consultarConsulta(evt);
     }//GEN-LAST:event_jButtonNovaConsultaActionPerformed
 
+    private void VoltarBtn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarBtn8ActionPerformed
+       voltarButton();
+    }//GEN-LAST:event_VoltarBtn8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1517,7 +1586,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel TelaBuscaMedicoPanel;
     private javax.swing.JPanel TelaConsultasPanel;
     private javax.swing.JPanel TelaPacientesPanel;
-    private javax.swing.JPanel TelaProntuário;
+    private javax.swing.JPanel TelaProntuarioPanel;
     private javax.swing.JTextField TextFieldBalanco;
     private javax.swing.JTextField TextFieldBuscaEntrada;
     private javax.swing.JTextField TextFieldBuscaProntuario;
@@ -1535,15 +1604,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton VoltarBtn1;
     private javax.swing.JButton VoltarBtn4;
     private javax.swing.JButton VoltarBtn5;
+    private javax.swing.JButton VoltarBtn8;
     private javax.swing.JButton jButtonEditarConsultas;
     private javax.swing.JButton jButtonEditarEntrada;
     private javax.swing.JButton jButtonEditarMedico;
     private javax.swing.JButton jButtonEditarPaciente;
+    private javax.swing.JButton jButtonEditarProntuario;
     private javax.swing.JButton jButtonEditarSaida;
     private javax.swing.JButton jButtonExcluirConsultas;
     private javax.swing.JButton jButtonExcluirMedico;
     private javax.swing.JButton jButtonExcluirPaciente;
     private javax.swing.JButton jButtonExcluirPaciente1;
+    private javax.swing.JButton jButtonExcluirProntuario;
     private javax.swing.JButton jButtonNovaConsulta;
     private javax.swing.JButton jButtonNovaDespesa;
     private javax.swing.JButton jButtonNovoMedico;

@@ -137,6 +137,37 @@ public class ConsultaDAO {
         return listaConsultas;
     }
 
+    public Consulta listarConsultasId(int id) throws ExceptionDAO {
+        // Implementar lógica para buscar consulta por ID no banco de dados
+        // Exemplo básico:
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet result = null;
+        Consulta consulta = null;
+        
+        try {
+            connection = new ConnectionDAO().getConnection();
+            String sql = "SELECT * FROM consulta WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            result = statement.executeQuery();
+            
+            if (result.next()) {
+                consulta = new Consulta();
+                consulta.setId(result.getInt("id"));
+                consulta.setPacienteId(result.getInt("paciente_id"));
+                consulta.setMedicoId(result.getInt("medico_id"));
+                consulta.setData(result.getString("data"));
+                consulta.setValor(result.getDouble("valor"));
+                consulta.setObservacoes(result.getString("observacoes"));
+            }
+            
+            return consulta;
+        } catch (SQLException e) {
+            throw new ExceptionDAO("Erro ao consultar consulta: " + e);
+        }
+    }
+
     public ArrayList<Consulta> listarConsultasData(String data) throws ExceptionDAO {
         String sql = "SELECT c.*, m.nome AS medico_nome, p.nome AS paciente_nome FROM consulta c "
                    + "JOIN medico m ON c.medico_id = m.medico_id "
